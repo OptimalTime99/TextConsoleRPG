@@ -6,6 +6,21 @@ void UIManager::Draw(int x, int y, const std::string spr)
     std::cout << spr;
 }
 
+void UIManager::DrawBar(int x, int y, double currentvalue, double Maxvalue, int color_num)
+{
+    int Bar_length = currentvalue / Maxvalue * 10;
+    UIconsole_->gotoxy(x, y);
+    UIconsole_->textcolor(color_num);
+    for (int i = 0; i < Bar_length; i++)
+    {
+        std::cout << "■";
+    }
+    for (int i = 0; i < 10 - Bar_length; i++)
+    {
+        std::cout << "-";
+    }
+}
+
 int UIManager::UserSelection(int x, int y, int n)
 {
     int choiceX = x;
@@ -93,26 +108,23 @@ void UIManager::PrintEndingEvent()
 
 void UIManager::PrintgameUI()
 {
-    UIconsole_->textcolor(5);
-    for (int i = 0; i < 150; i++)
-    {
-        for (int j = 0; j < 30; j++)
-        {
-            if (j == 0 || j == 24 || j == 29)
-            {
-                Draw(i, j, "■");
-            }
-            if (i == 0 || i == 100 || i == 130)
-            {
-                Draw(i, j, "■");
-            }
-        }
-    }
-    UIconsole_->textcolor(15);
-    Draw(102, 1, "HP : ");
-    Draw(102, 2, "총알 : ");
-    Draw(102, 3, "Exp : ");
-    Draw(102, 4, "Gold : ");
+    Draw(102, 1, "HP");
+    Draw(107, 1, "[");
+    Draw(118, 1, "]");
+    Draw(102, 2, "총알");
+    Draw(107, 2, "[");
+    Draw(118, 2, "]");
+    Draw(102, 3, "Exp");
+    Draw(107, 3, "[");
+    Draw(118, 3, "]");
+    Draw(102, 4, "Gold");
 
-    UIconsole_->gotoxy(0, 90);
+    while (true)
+    {
+        DrawBar(108, 1, 160, 200, 12);
+        DrawBar(108, 2, 15, 30, 8);
+        DrawBar(108, 3, 30, 100, 2);
+    }
+
+    UIconsole_->gotoxy(0, 30);
 }

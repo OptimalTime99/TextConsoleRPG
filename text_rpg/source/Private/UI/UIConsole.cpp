@@ -12,9 +12,9 @@ void UIConsole::SetConsole()
     SetConsoleCursorInfo(consoleHandle, &ConsoleCursor);
 }
 
-void UIConsole::textcolor(int color_number)
+void UIConsole::textcolor(int color_num)
 {
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color_number);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color_num);
 }
 
 void UIConsole::gotoxy(int x, int y)

@@ -20,7 +20,8 @@ public:
     }
     // 원하는 위치에 문자를 출력
     void Draw(int x, int y, const std::string spr);
-    void Printfile(int x, int y, const char spr[]);
+    
+    void DrawBar(int x, int y, double currentvalue, double Maxvalue, int color_num);
 
     // 메시지 출력 함수. 속도 조정 가능.
     void PrintLine(const std::string& msg, int color_num, int speed);

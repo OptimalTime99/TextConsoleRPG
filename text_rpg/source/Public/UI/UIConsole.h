@@ -9,7 +9,7 @@ public:
     void SetConsole();
 
     // 텍스트의 색깔 변경 함수
-    void textcolor(int color_number);
+    void textcolor(int color_num);
 
     // 커서의 위치 조정에 대한 함수
     void gotoxy(int x, int y);
