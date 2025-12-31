@@ -121,9 +121,9 @@ void UIManager::PrintgameUI()
 
     while (true)
     {
-        DrawBar(108, 1, 160, 200, 12);
-        DrawBar(108, 2, 15, 30, 8);
-        DrawBar(108, 3, 30, 100, 2);
+ /*       DrawBar(108, 1, Player->getHP(), Player->getMaxHP(), 12);
+        DrawBar(108, 2, Player->getBullet(), 30, 8);
+        DrawBar(108, 3, Player->getEXP(), 100, 2);*/
     }
 
     UIconsole_->gotoxy(0, 30);
