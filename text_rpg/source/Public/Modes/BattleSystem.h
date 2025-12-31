@@ -2,18 +2,31 @@
 
 class Player;
 class UIManager;
+class Monster;
 
 class BattleSystem
 {
 public:
-    void StartBattle(Player* p, UIManager* ui);
+    //전투를 시작한다
+    void StartBattle(const Player& p, const UIManager& ui);
+
+    // 일반 몬스터를 생성한다.
     void SpawnMonster();
+
+    // 보스 몬스터를 생성한다.
     void SpawnBoss();
-    void ResolveTurn(Player* p, UIManager* ui);
-    void ApplyRewards(Player* p, UIManager* ui);
-    void TryDropItem(Player* p, UIManager* ui);
+
+    // 한 턴의 전투를 처리한다.
+    void ResolveTurn(const Player& p, const UIManager& ui);
+
+    // 경험치와 골드르 지급한다.
+    void ApplyRewards(const Player& p, const UIManager& ui);
+
+    // 아이템 드랍을 시도한다.
+    void TryDropItem(const Player& p, const UIManager& ui);
 
 private:
+    Monster* monster_;
     static constexpr double DROP_CHANCE = 0.30;
     static constexpr int EXP_REWARD = 50;
     static constexpr int GOLD_MIN = 10;

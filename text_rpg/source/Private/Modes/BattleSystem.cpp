@@ -1,26 +1,29 @@
 ﻿#include "Modes/BattleSystem.h"
+#include "States/Monster.h"
 
 
-void BattleSystem::StartBattle(Player* p, UIManager* ui)
+void BattleSystem::StartBattle(const Player& p, const UIManager& ui)
 {
+    SpawnMonster();
 }
 
 void BattleSystem::SpawnMonster()
 {
+    monster_ = new Monster();
 }
 
 void BattleSystem::SpawnBoss()
 {
 }
 
-void BattleSystem::ResolveTurn(Player* p, UIManager* ui)
+void BattleSystem::ResolveTurn(const Player& p, const UIManager& ui)
 {
 }
 
-void BattleSystem::ApplyRewards(Player* p, UIManager* ui)
+void BattleSystem::ApplyRewards(const Player& p, const UIManager& ui)
 {
 }
 
-void BattleSystem::TryDropItem(Player* p, UIManager* ui)
+void BattleSystem::TryDropItem(const Player& p, const UIManager& ui)
 {
 }

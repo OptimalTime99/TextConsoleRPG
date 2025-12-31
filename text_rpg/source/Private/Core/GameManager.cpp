@@ -3,6 +3,7 @@
 #include "UI/UIManager.h"
 #include "Modes/BattleSystem.h"
 #include "Modes/ShopSystem.h"
+#include "Types/GameMode.h"
 
 GameManager::GameManager()
 {
@@ -34,11 +35,12 @@ void GameManager::StartGame()
 {
     if (UI_->PrintTitle())
     {
+        GameMode gamemode_ = GameMode::PlayGame;
         Player_->SetName(UI_->PrintCreateCharacter());
 
-        while (true)
+        while (gamemode_ != GameMode::GameEnd)
         {
-
+            Battle_->StartBattle(Player_, UI_);
         }
     }
     else
