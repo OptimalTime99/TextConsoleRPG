@@ -1,44 +1,17 @@
 ﻿#include "UI/UIManager.h"
 
-void UIManager::ClearScreen(char str[], char str_s, int max_value)
-{
-    for (int i = 0; i < max_value; i++)
-    {
-        str[i] = str_s;
-    }
-}
-void UIManager::EditScreen(int x, int y, char str)
-{
-    if (x > 0 && y > 0 && x - 1 < WIDTH_ - 1 && y - 1 < HEIGHT_ - 1)
-    {
-        str = ScreenData_[(y - 1) * WIDTH_ + x - 1];
-    }
-}
-
-void UIManager::Draw(int x, int y, const char spr[])
+void UIManager::Draw(int x, int y, const std::string spr)
 {
     UIconsole_->gotoxy(x, y);
     std::cout << spr;
 }
 
-
-
-
-void UIManager::PrintTitle()
+int UIManager::UserSelection(int x, int y, int n)
 {
-    ClearScreen(ScreenData_, ' ', 1200);
-    Draw(0, 0, "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩");
-    Draw(20, 5, "  __    __   __   __    __  _  __  __  _ _____ ___  ");
-    Draw(20, 6, " /  \ /' _//' _/ /  \ /' _/| |/  \|  \| |_   _| __| ");
-    Draw(20, 7, "| /\ |`._`.`._`.| /\ |`._`.| | /\ | | ' | | | | _|  ");
-    Draw(20, 8, "|_||_||___/|___/|_||_||___/|_|_||_|_|\__| |_| |___| ");
-
-    Draw(40, 12, "게임시작");
-    Draw(40, 14, "종    료");
-    Draw(0, 20, "▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩");
-
-    int choiceX = 38;
-    int choiceY = 12;
+    int choiceX = x;
+    int choiceY = y;
+    int MaxY = y + 2*(n-1);
+    int choice = 1;
 
     while (true)
     {
@@ -47,26 +20,99 @@ void UIManager::PrintTitle()
 
         if (GetAsyncKeyState(VK_UP) & 0x8000)
         {
-            if (choiceY > 12)
+            if (choiceY > y)
             {
                 Draw(choiceX, choiceY, " ");
                 choiceY -= 2;
+                choice--;
             }
         }
         if (GetAsyncKeyState(VK_DOWN) & 0x8000)
         {
-            if (choiceY < 14)
+            if (choiceY < MaxY)
             {
                 Draw(choiceX, choiceY, " ");
                 choiceY += 2;
+                choice++;
             }
+        }
+        if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+        {
+            system("cls");
+            return choice;
         }
         Sleep(100);
     }
 }
 
-void UIManager::PrintEnding()
+void UIManager::PrintLine(const std::string& msg, int color_num, int speed)
 {
-
+    UIconsole_->textcolor(color_num);
+    for (const char& c : msg)
+    {
+        std::cout << c;
+        Sleep(speed);
+    }
+    UIconsole_->textcolor(15);
 }
 
+bool UIManager::PrintTitle()
+{
+    UIconsole_->textcolor(4);
+    Draw(0, 5, "          :::      ::::::::   ::::::::      :::      :::::::: :::::::::::     :::     ::::    ::: ::::::::::: :::::::::: ");
+    Draw(0, 6, "       :+: :+:   :+:    :+: :+:    :+:   :+: :+:   :+:    :+:    :+:       :+: :+:   :+:+:   :+:     :+:     :+:         ");
+    Draw(0, 7, "     +:+   +:+  +:+        +:+         +:+   +:+  +:+           +:+      +:+   +:+  :+:+:+  +:+     +:+     +:+          ");
+    Draw(0, 8, "   +#++:++#++: +#++:++#++ +#++:++#++ +#++:++#++: +#++:++#++    +#+     +#++:++#++: +#+ +:+ +#+     +#+     +#++:++#      ");
+    Draw(0, 9, "  +#+     +#+        +#+        +#+ +#+     +#+        +#+    +#+     +#+     +#+ +#+  +#+#+#     +#+     +#+            ");
+    Draw(0, 10, " #+#     #+# #+#    #+# #+#    #+# #+#     #+# #+#    #+#    #+#     #+#     #+# #+#   #+#+#     #+#     #+#             ");
+    Draw(0, 11, "###     ###  ########   ########  ###     ###  ######## ########### ###     ### ###    ####     ###     ##########       ");
+    UIconsole_->textcolor(15);
+    Draw(52, 16, "게임시작");
+    Draw(52, 18, "종   료");
+
+    int userselect = UserSelection(48, 16, 2);
+    if (userselect == 1)
+    {
+        return true;
+    }
+    if (userselect == 2)
+    {
+        return false;
+    }
+}
+
+void UIManager::PrintOff()
+{
+    std::cout << "게임을 종료합니다." << std::endl;
+}
+
+void UIManager::PrintEndingEvent()
+{
+    
+}
+
+void UIManager::PrintgameUI()
+{
+    UIconsole_->textcolor(5);
+    for (int i = 0; i < 150; i++)
+    {
+        for (int j = 0; j < 30; j++)
+        {
+            if (j == 0 || j == 24 || j == 29)
+            {
+                Draw(i, j, "■");
+            }
+            if (i == 0 || i == 100 || i == 130)
+            {
+                Draw(i, j, "■");
+            }
+        }
+    }
+    UIconsole_->textcolor(15);
+    Draw(102, 1, "HP : ");
+    Draw(102, 2, "총알 : ");
+    Draw(102, 3, "Exp : ");
+    Draw(102, 4, "Gold : ");
+
+    UIconsole_->gotoxy(0, 90);
+}

@@ -3,7 +3,7 @@
 void UIConsole::SetConsole() 
 {
     SetConsoleTitle(TEXT("SF TEXT RPG"));
-    system("mode con:cols=100 lines=100");
+    system("mode con:cols=150 lines=100");
 
     CONSOLE_CURSOR_INFO ConsoleCursor;
     ConsoleCursor.bVisible = 0;
