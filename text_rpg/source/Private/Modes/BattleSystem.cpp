@@ -2,22 +2,33 @@
 #include "States/Monster.h"
 
 
-void BattleSystem::StartBattle(const Player& p, const UIManager& ui)
+bool BattleSystem::StartBattle(const Player& p, const UIManager& ui)
 {
-    SpawnMonster();
+    bool IsSomeoneDead = false;
+
+    SpawnMonster(p);
+    while (!IsSomeoneDead)
+    {
+        if (ResolveTurn(p, ui))
+        {
+            IsSomeoneDead = true;
+        }
+    }
 }
 
-void BattleSystem::SpawnMonster()
+void BattleSystem::SpawnMonster(const Player& p)
 {
-    monster_ = new Monster();
+    monster_ = new Monster("test", p.GetLevel(), false);
 }
 
-void BattleSystem::SpawnBoss()
+void BattleSystem::SpawnBoss(const Player& p)
 {
+    monster_ = new Monster("Boss_test", p.GetLevel(), true);
 }
 
-void BattleSystem::ResolveTurn(const Player& p, const UIManager& ui)
+bool BattleSystem::ResolveTurn(const Player& p, const UIManager& ui) const
 {
+    bool IsSomoneDead = false;
 }
 
 void BattleSystem::ApplyRewards(const Player& p, const UIManager& ui)

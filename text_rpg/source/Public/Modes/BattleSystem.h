@@ -8,16 +8,16 @@ class BattleSystem
 {
 public:
     //전투를 시작한다
-    void StartBattle(const Player& p, const UIManager& ui);
+    bool StartBattle(const Player& p, const UIManager& ui);
 
     // 일반 몬스터를 생성한다.
-    void SpawnMonster();
+    void SpawnMonster(const Player& p);
 
     // 보스 몬스터를 생성한다.
-    void SpawnBoss();
+    void SpawnBoss(const Player& p);
 
     // 한 턴의 전투를 처리한다.
-    void ResolveTurn(const Player& p, const UIManager& ui);
+    bool ResolveTurn(const Player& p, const UIManager& ui) const;
 
     // 경험치와 골드르 지급한다.
     void ApplyRewards(const Player& p, const UIManager& ui);
