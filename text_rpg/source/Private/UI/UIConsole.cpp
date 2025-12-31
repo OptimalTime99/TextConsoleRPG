@@ -1,9 +1,9 @@
-#include "UI/UIConsole.h"
+﻿#include "UI/UIConsole.h"
 
 void UIConsole::SetConsole() 
 {
     SetConsoleTitle(TEXT("SF TEXT RPG"));
-    system("mode con:conls=120 lines=100");
+    system("mode con:cols=100 lines=100");
 
     CONSOLE_CURSOR_INFO ConsoleCursor;
     ConsoleCursor.bVisible = 0;

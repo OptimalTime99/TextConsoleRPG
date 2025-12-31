@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 #include "Windows.h"
 #include "conio.h"
 
 class UIConsole
 {
 public:
-    // ÄÜ¼ÖÃ¢ ÀÌ¸§, Å©±â, Ä¿¼­¿¡ ´ëÇÑ ¼¼ÆÃ ÇÔ¼ö
+    // ì½˜ì†”ì°½ ì´ë¦„, í¬ê¸°, ì»¤ì„œì— ëŒ€í•œ ì„¸íŒ… í•¨ìˆ˜
     void SetConsole();
 
-    // ÅØ½ºÆ®ÀÇ »ö±ò º¯°æ ÇÔ¼ö
+    // í…ìŠ¤íŠ¸ì˜ ìƒ‰ê¹” ë³€ê²½ í•¨ìˆ˜
     void textcolor(int color_number);
 
-    // Ä¿¼­ÀÇ À§Ä¡ Á¶Á¤¿¡ ´ëÇÑ ÇÔ¼ö
+    // ì»¤ì„œì˜ ìœ„ì¹˜ ì¡°ì •ì— ëŒ€í•œ í•¨ìˆ˜
     void gotoxy(int x, int y);
 };
