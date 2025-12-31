@@ -7,8 +7,8 @@
 
 GameManager::GameManager()
 {
-    Player_ = new Player();
-    UI_ = new UIManager();
+    //Player_ = new Player();
+    //UI_ = new UIManager();
     Battle_ = new BattleSystem();
     Shop_ = new ShopSystem();
 }
@@ -33,7 +33,7 @@ GameManager* GameManager::GetInstace()
 
 void GameManager::StartGame()
 {
-    if (UI_->PrintTitle())
+    /*if (UI_->PrintTitle())
     {
         GameMode gamemode_ = GameMode::PlayGame;
         Player_->SetName(UI_->PrintCreateCharacter());
@@ -46,12 +46,12 @@ void GameManager::StartGame()
     else
     {
         UI_->PrintOff();
-    }
+    }*/
 }
 
 void GameManager::StartBattle()
 {
-    Battle_->StartBattle(Player_, UI_);
+    //Battle_->StartBattle(Player_, UI_);
 }
 
 void GameManager::VisitShop()

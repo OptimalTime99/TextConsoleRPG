@@ -18,17 +18,20 @@ bool BattleSystem::StartBattle(const Player& p, const UIManager& ui)
 
 void BattleSystem::SpawnMonster(const Player& p)
 {
-    monster_ = new Monster("test", p.GetLevel(), false);
+    //monster_ = new Monster("test", p.GetLevel(), false);
 }
 
 void BattleSystem::SpawnBoss(const Player& p)
 {
-    monster_ = new Monster("Boss_test", p.GetLevel(), true);
+    //monster_ = new Monster("Boss_test", p.GetLevel(), true);
 }
 
 bool BattleSystem::ResolveTurn(const Player& p, const UIManager& ui) const
 {
     bool IsSomoneDead = false;
+    //p.DecideBattleAction();
+    
+
 }
 
 void BattleSystem::ApplyRewards(const Player& p, const UIManager& ui)
