@@ -28,6 +28,7 @@
     <ClCompile Include="source\Private\States\Item.cpp" />
     <ClCompile Include="source\Private\States\Monster.cpp" />
     <ClCompile Include="source\Private\States\Player.cpp" />
+    <ClCompile Include="source\Private\UI\UIConsole.cpp" />
     <ClCompile Include="source\Private\UI\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +40,7 @@
     <ClInclude Include="source\Public\States\Item.h" />
     <ClInclude Include="source\Public\States\Monster.h" />
     <ClInclude Include="source\Public\States\Player.h" />
+    <ClInclude Include="source\Public\UI\UIConsole.h" />
     <ClInclude Include="source\Public\UI\UIManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
