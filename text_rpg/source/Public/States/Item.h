@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <string>
-#include "States/Player.h"
 
 enum ItemType
 {
@@ -8,6 +7,7 @@ enum ItemType
     AtkPotion
 };
 
+class Player;
 class Item
 {
 public:
