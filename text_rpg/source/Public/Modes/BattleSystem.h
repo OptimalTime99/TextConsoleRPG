@@ -25,8 +25,6 @@ public:
     // 아이템 드랍을 시도한다.
     void TryDropItem(Player* p, UIManager* ui);
 
-    // 랜덤 난수 얻기
-    bool GetRandom(double probability);
     // ACTION_CHANCE확률로 플레이어 공격인지 아이템 사용인지 결정
     bool IsAttack(double probability);
 

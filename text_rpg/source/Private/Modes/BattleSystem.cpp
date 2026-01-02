@@ -40,7 +40,7 @@ void BattleSystem::SpawnBoss(Player* p)
 bool BattleSystem::ResolveTurn(Player* p, UIManager* ui)
 {
     // 플레이어 선공격
-    if (GetRandom(ACTION_CHANCE))
+    if (IsAttack(ACTION_CHANCE))
     {
         int damage = p->Attack();
         // ui->공격 그리기();
@@ -78,7 +78,15 @@ void BattleSystem::TryDropItem(Player* p, UIManager* ui)
 {
 }
 
-bool BattleSystem::GetRandom(double probability)
+bool BattleSystem::IsAttack(double probability)
+{
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+
+    std::bernoulli_distribution dis(probability);
+
+    return dis(gen);
+}
 
 int BattleSystem::GetRandomGold(int min, int max)
 {
