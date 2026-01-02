@@ -1,29 +1,23 @@
 ﻿#pragma once
 #include <string>
+#include "Types/ItemType.h"
 
-enum ItemType
-{
-    HealPotion,
-    AtkPotion
-};
-
-class Player;
 class Item
 {
 public:
-    Item(const std::string& Name, ItemType Type, int Value, int Price);
+    explicit Item(const ItemDefinition* def);
 
-    // 플레이어에게 아이템 효과를 적용하는 함수
-    //void ApplyTo(Player* p);
+    // Getter
+    const char* GetName() const;
+    ItemType GetType() const;
+    int GetValue() const;
+    int GetPrice() const;
 
     // 판매 가격을 반환하는 함수
     int GetSellPrice(double sellRate) const;
 
-    std::string GetName();
-
 private:
-    std::string Name_;
-    ItemType Type_;
-    int Value_;
-    int Price_;
+    const ItemDefinition* def_;
 };
+
+
