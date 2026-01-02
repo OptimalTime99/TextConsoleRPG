@@ -22,11 +22,14 @@ public:
     // 경험치와 골드르 지급한다.
     void ApplyRewards(Player* p, UIManager* ui);
 
-    // 아이템 드랍을 시도한다.
+    // DROP_CHANCE의 확률로아이템 드랍을 시도한다.
     void TryDropItem(Player* p, UIManager* ui);
 
-    // ACTION_CHANCE확률로 플레이어 공격인지 아이템 사용인지 결정
-    bool IsAttack(double probability);
+    // ACTION_CHANCE의 확률로 플레이어 공격인지 아이템 사용인지 결정
+    bool DecideTurnAction(double probability);
+
+    // 확률에 따른 랜덤 부울린 값을 반환
+    bool GetRandomBoolean(double probability);
 
     // 골드 획득량을 결정
     int GetRandomGold(int min, int max);
