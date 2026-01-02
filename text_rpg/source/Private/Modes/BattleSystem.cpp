@@ -79,11 +79,13 @@ void BattleSystem::TryDropItem(Player* p, UIManager* ui)
 }
 
 bool BattleSystem::GetRandom(double probability)
+
+int BattleSystem::GetRandomGold(int min, int max)
 {
     static std::random_device rd;
     static std::mt19937 gen(rd());
 
-    std::bernoulli_distribution d(probability);
+    static std::uniform_int_distribution<int> dis(min, max);
 
-    return d(gen);
+    return dis(gen);
 }

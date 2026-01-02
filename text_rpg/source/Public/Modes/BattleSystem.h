@@ -27,6 +27,11 @@ public:
 
     // 랜덤 난수 얻기
     bool GetRandom(double probability);
+    // ACTION_CHANCE확률로 플레이어 공격인지 아이템 사용인지 결정
+    bool IsAttack(double probability);
+
+    // 골드 획득량을 결정
+    int GetRandomGold(int min, int max);
 
 private:
     Monster* monster_;
