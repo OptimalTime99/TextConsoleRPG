@@ -63,6 +63,8 @@ public:
 
     void SetMaxHP(int newMaxHP);
 
+    int GetMaxExp();
+
     
     
     

@@ -114,6 +114,11 @@ std::string Player::GetName()
     return Name_;
 }
 
+int Player::GetMaxExp()
+{
+    return MAX_EXP;
+}
+
 void Player::SetAttack(int newAttack)
 {
     Attack_ = newAttack;

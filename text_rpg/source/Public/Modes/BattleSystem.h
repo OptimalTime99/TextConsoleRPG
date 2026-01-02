@@ -3,6 +3,7 @@
 class Player;
 class UIManager;
 class Monster;
+enum class GameMode;
 
 class BattleSystem
 {

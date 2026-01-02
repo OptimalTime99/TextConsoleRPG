@@ -1,5 +1,7 @@
 ﻿#include "UI/UIManager.h"
 
+class Player;
+
 bool UIManager::PrintTitle()
 {
     int x = 27;
@@ -201,7 +203,7 @@ void UIManager::PrintPlayerStatus(Player* player)
 
     UIHelper_->Draw(x, y+4, "공격력 : ");
     UIHelper_->gotoxy(x+9, y+4);
-    std::cout << player->GetAttack();
+    std::cout << player->Attack();
 
     UIHelper_->Draw(x, y+5, "속도 : ");
     UIHelper_->gotoxy(x+7, y+5);
