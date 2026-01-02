@@ -45,12 +45,13 @@ private:
     bool bisBoss_;
     
     // 상수로 만든 랜덤 스탯용 멤버 변수
-    const int MIN_HP = 20;
-    const int MAX_HP = 30;
-    const int MIN_ATK = 5;
-    const int MAX_ATK = 10;
-    const int BOSS_MIN_HP = 30;
-    const int BOSS_MAX_HP = 45;
-    const int MIN_BOSS_ATK = 8;
-    const int MAX_BOSS_ATK = 15;
+    //
+    static constexpr int MIN_HP = 20;
+    static constexpr int MAX_HP = 30;
+    static constexpr int MIN_ATK = 5;
+    static constexpr int MAX_ATK = 10;
+    static constexpr int BOSS_MIN_HP = 30;
+    static constexpr int BOSS_MAX_HP = 45;
+    static constexpr int MIN_BOSS_ATK = 8;
+    static constexpr int MAX_BOSS_ATK = 15;
 };
