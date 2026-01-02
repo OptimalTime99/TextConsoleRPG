@@ -4,43 +4,35 @@
 #include <random>
 
 
-//bool BattleSystem::StartBattle(const Player& p, const UIManager& ui)
-//{
-//    bool IsSomeoneDead = false;
-//
-//    SpawnMonster(p);
-//    while (!IsSomeoneDead)
-//    {
-//        if (ResolveTurn(p, ui))
-//        {
-//            IsSomeoneDead = true;
-//        }
-//    }
-//}
-
-void BattleSystem::SpawnMonster(const Player& p)
+bool BattleSystem::StartBattle(Player* p, UIManager* ui)
 {
-    //monster_ = new Monster("test", p.GetLevel(), false);
+    bool IsSomeoneDead = false;
+
+    SpawnMonster(p);
+    while (!IsSomeoneDead)
+    {
+        if (ResolveTurn(p, ui))
+        {
+            IsSomeoneDead = true;
+        }
+    }
 }
 
-void BattleSystem::SpawnBoss(const Player& p)
+void BattleSystem::SpawnMonster(Player* p)
 {
-    //monster_ = new Monster("Boss_test", p.GetLevel(), true);
+    monster_ = new Monster("test", p->GetLevel(), false);
 }
 
-//bool BattleSystem::ResolveTurn(const Player& p, const UIManager& ui) const
-//{
-//    bool IsSomoneDead = false;
-//    //p.DecideBattleAction();
-//    
-//
-//}
+void BattleSystem::SpawnBoss(Player* p)
+{
+    monster_ = new Monster("Boss_test", p->GetLevel(), true);
+}
 
-void BattleSystem::ApplyRewards(const Player& p, const UIManager& ui)
+bool BattleSystem::ResolveTurn(Player* p, UIManager* ui)
 {
 }
 
-void BattleSystem::TryDropItem(const Player& p, const UIManager& ui)
+void BattleSystem::ApplyRewards(Player* p, UIManager* ui)
 {
 }
 
