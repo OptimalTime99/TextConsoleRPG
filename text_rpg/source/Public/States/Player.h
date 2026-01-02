@@ -17,8 +17,6 @@ public:
     // 이름 설정
     void Init(std::string name);
 
-    // 공격 or 아이템 사용
-    void DecideBattleAction();   // enum?     xxxxxxxxxx
 
     // 피해를 받아 체력을 감소시킨다.
     bool TakeDamage(int dmg);
@@ -33,26 +31,26 @@ public:
     void GainGold(int amount);
 
     // 레벨업, 스탯증가, 체력회복
-    void TryLevelUp();
+    bool TryLevelUp();
 
     // 아이템 효과 적용
-    /*void ApplyItemEffect(Item item);*/        //UseItem 
-
-    // 공격
+    void UseItem();        //UseItem 
+    
+    
     int Attack();
-
+    
     int GetLevel();
-
+    
     int GetExp();
-
+    
     int GetGold();
-
+    
     int GetHP();
-
+    
     int GetMaxHP();
-
+    
     std::string GetName();
-
+    
     void SetAttack(int newAttack);
 
     void SetLevel(int newLevel);
@@ -65,14 +63,11 @@ public:
 
     void SetMaxHP(int newMaxHP);
 
-    // 랜덤
-    bool Rand();      //xxxxxxxxxxxxxxx
-
-    void IncreaseHP(int Value);
+    
     
     
 private:
-    /*Item* item;*/
+    Item* item;
     std::string Name_;           // get 다 하나씩 추가해두기.
     int Level_;
     int Exp_;
@@ -80,10 +75,11 @@ private:
     int HP_;
     int MaxHP_;
     int Attack_;
-    /*Inventory* Inv_;*/
+    Inventory* Inv_;
     static constexpr int HP_PER_LEVEL = 20;
     static constexpr int ATTACK_PER_LEVEL = 5;
     static constexpr int MAX_LEVEL = 10;
     static constexpr int MAX_EXP = 100;
     static constexpr int LEVEL = 1;
+    static constexpr int HALF = 2;
 };

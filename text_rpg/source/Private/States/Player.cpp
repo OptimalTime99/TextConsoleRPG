@@ -36,8 +36,6 @@ bool Player::IsDead() const
     {
         return false;
     }
-
-    // return HP_ <= 0; 챗지피티식
 }
 
 bool Player::TakeDamage(int dmg)
@@ -51,7 +49,7 @@ bool Player::TakeDamage(int dmg)
     }
 }
 
-void Player::TryLevelUp()
+bool Player::TryLevelUp()  //레벨업시 true 
 {   
     if (Level_ < MAX_LEVEL)      // 10 ㅡ> 상수화
     {
@@ -61,6 +59,16 @@ void Player::TryLevelUp()
             MaxHP_ += LEVEL * HP_PER_LEVEL;  // 20 ㅡ> 상수화
             HP_ = MaxHP_;
             Attack_ += LEVEL * ATTACK_PER_LEVEL;  // 5 ㅡ> 상수화
+            if (Exp_ > 100)
+            {
+                Exp_ -= MAX_EXP;
+                TryLevelUp();
+            }
+            else
+            {
+                Exp_ = 0;
+            }
+            return true;    
         }
     }
 }
@@ -136,44 +144,36 @@ void Player::SetMaxHP(int newMaxHP)
     MaxHP_ = newMaxHP;
 }
 
-bool Rand()
-{
-    return rand() % 2 == 0; 
-}
 
-void Player::IncreaseHP(int Value)
-{
-    HP_ += Value;
-}
 
-//void Player::ApplyItemEffect(Item item)
+//Item Player::UseItem()       // 후에 다시 
 //{
-//    if (HP_ <= 50) // 언제 쓸지 
-//        // 아이템 사용 조건
-//        // Item쪽 함수 호출
+//    if (Inv_->IsEmpty() != true)   // Empty == 비어있을 때 true를 반환함
 //    {
-//        Itme->ApplyTo(ItemType type); 
+//        if (HP_ < MaxHP_ / HALF)
+//        // 힐포션 조회 후 있으면      GetItem(?) 
+//         // 사용 ㅡ> 적용 ㅡ> 사용한 아이템 삭제 
+//         // HP_ += HPPOTION;        TakeItem();
+//          
+//        else 
+//        // 공업포션 조회 후 있으면  GetItem(?) 
+//         // 사용 ㅡ> 적용 ㅡ> 사용한 아이템 삭제 
+//         // Attack_ += ATTACKPOTION;    TakeItem(); 
+//        반환형 
 //    }
 //}
+//정보전달 >> 
+// 어떤 물약을 사용할 지     GetItem 반환
+// 사용한 물약의 남은 개수   TakeItem 반환 
+//스탯안건들고
+//반환형으로
+//
+//item.h 에 있는 enum 이해필요
+//erase 도 이해필요
+//vector 이해필요
+//
 
-//void Player::DecideBattleAction()
-//{
-//    if (Rand())
-//    {
-//        공격함수();
-//    }
-//    else
-//    {
-//        find(), ApplyItemEffect(Item item), remove() 
-//    }
-//}
 
-// 2분의 1확률로 공격 or 아이템 사용
-// 아이템 사용이면 아이템 있는지 여부, 조건으로 어떤 아이템을 사용할지
-// 아이템적용. 인벤토리에 있는 아이템을 제거
+    
 
-// Invetory->find(); <<  
-// if 1번 hp, 2번 atk
-// ApplyItemEffect(Item item);
-// remove()
 
