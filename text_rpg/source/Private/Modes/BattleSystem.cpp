@@ -38,12 +38,12 @@ GameMode BattleSystem::StartBattle(Player* p, UIManager* ui)
 
 void BattleSystem::SpawnMonster(Player* p)
 {
-    monster_ = new Monster("test", p->GetLevel(), false);
+    //monster_ = new Monster("test", p->GetLevel(), false);
 }
 
 void BattleSystem::SpawnBoss(Player* p)
 {
-    monster_ = new Monster("Boss_test", p->GetLevel(), true);
+    //monster_ = new Monster("Boss_test", p->GetLevel(), true);
 }
 
 // 플레이어 행동 결정 <- BattleSystem이
@@ -60,8 +60,8 @@ bool BattleSystem::ResolveTurn(Player* p, UIManager* ui)
     // 플레이어 선공격
     if (DecideTurnAction(ACTION_CHANCE))
     {
-        int damage = p->Attack();
-        monster_->TakeDamage(damage);
+        //int damage = p->Attack();
+        //monster_->TakeDamage(damage);
         // ui->데미지 받기그리기(monster_);
 
         // 몬스터 사망시 함수 종료
@@ -80,8 +80,8 @@ bool BattleSystem::ResolveTurn(Player* p, UIManager* ui)
     // 몬스터 사망시 아래는 수행하지 않음
 
 
-    int damage = monster_->Attack();
-    p->TakeDamage(damage);
+    //int damage = monster_->Attack();
+    //p->TakeDamage(damage);
     // ui->플레이어 데미지 받기 출력(p);
     if (p->IsDead())
     {
