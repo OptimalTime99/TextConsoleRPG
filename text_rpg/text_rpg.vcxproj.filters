@@ -45,7 +45,10 @@
     <ClCompile Include="source\Private\UI\UIManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="source\Private\UI\UIConsole.cpp">
+    <ClCompile Include="source\Private\UI\UIHelper.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Private\Modes\AchievementSystem.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="source\Public\Types\ItemType.h">
@@ -86,13 +89,19 @@
     <ClInclude Include="source\Public\UI\UIManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="source\Public\UI\UIConsole.h">
+    <ClInclude Include="source\Public\UI\UIHelper.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="source\Public\Types\ItemDefs.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="source\Public\Types\ItemFactory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Public\Types\GameMode.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Public\Modes\AchievementSystem.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
