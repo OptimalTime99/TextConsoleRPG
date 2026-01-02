@@ -64,11 +64,11 @@ void UIHelper::BoxUI(int x, int y, int sx, int sy, int color_num)
     {
         for (int j = y; j <= sy; j++)
         {
-            if (j == 0 || j == sy)
+            if (j == y || j == sy)
             {
                 Draw(i, j, "▒");
             }
-            if (i == 0 || i == sx)
+            if (i == x || i == sx)
             {
                 Draw(i, j, "▒");
             }

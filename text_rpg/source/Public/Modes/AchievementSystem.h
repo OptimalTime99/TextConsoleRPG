@@ -10,7 +10,6 @@ public:
 
     void AddKillCount(std::string);
     std::map<std::string, int> GetAllKillCount();
-
 private:
     std::map<std::string, int> MonsterKillCount_;
 };

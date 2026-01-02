@@ -107,82 +107,87 @@ std::string UIManager::PrintCreateCharacter()
 
 void UIManager::PrintPlayerStatus(Player* player)
 {
-    UIHelper_->Draw(1, 1, "요원명 :");
-    UIHelper_->gotoxy(10, 1);
+    int x = 1;
+    int y = 1;
+    UIHelper_->BoxUI(0, 35, 171, 45, 8);
+    UIHelper_->textcolor(15);
+    UIHelper_->Draw(x, y, "요원명 :");
+    UIHelper_->gotoxy(x+9, y);
     std::cout << player->GetName();
 
-    UIHelper_->Draw(1, 2, "HP");
-    UIHelper_->Draw(6, 2, "[");
-    UIHelper_->Draw(17, 2, "]");
-    UIHelper_->gotoxy(19, 2);
+    UIHelper_->Draw(x, y+1, "HP");
+    UIHelper_->Draw(x+5, y+1, "[");
+    UIHelper_->Draw(x+16, y+1, "]");
+    UIHelper_->gotoxy(x+18, y+1);
     std::cout << player->GetHP() << " / " << player->GetMaxHP();
 
-    UIHelper_->Draw(1, 3, "총알");
-    UIHelper_->Draw(6, 3, "[");
-    UIHelper_->Draw(17, 3, "]");
-    UIHelper_->gotoxy(19, 3);
+    UIHelper_->Draw(x, y+2, "총알");
+    UIHelper_->Draw(x+5, y+2, "[");
+    UIHelper_->Draw(x+16, y+2, "]");
+    UIHelper_->gotoxy(x+18, y+2);
     std::cout << 10 << " / " << 30;
 
-    UIHelper_->Draw(1, 4, "Exp");
-    UIHelper_->Draw(6, 4, "[");
-    UIHelper_->Draw(17, 4, "]");
-    UIHelper_->gotoxy(19, 4);
+    UIHelper_->Draw(x, y+3, "Exp");
+    UIHelper_->Draw(x+5, y+3, "[");
+    UIHelper_->Draw(x+16, y+3, "]");
+    UIHelper_->gotoxy(x+18, y+3);
     std::cout << player->GetExp() << " / " << player->GetMaxExp();
 
-    UIHelper_->Draw(1, 5, "공격력 : ");
-    UIHelper_->gotoxy(10, 5);
+    UIHelper_->Draw(x, y+4, "공격력 : ");
+    UIHelper_->gotoxy(x+9, y+4);
     std::cout << player->GetAttack();
 
-    UIHelper_->Draw(1, 6, "속도 : ");
-    UIHelper_->gotoxy(8, 6);
+    UIHelper_->Draw(x, y+5, "속도 : ");
+    UIHelper_->gotoxy(x+7, y+5);
     std::cout << "player->GetSpeed()";
 
-    UIHelper_->Draw(1, 7, "Gold : ");
-    UIHelper_->gotoxy(8, 7);
+    UIHelper_->Draw(x, y+6, "Gold : ");
+    UIHelper_->gotoxy(x+7, y+6);
     std::cout << player->GetGold();
 
-    UIHelper_->DrawBar(7, 2, player->GetHP(), player->GetMaxHP(), 12);
-    UIHelper_->DrawBar(7, 3, 10, 30, 8);
-    UIHelper_->DrawBar(7, 4, player->GetExp(), player->GetMaxExp(), 2);
+    UIHelper_->DrawBar(x+6, y+1, player->GetHP(), player->GetMaxHP(), 12);
+    UIHelper_->DrawBar(x+6, y+2, 10, 30, 8);
+    UIHelper_->DrawBar(x+6, y+3, player->GetExp(), player->GetMaxExp(), 2);
 
-    UIHelper_->gotoxy(0, 30);
+    UIHelper_->gotoxy(0, 45);
 }
 
 void UIManager::PrintMonsterStatus(Monster* monster)
 {
+    int x = 110;
+    int y = 1;
     UIHelper_->textcolor(15);
-    UIHelper_->Draw(100, 1, "타겟 :");
-    UIHelper_->gotoxy(107, 1);
+    UIHelper_->Draw(x, y, "타겟 :");
+    UIHelper_->gotoxy(x+7, y);
     std::cout << "monster->GetName()";
 
-    UIHelper_->Draw(100, 2, "HP");
-    UIHelper_->Draw(105, 2, "[");
-    UIHelper_->Draw(116, 2, "]");
-    UIHelper_->gotoxy(118, 2);
+    UIHelper_->Draw(x, y+1, "HP");
+    UIHelper_->Draw(x+5, y+1, "[");
+    UIHelper_->Draw(x+16, y+1, "]");
+    UIHelper_->gotoxy(x+18, y+1);
     std::cout << "monster->GetHP()" << " / " << "monster->GetMaxHP()";
 
-    UIHelper_->Draw(100, 3, "총알");
-    UIHelper_->Draw(105, 3, "[");
-    UIHelper_->Draw(116, 3, "]");
-    UIHelper_->gotoxy(118, 3);
+    UIHelper_->Draw(x, y+2, "총알");
+    UIHelper_->Draw(x+5, y+2, "[");
+    UIHelper_->Draw(x+16, y+2, "]");
+    UIHelper_->gotoxy(x+18, y+2);
     std::cout << 10 << " / " << 30;
 
-    UIHelper_->Draw(100, 4, "공격력 : ");
-    UIHelper_->gotoxy(109, 4);
+    UIHelper_->Draw(x, y+3, "공격력 : ");
+    UIHelper_->gotoxy(x+9, y+3);
     std::cout << "monster->GetAttack()";
 
-    UIHelper_->Draw(100, 5, "속도 : ");
-    UIHelper_->gotoxy(107, 5);
+    UIHelper_->Draw(x, y+4, "속도 : ");
+    UIHelper_->gotoxy(x+7, y+4);
     std::cout << "monster->GetSpeed()";
 
-    UIHelper_->DrawBar(106, 2, 200, 200, 12);
-    UIHelper_->DrawBar(106, 3, 10, 30, 8);
+    UIHelper_->DrawBar(x+6, y+1, 200, 200, 12);
+    UIHelper_->DrawBar(x+6, y+2, 10, 30, 8);
 
-    //UIHelper_->DrawBar(7, 2, monster->GetHP(), monster->GetMaxHP(), 12);
-    //UIHelper_->DrawBar(7, 3, 10, 30, 8);
-    //UIHelper_->DrawBar(7, 4, monster->GetExp(), monster->GetMaxExp(), 2);
+    //UIHelper_->DrawBar(x+6, y+1, monster->GetHP(), monster->GetMaxHP(), 12);
+    //UIHelper_->DrawBar(x+6, y+2, 10, 30, 8);
 
-    UIHelper_->gotoxy(0, 30);
+    UIHelper_->gotoxy(0, 45);
 
 }
 
