@@ -4,7 +4,8 @@
 #include <iostream>
 #include <random>
 
-Monster::Monster(std::string MonsterName,int Level,bool bisBoss) : MonsterName_(MonsterName), MonsterLevel_(Level), bisBoss_(bisBoss)
+Monster::Monster(std::string MonsterName,int Level,bool bisBoss) 
+    : MonsterName_(MonsterName), MonsterLevel_(Level), bisBoss_(bisBoss)
 {
     if (bisBoss)
     {
@@ -19,7 +20,6 @@ Monster::Monster(std::string MonsterName,int Level,bool bisBoss) : MonsterName_(
 void Monster::GenerateNomal(int Level_)
 {
     bisBoss_ = false;
-    MonsterName_ = "Unknown";
     MonsterLevel_ = Level_;
     if (MonsterLevel_ == 0)
     {
@@ -30,32 +30,27 @@ void Monster::GenerateNomal(int Level_)
     std::mt19937 gen(rd());
 
     std::uniform_int_distribution<int> Dist(Level_ * 20, Level_ * 30);
+    std::uniform_int_distribution<int> DistHP(Level_ * MIN_HP, Level_ * MAX_HP);
+    std::uniform_int_distribution<int> DistATK(Level_ * MIN_ATK, Level_ * MAX_ATK);
 
-    this->HP_ = Dist(gen);
-    this->Attack_ = Dist(gen);
-
-    std::cout << "이름: " << MonsterName_ << "(Lv." << MonsterLevel_ << ")" << std::endl;
-    std::cout << "HP: " << HP_ << " /  Attack: " << Attack_ << std::endl;
+    this->HP_ = DistHP(gen);
+    this->Attack_ = DistATK(gen);
 }
 
 void Monster::GenerateBoss(int Level_)
 {
     bisBoss_ = true;
-    MonsterName_ = "카르파르 카이저";
     MonsterLevel_ = Level_ + 5;
 
     std::random_device rd;
     std::mt19937 gen(rd());
 
-    std::uniform_int_distribution<int> Dist(Level_ * 30, Level_ * 45);
+    std::uniform_int_distribution<int> DistHP(Level_ * BOSS_MIN_HP, Level_ * BOSS_MAX_HP);
+    std::uniform_int_distribution<int> DistATK(Level_ * MIN_BOSS_ATK, Level_ * MAX_BOSS_ATK);
 
-    this->HP_ = Dist(gen);
-    this->Attack_ = Dist(gen);
+    this->HP_ = DistHP(gen);
+    this->Attack_ = DistATK(gen);
 
-
-
-    std::cout << "이름: " << MonsterName_ << "(Lv." << MonsterLevel_ << ")" << std::endl;
-    std::cout << "HP: " << HP_ << " /  Attack: " << Attack_ << std::endl;
 }
 
 void Monster::TakeDamage(int dmg)
@@ -77,4 +72,29 @@ void Monster::TakeDamage(int dmg)
 bool Monster::isDead() const
 {
     return HP_ <= 0;
+}
+
+int Monster::GetMaxHP()
+{
+    return MaxHP_;
+}
+
+int Monster::GetHP()
+{
+    return HP_;
+}
+
+int Monster::GetAttack()
+{
+    return Attack_;
+}
+
+std::string Monster::GetMonsterName()
+{
+    return MonsterName_;
+}
+
+int Monster::GetLevel()
+{
+    return MonsterLevel_;
 }
