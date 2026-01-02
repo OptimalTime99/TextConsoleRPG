@@ -59,7 +59,7 @@ bool Player::TryLevelUp()  //레벨업시 true
             MaxHP_ += LEVEL * HP_PER_LEVEL;  // 20 ㅡ> 상수화
             HP_ = MaxHP_;
             Attack_ += LEVEL * ATTACK_PER_LEVEL;  // 5 ㅡ> 상수화
-            if (Exp_ > 100)
+            if (Exp_ > 100) // 한번 더 
             {
                 Exp_ -= MAX_EXP;
                 TryLevelUp();
@@ -73,7 +73,7 @@ bool Player::TryLevelUp()  //레벨업시 true
     }
 }
 
-void Player::Init(std::string name)
+void Player::SetName(std::string name)
 {
     Name_ = name;
 }

@@ -15,7 +15,7 @@ public:
 
     
     // 이름 설정
-    void Init(std::string name);
+    void SetName(std::string name);
 
 
     // 피해를 받아 체력을 감소시킨다.
