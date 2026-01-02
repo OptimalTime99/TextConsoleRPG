@@ -148,7 +148,7 @@ void UIManager::PrintPlayerStatus(Player* player)
     UIHelper_->gotoxy(0, 30);
 }
 
-void UIManager::MonsterStatus(Monster* monster)
+void UIManager::PrintMonsterStatus(Monster* monster)
 {
     UIHelper_->textcolor(15);
     UIHelper_->Draw(100, 1, "타겟 :");
@@ -205,7 +205,7 @@ void UIManager::PrintKillCount(AchievementSystem* achieve)
 }
 
 // 상점 UI
-void UIManager::ShopUI()
+void UIManager::PrintShop()
 {
     UIHelper_->Draw(20, 20, "상점UI 추가예정");
 }

@@ -42,12 +42,15 @@ public:
     void PrintPlayerStatus(Player* player);
 
     // 몬스터 상태 출력
-    void MonsterStatus(Monster* monster);
+    void PrintMonsterStatus(Monster* monster);
 
+    // 킬 카운트 출력
     void PrintKillCount(AchievementSystem* achieve);
 
+    
+
     // 상점 UI
-    void ShopUI();
+    void PrintShop();
 private:
     UIHelper* UIHelper_;
 };
