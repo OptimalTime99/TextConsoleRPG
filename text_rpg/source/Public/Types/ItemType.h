@@ -13,18 +13,3 @@ struct ItemDefinition
     int Value_;
     int Price_;
 };
-
-
-static const ItemDefinition HealPotionDef{
-    "Heal 50 Potion",
-    ItemType::HealPotion,
-    50,
-    10
-};
-
-static const ItemDefinition AtkPotionDef{
-    "Atk 10 Potion",
-    ItemType::AtkPotion,
-    10,
-    20
-};
