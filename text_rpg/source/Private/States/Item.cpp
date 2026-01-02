@@ -1,36 +1,45 @@
 ﻿#include "States/Item.h"
-#include "States/Player.h"
+#include <cassert>
 
 
-Item::Item(const std::string& Name, ItemType Type, int Value, int Price)
-        : Name_(Name), Type_(Type), Value_(Value), Price_(Price) {}
-
-//void Item::ApplyTo(Player* p)
-//{
-//    if (p != nullptr)
-//    {
-//        switch (Type_)
-//        {
-//        case ItemType::HealPotion:
-//            p->HP_ = std::min(p->HP_ + Value_, p->MaxHP_);
-//            break;
-//
-//        case ItemType::AtkPotion:
-//            p->Attack_ += Value_;
-//            break;
-//
-//        default:
-//            break;
-//        }
-//    }
-//}
+Item::Item(const ItemDefinition* def) : def_(def)
+{
+    assert(def_ && "ItemDefinition is null.");
+}
 
 int Item::GetSellPrice(double sellRate) const
 {
-    return static_cast<int>(Price_ * sellRate);
+    assert(def_);
+
+    if (sellRate <= 0)
+    {
+        return def_->Price_;
+    }
+
+    return def_->Price_ * sellRate;
 }
 
-std::string Item::GetName()
+const char* Item::GetName() const
 {
-    return Name_;
+    assert(def_);
+    return def_->Name_;
+}
+
+
+ItemType Item::GetType() const
+{
+    assert(def_);
+    return def_->Type_;
+}
+
+int Item::GetValue() const
+{
+    assert(def_);
+    return def_->Value_;
+}
+
+int Item::GetPrice() const
+{
+    assert(def_);
+    return def_->Price_;
 }

@@ -1,33 +1,41 @@
-﻿#pragma once
+﻿// Inventory.h
+#pragma once
+
+#include <memory>
 #include <vector>
-#include "States/Item.h"
+
+class Item;
 
 class Inventory
 {
 public:
-    // 아이템을 인벤토리에 추가하는 함수
-    void Add(const Item& item);
+    explicit Inventory(int capacity = 20);
 
-    // 인덱스로 아이템을 인벤토리에서 제거하는 함수(폐기)
-    void RemoveByIndex(int idx);
+    // 인벤토리 최대 공간을 반환하는 함수
+    int GetCapacity() const;
 
-    // 인벤토리가 비어있는지 확인하는 함수
+    // 인벤토리 현재 공간을 반환하는 함수
+    int GetSize() const;
+
+    // 인벤토리가 꽉 찼는지 여부를 반환하는 함수
+    bool IsFull() const;
+
+    // 인벤토리가 비었는지 여부를 반환하는 함수
     bool IsEmpty() const;
 
-    // 아이템 개수를 반환하는 함수
-    int GetCount() const;
+    // Factory 기반 추가: ItemDefs에 존재하는 이름만 추가 가능
+    bool AddByName(const char* itemName);
 
-    // 전투 중 사용할 아이템의 인덱스를 반환하는 함수
-    int GetRandomUsableIndex() const;
+    // 소유권을 외부에서 넘겨받아 추가(테스트/드랍 등)
+    bool Add(std::unique_ptr<Item> item);
 
-    // 아이템을 조회하는 함수
-    Item GetItem(int idx) const;
+    // ★ 핵심: 이름으로 아이템을 "꺼내면서" 제거 (없으면 nullptr)
+    std::unique_ptr<Item> TakeItemByName(const char* itemName);
 
-    // 아이템을 꺼내며 제거하는 함수(사용/판매)
-    Item TakeItem(int idx);
+    // (선택) UI/검사용: 제거 없이 조회 (없으면 nullptr)
+    const Item* FindItemByName(const char* itemName) const;
 
 private:
-    std::vector<Item> Items_;
+    int capacity_ = 20;
+    std::vector<std::unique_ptr<Item>> items_;
 };
-
-
