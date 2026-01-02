@@ -1,53 +1,90 @@
-﻿#include <cassert>
-#include <random>
+﻿// Inventory.cpp
 #include "States/Inventory.h"
 
-void Inventory::Add(const Item& item)
+#include "Types/ItemFactory.h"
+#include "States/Item.h"
+
+#include <algorithm>
+#include <cstring> // std::strcmp
+
+Inventory::Inventory(int capacity)
+    : capacity_(capacity)
 {
-    Items_.push_back(item);
+    if (capacity_ <= 0) capacity_ = 1;
+    items_.reserve(static_cast<size_t>(capacity_));
 }
 
-void Inventory::RemoveByIndex(int idx)
+bool Inventory::AddByName(const char* itemName)
 {
-    assert(idx >= 0 && idx < static_cast<int>(Items_.size()));
+    if (!itemName) return false;
+    if (IsFull())  return false;
 
-    Items_.erase(Items_.begin() + idx);
+    auto item = ItemFactory::CreateByName(itemName);
+    if (!item) return false;
+
+    items_.push_back(std::move(item));
+    return true;
+}
+
+bool Inventory::Add(std::unique_ptr<Item> item)
+{
+    if (!item)   return false;
+    if (IsFull()) return false;
+
+    items_.push_back(std::move(item));
+    return true;
+}
+
+std::unique_ptr<Item> Inventory::TakeItemByName(const char* itemName)
+{
+    if (!itemName) return nullptr;
+
+    for (size_t i = 0; i < items_.size(); ++i)
+    {
+        // Item 이름 비교(문자열 내용 비교)
+        if (items_[i] && std::strcmp(items_[i]->GetName(), itemName) == 0)
+        {
+            // 소유권 꺼내기
+            std::unique_ptr<Item> out = std::move(items_[i]);
+
+            // 벡터에서 제거(순서 유지)
+            items_.erase(items_.begin() + static_cast<long long>(i));
+            return out;
+        }
+    }
+
+    return nullptr;
+}
+
+const Item* Inventory::FindItemByName(const char* itemName) const
+{
+    if (!itemName) return nullptr;
+
+    for (const auto& it : items_)
+    {
+        if (it && std::strcmp(it->GetName(), itemName) == 0)
+            return it.get();
+    }
+    return nullptr;
+}
+
+
+int Inventory::GetCapacity() const
+{ 
+    return capacity_;
+}
+
+int Inventory::GetSize() const
+{
+    return static_cast<int>(items_.size());
+}
+
+bool Inventory::IsFull() const
+{
+    return GetSize() >= capacity_;
 }
 
 bool Inventory::IsEmpty() const
 {
-    return Items_.empty();
-}
-
-int Inventory::GetCount() const
-{
-    return static_cast<int>(Items_.size());
-}
-
-int Inventory::GetRandomUsableIndex() const
-{
-    if (Items_.empty()) return -1;
-
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(0, static_cast<int>(Items_.size()) - 1);
-
-    return dist(gen);
-}
-
-Item Inventory::GetItem(int idx) const
-{
-    assert(idx >= 0 && idx < static_cast<int>(Items_.size()));
-
-    return Items_[idx];
-}
-
-Item Inventory::TakeItem(int idx)
-{
-    assert(idx >= 0 && idx < static_cast<int>(Items_.size()));
-
-    Item item = Items_[idx];
-    Items_.erase(Items_.begin() + idx);
-
-    return item;
+    return items_.empty();
 }
