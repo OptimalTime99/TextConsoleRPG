@@ -42,6 +42,8 @@ bool Player::IsDead() const
 
 bool Player::TakeDamage(int dmg)
 {
+    if (dmg < 0)
+        dmg = 0;
     HP_ -= dmg;
     if (IsDead())
     {
@@ -51,14 +53,14 @@ bool Player::TakeDamage(int dmg)
 
 void Player::TryLevelUp()
 {   
-    if (Level_ < 10)      // 10 ㅡ> 상수화
+    if (Level_ < MAX_LEVEL)      // 10 ㅡ> 상수화
     {
-        if (Exp_ >= 100) // 100 ㅡ> 상수화
+        if (Exp_ >= MAX_EXP) // 100 ㅡ> 상수화
         {
             Level_++;
-            MaxHP_ += Level_ * 20;  // 20 ㅡ> 상수화
+            MaxHP_ += LEVEL * HP_PER_LEVEL;  // 20 ㅡ> 상수화
             HP_ = MaxHP_;
-            Attack_ += Level_ * 5;  // 5 ㅡ> 상수화
+            Attack_ += LEVEL * ATTACK_PER_LEVEL;  // 5 ㅡ> 상수화
         }
     }
 }
