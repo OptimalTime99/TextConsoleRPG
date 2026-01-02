@@ -54,44 +54,89 @@ void UIManager::PrintEndingEvent()
 
 std::string UIManager::PrintCreateCharacter()
 {
-    UIHelper_->gotoxy(40, 12);
+    UIHelper_->gotoxy(65, 18);
     UIHelper_->textcolor(3);
     std::cout << "스토리를 시작하려면 ENTER를 누르세요." << std::endl;
     UIHelper_->textcolor(0);
+    UIHelper_->gotoxy(65, 19);
     system("pause");
     system("cls");
+    Sleep(1000);
+
+    UIHelper_->textcolor(6);
+    UIHelper_->Draw(60, 18, "                                    .:. ..::---==-----::........       ");
+    UIHelper_->Draw(60, 19, "                                ...:-++=. .-=-=====--::...             ");
+    UIHelper_->Draw(60, 20, "                            . :-=+*+-.::---:::::--:....                ");
+    UIHelper_->Draw(60, 21, "                          ...   :==:.:=+=+=-....-... .                 ");
+    UIHelper_->Draw(60, 22, "                       ..:+*+*+:..:+-  ...:-:....:-.                   ");
+    UIHelper_->Draw(60, 23, "                     ..-**=+**+-:+:    ..::-=--.                       ");
+    UIHelper_->Draw(60, 24, "                   .:=***=***--:=.. :.:::-:.::-.. .                    ");
+    UIHelper_->Draw(60, 25, "                 ..-*#***+**-..=..  -- .: :.:=:..=*-. ..               ");
+    UIHelper_->Draw(60, 26, "                .:+****=.:-=:::=.  .:.......--..  .:                   ");
+    UIHelper_->Draw(60, 27, "               .-******+:.   .:-.  ::.:....-=:.     .                  ");
+    UIHelper_->Draw(60, 28, "             ..-******++==+=.:.=:    .: .-:=: ...                      ");
+    UIHelper_->Draw(60, 29, "             .=*+**+++++=-==-:.:--:::::. .... :++:.                    ");
+    UIHelper_->Draw(60, 30, "            .-++++++=====--:::..:----.. : ..                           ");
+    UIHelper_->Draw(60, 31, "           .:=========--::-. ..:....   ...:.     .                     ");
+    UIHelper_->Draw(60, 32, "           .-===--:::--::::..... . ..                                  ");
+    UIHelper_->Draw(60, 33, "          .:---:::::::..........                                       ");
+    UIHelper_->Draw(60, 34, "          .::..::::..........                  -- = ::----::::.:::     ");
     UIHelper_->textcolor(15);
-    Sleep(1000);
 
-    UIHelper_->gotoxy(32, 8);
-    UIHelper_->PrintLine("2549년", 6, 60);
-    UIHelper_->gotoxy(32, 10);
-    UIHelper_->PrintLine("문명의 발전은 인류를 더 먼 곳까지 데리고 갔지만", 6, 60);
-    UIHelper_->gotoxy(32, 12);
-    UIHelper_->PrintLine("나아간 거리만큼 거대해진 욕심으로 끊임없이 전쟁이 이어졌다.", 6, 60);
+    UIHelper_->gotoxy(60, 10);
+    UIHelper_->PrintLine("2549년", 11, 60);
+    UIHelper_->gotoxy(60, 12);
+    UIHelper_->PrintLine("문명의 발전은 인류를 더 먼 곳까지 데리고 갔지만", 11, 60);
+    UIHelper_->gotoxy(60, 14);
+    UIHelper_->PrintLine("나아간 거리만큼 거대해진 욕심으로 끊임없이 전쟁이 이어졌다.", 11, 60);
     Sleep(1000);
-
+    
     system("cls");
 
-    UIHelper_->gotoxy(32, 8);
-    UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 6, 60);
-    UIHelper_->gotoxy(32, 10);
-    UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 6, 60);
+    UIHelper_->textcolor(12);
+    UIHelper_->Draw(60, 2, "@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 3, "@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%#**+==++*%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 4, "@@@@@@@@@@@@@@@@@@@@@@@@%%%%##***++===--::.:#%%%%@@@@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 5, "@@@@@@@@@@@@@@@@@@@@@@@%%%###******++===--:. .#%%@@@@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 6, "@@@@@@@@@@@@@@@@@@@@@%%%%####********+++=--:.  *%@@@@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 7, "@@@@@@@@@@@@@@@@@@@@@%%%############***++=-:.  :%@@@@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 8, "@@@@@@@@@@@@@@@@@@%%%%%%#############***+=-:.  .#@%%@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 9, "@@@@@@@@@@@@@@@@@@%%%%%##############***+=-:.   *%%%@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 10, "@@@@@@@@@@@@@@@@@@%%%%%#**#####%%%####**+=-:    +%%%@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 11, "@@@@@%%%%%%%%@@@@@%%%%%#***####%######**+=-.    . :%@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 12, "@@@%%%%#*++#%%%@@@%%%%******########***+=-:.      :%@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 13, "@@@%%*#%%*-=#%%@@@@%%%#*+*************+=--::.     +%@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 14, "%%%++%#*%%#-+%%@@@%%%%%#++****###*****+==---:     %%@@@@@@@@@@@@@@@@@@@");
+    UIHelper_->Draw(60, 15, "%%%%*+%#*%%#-+%%%%%%%%%#+=********++++++===-:    -%%@@@@@@@%%%%%%%%%%%@");
+    UIHelper_->Draw(60, 16, "%%%%%*=%**%%#=+%%%%%%%%%%+--+***++=======-.    .#%%%@@@@@%%%#=+#+-#%%%@");
+    UIHelper_->Draw(60, 17, "@@@@@@#-**%%%#-=%%%@@@@%%**+:-:..::-:           *%%%@@@@@@%%*%%#:*++%%@");
+    UIHelper_->Draw(60, 18, "%%%@@@%+*%%%%%#--#%%%%@@%#-*##*****#=.::---:    *%%%@@%%%%*#%%++##-.=%@");
+    UIHelper_->Draw(60, 19, "%%@@@@%%=+%%%%%%=-#%%%@%%%=:-+*****#+.:---:     -#%%@@%%#*%%#-##=.:#%%@");
+    UIHelper_->Draw(60, 20, "@@@@@@%%%%++%#%%%+::*#=. .+:-:=:-==*=.   .           =##%%*+#-.=%%%%@@@");
+    UIHelper_->Draw(60, 21, "@@@@@@@@@%%=###%%%+::.   :*#-:::---:               .*%%%#+%*: -%%%%@@@@");
+    UIHelper_->Draw(60, 22, "%%%%%%%%%#*#-*##%%%*: :  :+*#+..--:..             -#%%%+*#:..#%%%%@@@@@");
+    UIHelper_->Draw(60, 23, "%#=::. ..    .*##%%%*=.. .++*##=:-----:.        .-#%%*+%=.    .=%%%%%%%");
+    UIHelper_->textcolor(15);
+
+    UIHelper_->gotoxy(60, 26);
+    UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 60);
+    UIHelper_->gotoxy(60, 28);
+    UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 60);
     Sleep(1000);
 
     system("cls");
 
     while (true)
     {
-        UIHelper_->gotoxy(50, 6);
+        UIHelper_->gotoxy(65, 13);
         UIHelper_->PrintLine("요원 이름 입력", 15, 60);
-        UIHelper_->gotoxy(50, 8);
+        UIHelper_->gotoxy(65, 15);
         std::string Inputname = "";
         getline(std::cin, Inputname);
 
         if (Inputname.empty())
         {
-            UIHelper_->gotoxy(40, 10);
+            UIHelper_->gotoxy(65, 17);
             UIHelper_->PrintLine("올바른 이름을 다시 입력해주세요", 3, 15);
             Sleep(700);
             system("cls");
@@ -99,6 +144,15 @@ std::string UIManager::PrintCreateCharacter()
         }
         else
         {
+            UIHelper_->gotoxy(65, 20);
+            UIHelper_->PrintLine("요원 정보 탐색 중...", 2, 50);
+            Sleep(1000);
+            UIHelper_->gotoxy(65, 20);
+            UIHelper_->PrintLine("요원 정보 불러오는 중...", 4, 50);
+            Sleep(1000);
+            UIHelper_->gotoxy(65, 20);
+            UIHelper_->PrintLine("작전 지역으로 이동 중...", 9, 50);
+            Sleep(1000);
             system("cls");
             return Inputname;
         }
@@ -109,7 +163,6 @@ void UIManager::PrintPlayerStatus(Player* player)
 {
     int x = 1;
     int y = 1;
-    UIHelper_->BoxUI(0, 35, 171, 45, 8);
     UIHelper_->textcolor(15);
     UIHelper_->Draw(x, y, "요원명 :");
     UIHelper_->gotoxy(x+9, y);

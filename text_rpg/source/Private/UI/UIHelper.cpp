@@ -74,6 +74,7 @@ void UIHelper::BoxUI(int x, int y, int sx, int sy, int color_num)
             }
         }
     }
+    textcolor(15);
 }
 
 void UIHelper::Draw(int x, int y, const std::string spr)
@@ -95,6 +96,7 @@ void UIHelper::DrawBar(int x, int y, double currentvalue, double Maxvalue, int c
     {
         std::cout << "-";
     }
+    textcolor(15);
 }
 
 int UIHelper::UserSelection(int x, int y, int n)
