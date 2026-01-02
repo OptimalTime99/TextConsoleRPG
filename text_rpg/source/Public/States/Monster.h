@@ -31,7 +31,7 @@ public:
     int GetAttack();
 
     // 몬스터 이름
-    std::string GetMonsterName();
+    std::string GetName();
     
     // 몬스터 레벨
     int GetLevel();

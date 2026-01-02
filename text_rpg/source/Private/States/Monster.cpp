@@ -29,7 +29,6 @@ void Monster::GenerateNomal(int Level_)
     std::random_device rd;
     std::mt19937 gen(rd());
 
-    std::uniform_int_distribution<int> Dist(Level_ * 20, Level_ * 30);
     std::uniform_int_distribution<int> DistHP(Level_ * MIN_HP, Level_ * MAX_HP);
     std::uniform_int_distribution<int> DistATK(Level_ * MIN_ATK, Level_ * MAX_ATK);
 
@@ -89,7 +88,7 @@ int Monster::GetAttack()
     return Attack_;
 }
 
-std::string Monster::GetMonsterName()
+std::string Monster::GetName()
 {
     return MonsterName_;
 }
