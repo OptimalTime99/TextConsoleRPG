@@ -9,7 +9,7 @@
 class Player 
 {
 public:
-    Player(int level, int hp, int attack, int exp);
+    Player();
     
     ~Player();
     
@@ -38,9 +38,31 @@ public:
     /*void ApplyItemEffect(Item item);*/
 
     // 공격
-    int GetAttack();
+    int Attack();
 
-    // 아이템 사용
+    int GetLevel();
+
+    int GetExp();
+
+    int GetGold();
+
+    int GetHP();
+
+    int GetMaxHP();
+
+    std::string GetName();
+
+    void SetAttack(int newAttack);
+
+    void SetLevel(int newLevel);
+
+    void SetExp(int newExp);
+
+    void SetGold(int newGold);
+
+    void SetHP(int newHP);
+
+    void SetMaxHP(int newMaxHP);
 
     // 랜덤
     bool Rand();
@@ -50,7 +72,7 @@ public:
     
 private:
     /*Item* item;*/
-    std::string Name_;
+    std::string Name_;           // get 다 하나씩 추가해두기.
     int Level_;
     int Exp_;
     int Gold_;

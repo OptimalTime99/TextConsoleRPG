@@ -1,20 +1,19 @@
 ﻿#include "States/Player.h"
 
 
-Player::Player(int level = 1, int hp = 200, int attack = 30, int exp = 0)
+Player::Player()
 {
-    this->Level_ = level;
-    this->HP_ = hp;
-    this->Attack_ = attack;
-    this->Exp_ = exp;
-    this->MaxHP_ = hp;
+    this->Level_ = 1;
+    this->HP_ = 200;
+    this->Attack_ = 30;
+    this->Exp_ = 0;
+    this->MaxHP_ = 200;
     this->Gold_ = 0;
+    this->Name_ = "";
 }
 
-Player::~Player()
-{
-    std::cout << "gg" << std::endl;
-}
+Player::~Player() {}
+
 
 
 void Player::GainExp(int amount) 
@@ -52,14 +51,14 @@ bool Player::TakeDamage(int dmg)
 
 void Player::TryLevelUp()
 {   
-    if (Level_ < 10)
+    if (Level_ < 10)      // 10 ㅡ> 상수화
     {
-        if (Exp_ >= 100)
+        if (Exp_ >= 100) // 100 ㅡ> 상수화
         {
             Level_++;
-            MaxHP_ += Level_ * 20;
+            MaxHP_ += Level_ * 20;  // 20 ㅡ> 상수화
             HP_ = MaxHP_;
-            Attack_ += Level_ * 5;
+            Attack_ += Level_ * 5;  // 5 ㅡ> 상수화
         }
     }
 }
@@ -70,9 +69,69 @@ void Player::Init(std::string name)
 }
 
 
-int Player::GetAttack()
+int Player::Attack()
 {
     return Attack_;
+}
+
+int Player::GetLevel()
+{
+    return Level_;
+}
+
+int Player::GetExp()
+{
+    return Exp_;
+}
+
+int Player::GetGold()
+{
+    return Gold_;
+}
+
+int Player::GetHP()
+{
+    return HP_;
+}
+
+int Player::GetMaxHP()
+{
+    return MaxHP_;
+}
+
+std::string Player::GetName()
+{
+    return Name_;
+}
+
+void Player::SetAttack(int newAttack)
+{
+    Attack_ = newAttack;
+}
+
+void Player::SetLevel(int newLevel)
+{
+    Level_ = newLevel;
+}
+
+void Player::SetExp(int newExp)
+{
+    Exp_ = newExp;
+}
+
+void Player::SetGold(int newGold)
+{
+    Gold_ = newGold;
+}
+
+void Player::SetHP(int newHP)
+{
+    HP_ = newHP;
+}
+
+void Player::SetMaxHP(int newMaxHP)
+{
+    MaxHP_ = newMaxHP;
 }
 
 bool Rand()
