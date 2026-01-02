@@ -1,5 +1,7 @@
 ﻿#include "Modes/BattleSystem.h"
 #include "States/Monster.h"
+#include "States/Player.h"
+#include <random>
 
 
 //bool BattleSystem::StartBattle(const Player& p, const UIManager& ui)
@@ -40,4 +42,18 @@ void BattleSystem::ApplyRewards(const Player& p, const UIManager& ui)
 
 void BattleSystem::TryDropItem(const Player& p, const UIManager& ui)
 {
+}
+
+void BattleSystem::TryDropItem(Player* p, UIManager* ui)
+{
+}
+
+bool BattleSystem::GetRandom(double probability)
+{
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+
+    std::bernoulli_distribution d(probability);
+
+    return d(gen);
 }
