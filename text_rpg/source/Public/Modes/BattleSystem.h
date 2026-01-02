@@ -8,7 +8,7 @@ class BattleSystem
 {
 public:
     //전투를 시작한다
-    bool StartBattle(Player* p, UIManager* ui);
+    GameMode StartBattle(Player* p, UIManager* ui);
 
     // 일반 몬스터를 생성한다.
     void SpawnMonster(Player* p);

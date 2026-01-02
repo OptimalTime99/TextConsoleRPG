@@ -26,7 +26,7 @@ public:
     void StartGame();
 
     // 배틀시작
-    void StartBattle();
+    GameMode StartBattle();
 
     // 상점방문
     void VisitShop();

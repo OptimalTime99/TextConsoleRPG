@@ -1,10 +1,11 @@
 ﻿#include "Modes/BattleSystem.h"
 #include "States/Monster.h"
 #include "States/Player.h"
+#include "Types/GameMode.h"
 #include <random>
 
 
-bool BattleSystem::StartBattle(Player* p, UIManager* ui)
+GameMode BattleSystem::StartBattle(Player* p, UIManager* ui)
 {
     bool bIsSomeoneDead = false;
     SpawnMonster(p);
@@ -31,6 +32,7 @@ bool BattleSystem::StartBattle(Player* p, UIManager* ui)
     else if (p->IsDead())
     {
         // ui->PrintGameOver();
+        return GameMode::GAMEOVER_MODE;
     }
 }
 

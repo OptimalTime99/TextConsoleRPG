@@ -3,7 +3,9 @@
 // 게임모드를 위한 eNum
 enum class GameMode
 {
-    PlayGame,
-    GameEnd
+    PLAY_GAME,
+    BATTLE_MODE,
+    GAMEOVER_MODE
+
 
 };
