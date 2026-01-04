@@ -1,9 +1,4 @@
 ﻿#include "UI/UIHelper.h"
-#define UP 72
-#define DOWN 80
-#define LEFT 75
-#define RIGHT 77
-#define SPACEBAR 32
 
 HWND hwnd = GetConsoleWindow();
 HWND owner = GetWindow(hwnd, GW_OWNER);
@@ -17,12 +12,12 @@ void UIHelper::SetConsoleSetting()
         if (owner == NULL)
         {
             // Window 10
-            SetWindowPos(hwnd, nullptr, 0, 0, WIDTH_, HEIGHT_, SWP_NOZORDER | SWP_NOMOVE);
+            SetWindowPos(hwnd, nullptr, 0, 0, WIDTH_-100, HEIGHT_, SWP_NOZORDER | SWP_NOMOVE);
         }
         else
         {
             // Window 11
-            SetWindowPos(owner, nullptr, 0, 0, WIDTH_, HEIGHT_, SWP_NOZORDER | SWP_NOMOVE);
+            SetWindowPos(owner, nullptr, 0, 0, WIDTH_-100, HEIGHT_, SWP_NOZORDER | SWP_NOMOVE);
         }
     }
     else
@@ -64,13 +59,13 @@ void UIHelper::BoxUI(int x, int y, int sx, int sy, int color_num)
     {
         for (int j = y; j <= sy; j++)
         {
-            if (j == y || j == sy)
-            {
-                Draw(i, j, "▒");
-            }
             if (i == x || i == sx)
             {
                 Draw(i, j, "▒");
+            }
+            if (j == y || j == sy)
+            {
+                Draw(i, j, "■");
             }
         }
     }
@@ -83,9 +78,29 @@ void UIHelper::Draw(int x, int y, const std::string spr)
     std::cout << spr;
 }
 
-void UIHelper::DrawBar(int x, int y, double currentvalue, double Maxvalue, int color_num)
+void UIHelper::PrintFile(int x, int y, const std::string& filename, int color_num)
 {
-    int Bar_length = currentvalue / Maxvalue * 10;
+    textcolor(color_num);
+    std::string line;
+    std::ifstream file(filename);
+    if (file.is_open())
+    {
+        while (getline(file, line))
+        {
+            Draw(x, y, line);
+            y++;
+        }
+    }
+    else
+    {
+        std::cerr << "파일을 열 수 없습니다." << std::endl;
+    }
+    textcolor(15);
+}
+
+void UIHelper::DrawBar(int x, int y, int barsize, double currentvalue, double Maxvalue, int color_num)
+{
+    int Bar_length = currentvalue / Maxvalue * barsize;
     gotoxy(x, y);
     textcolor(color_num);
     for (int i = 0; i < Bar_length; i++)
@@ -109,7 +124,7 @@ int UIHelper::UserSelection(int x, int y, int n)
     while (true)
     {
         gotoxy(choiceX, choiceY);
-        std::cout << ">";
+        std::cout << "▶";
         if (GetAsyncKeyState(VK_UP) & 0x8000)
         {
             if (choiceY > y)
@@ -130,13 +145,44 @@ int UIHelper::UserSelection(int x, int y, int n)
             }
             Sleep(100);
         }
-        if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+        if (GetAsyncKeyState(VK_RETURN) & 0x8000)
         {
             system("cls");
             Sleep(200);
             return choice;
         }
         Sleep(100);
+    }
+}
+
+void UIHelper::PushLog(const std::string& log, int color_num)
+{
+    Log_.push_back({ log, color_num });
+}
+
+void UIHelper::Printlog(int x, int y, std::deque<ColoredText>& log)
+{
+    int defaultX = x;
+    int defaultY = y;
+    if (log.size() == 13)
+    {
+        y = defaultY;
+        log.erase(log.begin());
+        for (const auto& line : log)
+        {
+            textcolor(line.colornum_);
+            Draw(x, y, line.text_);
+            y++;
+        }
+    }
+    else
+    {
+        for (const auto& line : log)
+        {
+            textcolor(line.colornum_);
+            Draw(x, y, line.text_);
+            y++;
+        }
     }
 }
 
@@ -149,4 +195,9 @@ void UIHelper::PrintLine(const std::string& msg, int color_num, int speed)
         Sleep(speed);
     }
     textcolor(15);
+}
+
+std::deque<ColoredText>& UIHelper::GetLog()
+{
+    return Log_;
 }

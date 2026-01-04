@@ -3,6 +3,7 @@
 #include "States/Player.h"
 #include "States/Monster.h"
 #include "Modes/AchievementSystem.h"
+#include "Types/ItemType.h"
 #include "Windows.h"
 #include "conio.h"
 #include <iostream>
@@ -47,7 +48,23 @@ public:
     // 킬 카운트 출력
     void PrintKillCount(AchievementSystem* achieve);
 
-    
+    // 전투대상 조우시 출력
+    void PrintBattleStart(Player* p, Monster* m);
+
+    // 몬스터가 데미지를 받을 때 출력
+    void PrintMonsterTakeDamage(Monster* m);
+
+    // 플레이어가 데미지를 받을 때 출력
+    void PrintPlayerTakeDamage(Player* p);
+
+    // 아이템 사용 시 출력로그
+    void PrintUseItem(Item* item);
+
+    // 일반 보상 획득 출력
+    void PrintFixedRewards(int exp_reward, int levelup_count, int gain_golds);
+
+    // 아이템 보상 획득 출력
+    void PrintItemRewards();
 
     // 상점 UI
     void PrintShop();
