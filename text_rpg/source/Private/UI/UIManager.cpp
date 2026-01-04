@@ -243,10 +243,10 @@ void UIManager::PrintBattleStart(Player* p, Monster* m)
     Sleep(1000);
     system("cls");
 
-    UIHelper_->BoxUI(0, 0, 159, 44, 15);
-    UIHelper_->BoxUI(0, 0, 35, 44, 15);
-    UIHelper_->BoxUI(124, 0, 159, 44, 15);
-    UIHelper_->BoxUI(35, 25, 124, 44, 15);
+    UIHelper_->BoxUI(0, 0, 159, 42, 15);
+    UIHelper_->BoxUI(0, 0, 35, 42, 15);
+    UIHelper_->BoxUI(124, 0, 159, 42, 15);
+    UIHelper_->BoxUI(35, 25, 124, 42, 15);
 
     UIHelper_->PrintFile(40, 10, "asset/ManWithGun.txt", 15);
 

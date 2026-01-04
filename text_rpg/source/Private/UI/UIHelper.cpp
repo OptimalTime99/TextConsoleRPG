@@ -164,7 +164,7 @@ void UIHelper::Printlog(int x, int y, std::deque<ColoredText>& log)
 {
     int defaultX = x;
     int defaultY = y;
-    if (log.size() == 13)
+    if (log.size() == 15)
     {
         y = defaultY;
         log.erase(log.begin());
