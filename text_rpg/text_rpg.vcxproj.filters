@@ -51,19 +51,16 @@
     <ClCompile Include="source\Private\Modes\AchievementSystem.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="source\Public\Types\ItemType.h">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Private\States\ItemDefs.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Private\States\ItemFactory.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="source\Private\States\NormalMonster.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="source\Private\States\BossMonster.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Public\Types\StatusType.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Private\Modes\LevelSystem.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -117,6 +114,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="source\Public\States\BossMonster.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Public\Types\ItemType.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Public\Modes\LevelSystem.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
