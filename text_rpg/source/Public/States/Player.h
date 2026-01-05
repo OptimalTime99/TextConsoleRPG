@@ -19,7 +19,7 @@ public:
 
 
     // 피해를 받아 체력을 감소시킨다.
-    bool TakeDamage(int dmg);
+    int TakeDamage(int dmg);
 
     // 체력이 0 이하인지 판단하여 사망 여부를 판정한다.
     bool IsDead() const;
@@ -31,35 +31,35 @@ public:
     void GainGold(int amount);
 
 
-    
+    // 공격력 반환
     int Attack();
-
+    // 데미지 반환
     int GetAttack();
-    
+    // 레벨 반환
     int GetLevel();
-    
+    // 경험치 반환
     int GetExp();
-    
+    // 골드 반환
     int GetGold();
-    
+    // 체력 반환
     int GetHP();
-    
+    // 최대체력 반환
     int GetMaxHP();
-    
+    // 이름 반환
     std::string GetName();
-    
+    // 데미지 설정
     void SetAttack(int newAttack);
-
+    // 레벨을 설정
     void SetLevel(int newLevel);
-
+    // 경험치 설정
     void SetExp(int newExp);
-
+    // 골드 설정
     void SetGold(int newGold);
-
+    // 체력 설정
     void SetHP(int newHP);
-
+    // 최대체력 설정
     void SetMaxHP(int newMaxHP);
-
+    // 최대경험치 반환
     int GetMaxExp();
 
     
