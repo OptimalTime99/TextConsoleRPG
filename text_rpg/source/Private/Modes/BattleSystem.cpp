@@ -99,7 +99,22 @@ bool BattleSystem::ResolveTurn()
     }
     else
     { // 아이템 사용 파트, 버프 처리 체력 증가 처리 등
-        UseItem();
+        if (!UseItem()) // 아이템 사용을 실패 하면
+        {
+            // 아이템 사용 못했으므로 안내하는 로그 출력
+            // uiManager_->PrintAttackInsteadUseItem();
+
+            int damage = player_->Attack();
+            int finalDamage = monster_->TakeDamage(damage);
+            uiManager_->PrintMonsterTakeDamage(monster_, finalDamage);
+
+            // 몬스터 사망시 함수 종료
+            if (monster_->isDead())
+            {
+                delete monster_;
+                return true;
+            }
+        }
     }
     
     // 몬스터 사망시 아래는 수행하지 않음
@@ -116,7 +131,7 @@ bool BattleSystem::ResolveTurn()
     return false;
 }
 
-void BattleSystem::UseItem()
+bool BattleSystem::UseItem()
 {
     // 아이템 사용 파트, 버프 처리 체력 증가 처리 등
     // 어떤 아이템을 사용할지 결정 ->
@@ -128,10 +143,12 @@ void BattleSystem::UseItem()
     // 현재 체력이 최대 체력의 50%이하이고 체력 포션이 있다면 체력 포션 사용
     if ((double)player_->GetHP() / player_->GetMaxHP() < 0.5 && Inventory_->GetItemCount(ItemType::LowHealthPotion) > 0)
     { 
+        // 아이템 사용하면 트루 반환
         whichItem = Item::GetData(ItemType::LowHealthPotion);
         int value = whichItem->GetEffect()[StatusType::HP];
         player_->SetHP(player_->GetHP() + value);
         uiManager_->PrintUseItem(whichItem);
+        return true;
     }
     else if(Inventory_->GetItemCount(ItemType::LowAttackPotion) > 0)
     {
@@ -139,6 +156,11 @@ void BattleSystem::UseItem()
         int value = whichItem->GetEffect()[StatusType::ATK];
         playerBuff_ += value; // 임시
         uiManager_->PrintUseItem(whichItem);
+    }
+    else
+    {
+        // 아이템 재고가 둘 다 없으면 사용을 못했으므로 거짓반환
+        return false;
     }
 }
 

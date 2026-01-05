@@ -28,7 +28,7 @@ public:
     // 한 턴의 전투를 처리를 처리하고 몬스터나 플레이어의 사망 여부 반환
     bool ResolveTurn();
 
-    void UseItem();
+    bool UseItem();
 
     // 경험치와 골드르 지급한다.
     void ApplyRewards();
