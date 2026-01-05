@@ -123,10 +123,11 @@ void Player::SetGold(int newGold)
 
 void Player::SetHP(int newHP)
 {
-    if (newHP < MaxHP_)
-    {
+    if (newHP > MaxHP_)
+        newHP = MaxHP_;
+        
         HP_ = newHP;
-    }
+    
 }
 
 void Player::SetMaxHP(int newMaxHP)
