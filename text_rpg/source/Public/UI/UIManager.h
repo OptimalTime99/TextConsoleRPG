@@ -52,14 +52,15 @@ public:
     void PrintBattleStart(Player* p, Monster* m);
 
     // 몬스터가 데미지를 받을 때 출력
-    void PrintMonsterTakeDamage(Monster* m);
+    void PrintMonsterTakeDamage(Monster* m, int finaldamage);
 
     // 플레이어가 데미지를 받을 때 출력
-    void PrintPlayerTakeDamage(Player* p);
+    void PrintPlayerTakeDamage(Player* p, int finaldamage);
 
     // 아이템 사용 시 출력로그
     void PrintUseItem(Item* item);
 
+    // 승리 시 출력
     void PrintVictory();
 
     // 일반 보상 획득 출력

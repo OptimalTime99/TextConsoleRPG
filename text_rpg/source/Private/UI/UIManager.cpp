@@ -1,4 +1,5 @@
 ﻿#include "UI/UIManager.h"
+#include "Types/StatusType.h"
 
 class Player;
 
@@ -268,14 +269,14 @@ void UIManager::PrintBattleStart(Player* p, Monster* m)
     }
 }
 
-void UIManager::PrintMonsterTakeDamage(Monster* m)
+void UIManager::PrintMonsterTakeDamage(Monster* m, int finaldamage)
 {
     if (m->GetLevel() <= 3)
     {
         UIHelper_->PrintFile(90, 4, "asset/Target1.txt", 4);
         Sleep(200);
         UIHelper_->PrintFile(90, 4, "asset/Target1.txt", 15);
-        std::string log = m->GetName() + "이(가) 데미지를 입었습니다     ";
+        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) +  " 데미지를 입었습니다     ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
         PrintMonsterStatus(m);
@@ -287,7 +288,7 @@ void UIManager::PrintMonsterTakeDamage(Monster* m)
         UIHelper_->PrintFile(90, 4, "asset/Target2.txt", 4);
         Sleep(200);
         UIHelper_->PrintFile(90, 4, "asset/Target2.txt", 15);
-        std::string log = m->GetName() + "이(가) 데미지를 입었습니다     ";
+        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다     ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
         PrintMonsterStatus(m);
@@ -299,7 +300,7 @@ void UIManager::PrintMonsterTakeDamage(Monster* m)
         UIHelper_->PrintFile(90, 4, "asset/Target3.txt", 4);
         Sleep(200);
         UIHelper_->PrintFile(90, 4, "asset/Target3.txt", 15);
-        std::string log = m->GetName() + "이(가) 데미지를 입었습니다     ";
+        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다     ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
         PrintMonsterStatus(m);
@@ -312,12 +313,12 @@ void UIManager::PrintMonsterTakeDamage(Monster* m)
     }
 }
 
-void UIManager::PrintPlayerTakeDamage(Player* p)
+void UIManager::PrintPlayerTakeDamage(Player* p, int finaldamage)
 {
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 4);
     Sleep(200);
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 15);
-    std::string log = p->GetName() + "이(가) 데미지를 입었습니다      ";
+    std::string log = p->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다      ";
     UIHelper_->PushLog(log, 8);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
     PrintPlayerStatus(p);
@@ -331,14 +332,15 @@ void UIManager::PrintUseItem(Item* item)
     Sleep(200);
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 15);
     std::string log;
-    switch (item->GetType())
+    std::map<StatusType, int> Effect = item->GetEffect();
+    switch (item->GetName())
     {
-    case ItemType::HealPotion:
-        log = std::string(item->GetName()) + "을 사용하여 체력을 " + std::to_string(item->GetValue()) + "회복했습니다.     ";
+    case ItemType::LowHealthPotion:
+        log = item->ItemTypeToString((item->GetName())) + "을 사용하여 체력을 " + std::to_string(Effect[StatusType::HP]) + "회복했습니다.     ";
         UIHelper_->PushLog(log, 2);
         break;
-    case ItemType::AtkPotion:
-        log = std::string(item->GetName()) + "을 사용하여 공격력이 " + std::to_string(item->GetValue()) + "상승했습니다.   ";
+    case ItemType::LowAttackPotion:
+        log = item->ItemTypeToString((item->GetName())) + "을 사용하여 공격력이 " + std::to_string(Effect[StatusType::ATK]) + "상승했습니다.   ";
         UIHelper_->PushLog(log, 5);
         break;
     }
