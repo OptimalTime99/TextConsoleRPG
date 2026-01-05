@@ -67,19 +67,19 @@ std::string UIManager::PrintCreateCharacter()
     Sleep(1000);
 
     UIHelper_->gotoxy(x - 30, y - 8);
-    UIHelper_->PrintLine("2549년", 11, 60);
+    UIHelper_->PrintLine("2549년", 11, 30);
     UIHelper_->gotoxy(x - 30, y - 6);
-    UIHelper_->PrintLine("문명의 발전은 인류를 더 먼 곳까지 데리고 갔지만", 11, 60);
+    UIHelper_->PrintLine("문명의 발전은 인류를 더 먼 곳까지 데리고 갔지만", 11, 30);
     UIHelper_->gotoxy(x - 30, y - 4);
-    UIHelper_->PrintLine("나아간 거리만큼 거대해진 욕심으로", 11, 60);
+    UIHelper_->PrintLine("나아간 거리만큼 거대해진 욕심으로", 11, 30);
     UIHelper_->gotoxy(x - 30, y - 2);
-    UIHelper_->PrintLine("끊임없이 전쟁이 이어졌다.", 11, 60);
+    UIHelper_->PrintLine("끊임없이 전쟁이 이어졌다.", 11, 30);
     Sleep(1000);
 
     UIHelper_->gotoxy(x - 30, y + 2);
-    UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 60);
+    UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 30);
     UIHelper_->gotoxy(x - 30, y + 4);
-    UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 60);
+    UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 30);
     Sleep(1000);
 
     system("cls");
@@ -88,7 +88,7 @@ std::string UIManager::PrintCreateCharacter()
     while (true)
     {
         UIHelper_->gotoxy(x + 9, y + 6);
-        UIHelper_->PrintLine("요원 이름 입력", 15, 60);
+        UIHelper_->PrintLine("요원 이름 입력", 15, 30);
         UIHelper_->gotoxy(x + 9, y + 8);
         std::string Inputname = "";
         getline(std::cin, Inputname);
@@ -116,13 +116,13 @@ std::string UIManager::PrintCreateCharacter()
         }
 
         UIHelper_->gotoxy(x + 6, y + 10);
-        UIHelper_->PrintLine("요원 정보 탐색 중...", 2, 50);
+        UIHelper_->PrintLine("요원 정보 탐색 중...", 2, 30);
         Sleep(1000);
         UIHelper_->gotoxy(x + 5, y + 10);
-        UIHelper_->PrintLine("요원 정보 불러오는 중...", 4, 50);
+        UIHelper_->PrintLine("요원 정보 불러오는 중...", 4, 30);
         Sleep(1000);
         UIHelper_->gotoxy(x + 5, y + 10);
-        UIHelper_->PrintLine("작전 지역으로 이동 중...", 14, 50);
+        UIHelper_->PrintLine("작전 지역으로 이동 중...", 14, 30);
         Sleep(1500);
         system("cls");
 
@@ -233,13 +233,6 @@ void UIManager::PrintKillCount(AchievementSystem* achieve)
 
 void UIManager::PrintBattleStart(Player* p, Monster* m)
 {
-    std::string printmsg = p->GetName() + "이(가) 목표물 " + m->GetName() +"을(를) 발견했다.";
-    UIHelper_->BoxUI(26, 12, 133, 29, 15);
-    UIHelper_->gotoxy(30, 14);
-    UIHelper_->PrintLine(printmsg, 15, 40);
-    Sleep(1000);
-    system("cls");
-
     PrintPlayerStatus(p);
     PrintMonsterStatus(m);
 
@@ -248,6 +241,13 @@ void UIManager::PrintBattleStart(Player* p, Monster* m)
     UIHelper_->BoxUI(0, 0, 35, 42, 15);
     UIHelper_->BoxUI(124, 0, 159, 42, 15);
     UIHelper_->BoxUI(0, 25, 159, 42, 15);
+
+    std::string TargetLog = "--------------[목표발견]--------------";
+    TargetLog = p->GetName() + "이(가) 목표물 " + m->GetName() + "을(를) 발견했다.";
+    UIHelper_->PushLog(TargetLog, 4);
+    UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+    UIHelper_->textcolor(15);
+    Sleep(1000);
 
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 15);
 
