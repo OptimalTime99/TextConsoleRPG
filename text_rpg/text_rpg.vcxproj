@@ -24,6 +24,7 @@
     <ClCompile Include="source\Private\Core\GameTypes.cpp" />
     <ClCompile Include="source\Private\Modes\AchievementSystem.cpp" />
     <ClCompile Include="source\Private\Modes\BattleSystem.cpp" />
+    <ClCompile Include="source\Private\Modes\LevelSystem.cpp" />
     <ClCompile Include="source\Private\Modes\ShopSystem.cpp" />
     <ClCompile Include="source\Private\States\BossMonster.cpp" />
     <ClCompile Include="source\Private\States\NormalMonster.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="source\Public\Core\GameTypes.h" />
     <ClInclude Include="source\Public\Modes\AchievementSystem.h" />
     <ClInclude Include="source\Public\Modes\BattleSystem.h" />
+    <ClInclude Include="source\Public\Modes\LevelSystem.h" />
     <ClInclude Include="source\Public\Modes\ShopSystem.h" />
     <ClInclude Include="source\Public\States\BossMonster.h" />
     <ClInclude Include="source\Public\States\Inventory.h" />

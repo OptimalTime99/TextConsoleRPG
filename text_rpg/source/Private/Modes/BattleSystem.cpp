@@ -5,13 +5,23 @@
 #include "UI/UIManager.h"
 #include "States/NormalMonster.h"
 #include "States/BossMonster.h"
+#include "Types/ItemType.h"
+#include "Types/StatusType.h"
+#include "Modes/LevelSystem.h"
 #include <random>
 
 
-BattleSystem::BattleSystem(Player* p, Item* item, UIManager* ui) 
-    : player_(p), items_(item), uiManager_(ui)
+BattleSystem::BattleSystem(Player* p, Item* item, UIManager* ui, Inventory* inv) 
+    : player_(p), items_(item), uiManager_(ui), Inventory_(inv)
 {
     monster_ = nullptr;
+    level_ = new LevelSystem();
+    playerBuff_ = 0;
+}
+
+BattleSystem::~BattleSystem()
+{
+    delete level_;
 }
 
 GameMode BattleSystem::StartBattle()
@@ -30,6 +40,9 @@ GameMode BattleSystem::StartBattle()
             break;
         }
     }
+
+    // 전투 종료시 플레이어 버프 초기화
+    playerBuff_ = 0;
 
     // 몬스터 사망 시 보상 분배
     if (monster_->isDead())
@@ -73,7 +86,7 @@ bool BattleSystem::ResolveTurn()
     {
         int damage = player_->Attack();
         int finalDamage = monster_->TakeDamage(damage);
-        uiManager_->PrintMonsterTakeDamage(monster_, finalDamage); // ui에게 finalDamage 넘겨주기
+        uiManager_->PrintMonsterTakeDamage(monster_, finalDamage);
 
         // 몬스터 사망시 함수 종료
         if (monster_->isDead())
@@ -90,9 +103,9 @@ bool BattleSystem::ResolveTurn()
     // 몬스터 사망시 아래는 수행하지 않음
 
 
-    int damage = monster_->Attack();
+    int damage = monster_->Attack() + playerBuff_;
     int finalDamage = player_->TakeDamage(damage);
-    uiManager_->PrintPlayerTakeDamage(player_, finalDamage); // ui에게 finalDamage 넘겨주기
+    uiManager_->PrintPlayerTakeDamage(player_, finalDamage);
     if (player_->IsDead())
     {
         return true;
@@ -108,38 +121,33 @@ void BattleSystem::UseItem()
     // 현재 체력이 최대 체력의 50%이하이고 체력 포션이 있다면 체력 포션 사용
     // 체력이 50%이상이고 공격력 포션이 있으면 공격력 포션 사용
     // 둘 다 없으면 공격
-    //Item* whichItem/* = p->UseItem()*/;
-    //if (whichItem != nullptr)
-    //{
-    //    switch (whichItem->GetType())
-    //    {
-    //    case ItemType::HealPotion:
-    //        player_->SetHP(player_->GetHP() + whichItem.GetValue()); // Set함수에서 MaxHP넘지 않게 유효처리 부탁
-    //        uiManager_->PrintUseItem(whichItem);
-    //        break;
-    //    case ItemType::AtkPotion:
-    //        // 해당 전투가 끝나면 다시 원래 공격력으로
-    //        player_->SetAttack(p->GetAttack() + whichItem.GetValue());
-    //        uiManager_->PrintUseItem(whichItem);
-    //        break;
-    //    default:
-    //        break;
-    //    }
-    //}
-    // uiManager_->아이템 사용 그리기(ItemInfo);
+    const Item* whichItem = nullptr;
+    
+    // 현재 체력이 최대 체력의 50%이하이고 체력 포션이 있다면 체력 포션 사용
+    if ((double)player_->GetHP() / player_->GetMaxHP() < 0.5 && Inventory_->GetItemCount(ItemType::LowHealthPotion) > 0)
+    { 
+        whichItem = Item::GetData(ItemType::LowHealthPotion);
+        int value = whichItem->GetEffect()[StatusType::HP];
+        player_->SetHP(player_->GetHP() + value);
+        uiManager_->PrintUseItem(whichItem);
+    }
+    else if(Inventory_->GetItemCount(ItemType::LowAttackPotion) > 0)
+    {
+        whichItem = Item::GetData(ItemType::LowAttackPotion);
+        int value = whichItem->GetEffect()[StatusType::ATK];
+        playerBuff_ = value; // 임시
+        uiManager_->PrintUseItem(whichItem);
+    }
 }
 
 void BattleSystem::ApplyRewards()
 {
     player_->GainExp(EXP_REWARD);
-    /*if (bool bIsLevelUp = p->TryLevelUp())
-    {
-        
-    }*/
+    int levelCount = level_->LevelUp(player_);
     int golds = GetRandomGold(GOLD_MIN, GOLD_MAX);
     player_->GainGold(golds);
 
-    // uiManager_->PrintFixedRewards(EXP_REWARD, level, golds); // 레벨 매개변수 수정 필요
+    uiManager_->PrintFixedRewards(EXP_REWARD, levelCount, golds); // 레벨 매개변수 수정 필요
 
 
     TryDropItem();
@@ -149,9 +157,24 @@ void BattleSystem::TryDropItem()
 {
     if (GetRandomBoolean(DROP_CHANCE))
     {
-        // 아이템 리스트에서 아이템 받고
-        // uiManager_->PrintItemRewards();
-        // 플레이어 인벤토리에 추가
+        const Item* whichItem = nullptr;
+
+        // 50% 확률로 체력포션과 공격력 증가 포션을 선택
+        if (GetRandomBoolean(WHICH_ITEM))
+        {
+            // 인벤토리에 추가후 UI출력 명령
+            whichItem = Item::GetData(ItemType::LowHealthPotion);
+            Inventory_->AddItem(whichItem->GetName(), 1);
+            // uiManager_->PrintItemRewards(whichItem->GetName());
+        }
+        else
+        {
+            // 인벤토리에 추가후 UI출력 명령
+            whichItem = Item::GetData(ItemType::LowAttackPotion);
+            Inventory_->AddItem(whichItem->GetName(), 1);
+            // uiManager_->PrintItemRewards(whichItem->GetName());
+        }
+
     }
 }
 
