@@ -86,7 +86,7 @@ bool BattleSystem::ResolveTurn()
     // 플레이어 선공격
     if (DecideTurnAction(ACTION_CHANCE))
     {
-        int damage = player_->Attack();
+        int damage = player_->Attack() + playerBuff_;
         int finalDamage = monster_->TakeDamage(damage);
         uiManager_->PrintMonsterTakeDamage(monster_, finalDamage);
 
@@ -104,7 +104,7 @@ bool BattleSystem::ResolveTurn()
             // 아이템 사용 못했으므로 안내하는 로그 출력
             uiManager_->PrintAttackInsteadUseItem();
 
-            int damage = player_->Attack();
+            int damage = player_->Attack() + playerBuff_;
             int finalDamage = monster_->TakeDamage(damage);
             uiManager_->PrintMonsterTakeDamage(monster_, finalDamage);
 
