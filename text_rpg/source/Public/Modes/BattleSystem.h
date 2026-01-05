@@ -8,6 +8,9 @@ enum class GameMode;
 class BattleSystem
 {
 public:
+    // 생성자
+    BattleSystem(Player* p);
+
     //전투를 시작한다
     GameMode StartBattle(Player* p, UIManager* ui);
 
@@ -17,7 +20,7 @@ public:
     // 보스 몬스터를 생성한다.
     void SpawnBoss(Player* p);
 
-    // 한 턴의 전투를 처리한다.
+    // 한 턴의 전투를 처리를 처리하고 몬스터나 플레이어의 사망 여부 반환
     bool ResolveTurn(Player* p, UIManager* ui);
 
     // 경험치와 골드르 지급한다.
@@ -36,6 +39,7 @@ public:
     int GetRandomGold(int min, int max);
 
 private:
+    Player* player_;
     Monster* monster_;
     Player* player_;
     static constexpr double ACTION_CHANCE = 0.5;

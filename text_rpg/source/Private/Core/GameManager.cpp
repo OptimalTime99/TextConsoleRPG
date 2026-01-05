@@ -9,7 +9,7 @@ GameManager::GameManager()
 {
     Player_ = nullptr;
     UI_ = new UIManager();
-    Battle_ = new BattleSystem();
+    Battle_ = nullptr;
     Shop_ = new ShopSystem();
     Mode_ = GameMode::PLAY_GAME;
 }
@@ -36,12 +36,14 @@ void GameManager::StartGame()
 {
     if (UI_->PrintTitle())
     {
+        // UI가 항상 정상적인 이름을 받아오기 때문에 이름 입력과 동시에 플레이어 객체 생성.
         Player_ = new Player(UI_->PrintCreateCharacter());
-
+        Battle_ = new BattleSystem(Player_);
 
         Mode_ = GameMode::BATTLE_MODE;
         while (Mode_ == GameMode::BATTLE_MODE)
         {
+            // Mode_가 BATTLE_MODE가 아닐때까지 계속 배틀
             Mode_ = StartBattle();
         }
     }

@@ -6,6 +6,11 @@
 #include <random>
 
 
+BattleSystem::BattleSystem(Player* p) : player_(p) 
+{
+    monster_ = nullptr;
+}
+
 GameMode BattleSystem::StartBattle(Player* p, UIManager* ui)
 {
     bool bIsSomeoneDead = false;
@@ -28,6 +33,8 @@ GameMode BattleSystem::StartBattle(Player* p, UIManager* ui)
     {
         ui->PrintVictory();
         ApplyRewards(p, ui);
+        return GameMode::APLLY_RWARDS;
+
     }
     // 플레이어 사망시 게임 종료
     else if (p->IsDead())
@@ -61,9 +68,9 @@ bool BattleSystem::ResolveTurn(Player* p, UIManager* ui)
     // 플레이어 선공격
     if (DecideTurnAction(ACTION_CHANCE))
     {
-        int damage = p->Attack();
-        monster_->TakeDamage(damage);
-        ui->PrintMonsterTakeDamage(monster_);
+        //int damage = p->Attack();
+        //monster_->TakeDamage(damage);
+        // ui->데미지 받기그리기(monster_);
 
         // 몬스터 사망시 함수 종료
         if (monster_->isDead())
@@ -75,7 +82,28 @@ bool BattleSystem::ResolveTurn(Player* p, UIManager* ui)
     else
     { // 아이템 사용 파트, 버프 처리 체력 증가 처리 등
         // ItemInfo witchItem = p->UseItem();
-        // ui->PrintUseItem(item); // item 매개변수 확인 필요
+        // ui->아이템 사용 그리기(ItemInfo);
+        // 아이템 사용 파트, 버프 처리 체력 증가 처리 등
+        Item* whichItem/* = p->UseItem()*/;
+        // 아이템 관리를 어떤식으로 할지 힙에 메모리 생성은 어디서? 해제는 누가?
+        if (whichItem != nullptr)
+        {
+            switch (whichItem->GetType())
+            {
+            case ItemType::HealPotion:
+                p->SetHP(p->GetHP() + whichItem.GetValue()); // Set함수에서 MaxHP넘지 않게 유효처리 부탁
+                ui->PrintUseItem(whichItem);
+                break;
+            case ItemType::AtkPotion:
+                // 해당 전투가 끝나면 다시 원래 공격력으로
+                p->SetAttack(/*p->GetAttack() + */whichItem.GetValue());
+                ui->PrintUseItem(whichItem);
+                break;
+            default:
+                break;
+            }
+        }
+        // ui->아이템 사용 그리기(ItemInfo);
     }
     
     // 몬스터 사망시 아래는 수행하지 않음
@@ -113,11 +141,13 @@ void BattleSystem::TryDropItem(Player* p, UIManager* ui)
     if (GetRandomBoolean(DROP_CHANCE))
     {
         // 아이템 리스트에서 아이템 받고
-        //ui->PrintItemRewards();
+        // ui->PrintItemRewards();
         // 플레이어 인벤토리에 추가
     }
 }
 
+
+// 유틸리티 클래스화 생각
 bool BattleSystem::DecideTurnAction(double probability)
 {
     return GetRandomBoolean(ACTION_CHANCE);

@@ -5,6 +5,7 @@ enum class GameMode
 {
     PLAY_GAME,
     BATTLE_MODE,
+    APLLY_RWARDS,
     GAMEOVER_MODE
 
 
