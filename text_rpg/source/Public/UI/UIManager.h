@@ -62,6 +62,8 @@ public:
     // 아이템 사용 시 출력로그
     void PrintUseItem(const Item* item);
 
+    void PrintAttackInsteadUseItem();
+
     // 승리 시 출력
     void PrintVictory();
 
