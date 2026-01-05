@@ -9,7 +9,7 @@
 class Player 
 {
 public:
-    Player();
+    Player(const std::string name);
     
     ~Player();
 
@@ -31,13 +31,12 @@ public:
     void GainGold(int amount);
 
     // 레벨업, 스탯증가, 체력회복
-    bool TryLevelUp();
+    int TryLevelUp();
 
-    // 아이템 효과 적용
-    void UseItem();        //UseItem 
-    
     
     int Attack();
+
+    int GetAttack();
     
     int GetLevel();
     
@@ -65,23 +64,17 @@ public:
 
     int GetMaxExp();
 
+    void SetMaxExp(const int value);
     
     
     
 private:
-    Item* item;
-    std::string Name_;           // get 다 하나씩 추가해두기.
+    std::string Name_;           
     int Level_;
     int Exp_;
     int Gold_;
     int HP_;
     int MaxHP_;
     int Attack_;
-    Inventory* Inv_;
-    static constexpr int HP_PER_LEVEL = 20;
-    static constexpr int ATTACK_PER_LEVEL = 5;
-    static constexpr int MAX_LEVEL = 10;
-    static constexpr int MAX_EXP = 100;
-    static constexpr int LEVEL = 1;
-    static constexpr int HALF = 2;
+    static constexpr int MAX_EXP = 100;     
 };
