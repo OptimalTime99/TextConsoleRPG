@@ -166,6 +166,43 @@ int UIHelper::UserSelection(int x, int y, int n)
     }
 }
 
+int UIHelper::CountSelection(int x, int y, const int max)
+{
+    int choiceX = x;
+    int choiceY = y;
+    int choice = 0;
+
+    while (true)
+    {
+        gotoxy(choiceX, choiceY);
+        std::cout << choice;
+        if (GetAsyncKeyState(VK_UP) & 0x8000)
+        {
+            if (choice < max)
+            {
+                choice++;
+            }
+            Sleep(50);
+        }
+        if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+        {
+            if (choice > 0)
+            {
+                choice--;
+            }
+            Sleep(50);
+        }
+        if (GetAsyncKeyState(VK_RETURN) & 0x8000)
+        {
+            ConsoleClear(125, 26, 158, 41);
+            Sleep(200);
+            return choice;
+        }
+        Sleep(100);
+    }
+    return 0;
+}
+
 void UIHelper::PushLog(const std::string& log, int color_num)
 {
     Log_.push_back({ log, color_num });

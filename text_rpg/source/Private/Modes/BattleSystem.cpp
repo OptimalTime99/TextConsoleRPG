@@ -34,7 +34,7 @@ GameMode BattleSystem::StartBattle()
     while (true)
     {
         // 턴을 진행하고 몬스터나 플레이어가 사망하면
-        // if문에서 반목문 탈출
+        // if문에서 반목문 탈출 -> 전투 종료
         if (bIsSomeoneDead = ResolveTurn())
         {
             break;
@@ -164,14 +164,14 @@ void BattleSystem::TryDropItem()
         {
             // 인벤토리에 추가후 UI출력 명령
             whichItem = Item::GetData(ItemType::LowHealthPotion);
-            Inventory_->AddItem(whichItem->GetName(), 1);
+            Inventory_->AddItem(ItemType::LowHealthPotion, 1);
             // uiManager_->PrintItemRewards(whichItem->GetName());
         }
         else
         {
             // 인벤토리에 추가후 UI출력 명령
             whichItem = Item::GetData(ItemType::LowAttackPotion);
-            Inventory_->AddItem(whichItem->GetName(), 1);
+            Inventory_->AddItem(ItemType::LowAttackPotion, 1);
             // uiManager_->PrintItemRewards(whichItem->GetName());
         }
 

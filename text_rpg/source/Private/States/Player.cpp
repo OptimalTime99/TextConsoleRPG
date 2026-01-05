@@ -1,7 +1,7 @@
 ﻿#include "States/Player.h"
 #include <string>
 
-
+// 생성자 초기화
 Player::Player(const std::string name) : Name_(name)
 {
     this->Level_ = 1;
@@ -15,12 +15,12 @@ Player::Player(const std::string name) : Name_(name)
 Player::~Player() {}
 
 
-
+// 획득한 경험치
 void Player::GainExp(int amount)
 {
     Exp_ += amount;
 }
-
+// 획득한 골드
 void Player::GainGold(int amount)
 {
     Gold_ += amount;
@@ -37,50 +37,23 @@ bool Player::IsDead() const
         return false;
     }
 }
-
+// 받는 피해량
 int Player::TakeDamage(int dmg)
-{
+{   // 데미지가 0보다 작을 때 0으로 유효성검사
     if (dmg < 0)
         dmg = 0;
     HP_ -= dmg;
-
+    // HP가 0보다 작을 때 0으로 유효성검사
     if (HP_ < 0)
         HP_ = 0;
-
+    // 입은 데미지 반환
     return dmg;
 }
-
-//int Player::TryLevelUp()  //레벨업시 true 
-//{
-//    int count = 0;
-//
-//    while (Exp_ >= MAX_EXP)      // 10 ㅡ> 상수화 if (Level_ < MAX_LEVEL) 
-//    {
-//
-//        if (Level_ < MAX_LEVEL) // 100 ㅡ> 상수화
-//        {
-//
-//            Level_++;
-//            MaxHP_ += LEVEL * HP_PER_LEVEL;  // 20 ㅡ> 상수화
-//            HP_ = MaxHP_;
-//            Attack_ += LEVEL * ATTACK_PER_LEVEL;  // 5 ㅡ> 상수화       // 원종님한테 전달
-//            Exp_ -= MAX_EXP;
-//
-//            count++;
-//        }
-//        else
-//        {
-//            break;
-//        }
-//    }
-//    return count;
-//}
 
 void Player::SetName(std::string name)
 {
     Name_ = name;
 }
-
 
 
 int Player::Attack()
