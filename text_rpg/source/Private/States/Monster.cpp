@@ -4,11 +4,11 @@
 #include <iostream>
 #include <random>
 
-//Monster::Monster(std::string MonsterName, int Level)
-//    : MonsterName_(MonsterName), MonsterLevel_(Level)
-//{
-//
-//}
+Monster::Monster(std::string Monstername_, int Level) 
+    : MonsterName_(MonsterName_),MonsterLevel_(Level),HP_(0),MaxHP_(0),Attack_(0)
+{
+
+}
 
 int Monster::TakeDamage(int dmg)
 {
