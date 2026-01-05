@@ -15,9 +15,9 @@ int LevelSystem::LevelUp(Player* p)
         {
             Level++;
             p->SetLevel(Level);
-            p->SetMaxHP(MaxHP + ONE * HP_PER_LEVEL);
+            p->SetMaxHP(MaxHP + HP_PER_LEVEL);
             p->SetHP(MaxHP);
-            p->SetAttack(Attack + ONE * ATTACK_PER_LEVEL);
+            p->SetAttack(Attack + ATTACK_PER_LEVEL);
             p->SetExp(Exp - MaxExp);
 
             count++;
