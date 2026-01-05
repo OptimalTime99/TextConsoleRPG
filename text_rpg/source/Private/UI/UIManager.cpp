@@ -76,11 +76,11 @@ std::string UIManager::PrintCreateCharacter()
     //UIHelper_->PrintLine("끊임없이 전쟁이 이어졌다.", 11, 25);
     //Sleep(1000);
 
-    //UIHelper_->gotoxy(x - 30, y + 2);
-    //UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 25);
-    //UIHelper_->gotoxy(x - 30, y + 4);
-    //UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 25);
-    //Sleep(1000);
+    UIHelper_->gotoxy(x - 30, y + 2);
+    UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 25);
+    UIHelper_->gotoxy(x - 30, y + 4);
+    UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 25);
+    Sleep(1000);
 
     system("cls");
 

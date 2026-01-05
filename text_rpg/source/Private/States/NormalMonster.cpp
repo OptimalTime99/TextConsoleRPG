@@ -1,7 +1,7 @@
 ﻿#include "States/NormalMonster.h"
 #include <string>
 #include <iostream>
-
+#include <random>
 
 NormalMonster::NormalMonster(std::string Monstername_, int Level)
     : Monster(Monstername_, Level)
@@ -23,8 +23,8 @@ void NormalMonster::GenerateStatus(int Level)
     std::uniform_int_distribution<int> DistATK(Level * MIN_ATK, Level * MAX_ATK);
 
 
-    this->HP_ = DistHP(gen);
-    this->MaxHP_ = this->HP_;
+    this->MaxHP_ = DistHP(gen);
+    this->HP_ = MaxHP_;
     this->Attack_ = DistATK(gen);
 }
 
