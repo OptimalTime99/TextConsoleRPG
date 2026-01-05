@@ -26,14 +26,25 @@
     <ClCompile Include="source\Private\Modes\BattleSystem.cpp" />
     <ClCompile Include="source\Private\Modes\LevelSystem.cpp" />
     <ClCompile Include="source\Private\Modes\ShopSystem.cpp" />
+    <ClCompile Include="source\Private\States\BenediktKiss.cpp" />
     <ClCompile Include="source\Private\States\BossMonster.cpp" />
+    <ClCompile Include="source\Private\States\DominikYork.cpp" />
+    <ClCompile Include="source\Private\States\EliasBeck.cpp" />
+    <ClCompile Include="source\Private\States\HugoJauch.cpp" />
+    <ClCompile Include="source\Private\States\JohannaKlein.cpp" />
+    <ClCompile Include="source\Private\States\KasparKaiser.cpp" />
+    <ClCompile Include="source\Private\States\KevinKruger.cpp" />
+    <ClCompile Include="source\Private\States\MoritzMundt.cpp" />
     <ClCompile Include="source\Private\States\NormalMonster.cpp" />
     <ClCompile Include="source\Private\States\Inventory.cpp" />
     <ClCompile Include="source\Private\States\Item.cpp" />
     <ClCompile Include="source\Private\States\Monster.cpp" />
     <ClCompile Include="source\Private\States\Player.cpp" />
+    <ClCompile Include="source\Private\States\SebastianHorn.cpp" />
+    <ClCompile Include="source\Private\States\StefanSommer.cpp" />
     <ClCompile Include="source\Private\UI\UIHelper.cpp" />
     <ClCompile Include="source\Private\UI\UIManager.cpp" />
+    <ClCompile Include="source\Public\States\StefanSommer.h" />
     <ClCompile Include="source\Public\Types\StatusType.h" />
   </ItemGroup>
   <ItemGroup>
@@ -43,12 +54,21 @@
     <ClInclude Include="source\Public\Modes\BattleSystem.h" />
     <ClInclude Include="source\Public\Modes\LevelSystem.h" />
     <ClInclude Include="source\Public\Modes\ShopSystem.h" />
+    <ClInclude Include="source\Public\States\BenediktKiss.h" />
     <ClInclude Include="source\Public\States\BossMonster.h" />
+    <ClInclude Include="source\Public\States\DominikYork.h" />
+    <ClInclude Include="source\Public\States\EliasBeck.h" />
+    <ClInclude Include="source\Public\States\HugoJauch.h" />
     <ClInclude Include="source\Public\States\Inventory.h" />
     <ClInclude Include="source\Public\States\Item.h" />
+    <ClInclude Include="source\Public\States\JohannaKlein.h" />
+    <ClInclude Include="source\Public\States\KasparKaiser.h" />
+    <ClInclude Include="source\Public\States\KevinKruger.h" />
     <ClInclude Include="source\Public\States\Monster.h" />
+    <ClInclude Include="source\Public\States\MoritzMundt.h" />
     <ClInclude Include="source\Public\States\NormalMonster.h" />
     <ClInclude Include="source\Public\States\Player.h" />
+    <ClInclude Include="source\Public\States\SebastianHorn.h" />
     <ClInclude Include="source\Public\Types\ColoredText.h" />
     <ClInclude Include="source\Public\Types\ItemDefs.h" />
     <ClInclude Include="source\Public\Types\ItemFactory.h" />
