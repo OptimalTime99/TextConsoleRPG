@@ -60,6 +60,8 @@ public:
     // 아이템 사용 시 출력로그
     void PrintUseItem(Item* item);
 
+    void PrintVictory();
+
     // 일반 보상 획득 출력
     void PrintFixedRewards(int exp_reward, int levelup_count, int gain_golds);
 

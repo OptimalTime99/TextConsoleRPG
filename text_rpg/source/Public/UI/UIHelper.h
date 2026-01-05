@@ -15,6 +15,8 @@ public:
     // 콘솔창 이름, 크기, 커서에 대한 세팅 함수
     void SetConsoleSetting();
 
+    void ConsoleClear(int x, int y, int mx, int my);
+
     // 텍스트의 색깔 변경 함수
     void textcolor(int color_num);
 

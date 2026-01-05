@@ -177,38 +177,34 @@ void UIManager::PrintPlayerStatus(Player* player)
 
 void UIManager::PrintMonsterStatus(Monster* monster)
 {
-    int x = 110;
-    int y = 1;
+    int x = 126;
+    int y = 2;
     UIHelper_->textcolor(15);
     UIHelper_->Draw(x, y, "타겟 :");
     UIHelper_->gotoxy(x + 7, y);
-    std::cout << "monster->GetName()";
+    std::cout << monster->GetName();
 
-    UIHelper_->Draw(x, y + 1, "HP");
-    UIHelper_->Draw(x + 5, y + 1, "[");
-    UIHelper_->Draw(x + 16, y + 1, "]");
-    UIHelper_->gotoxy(x + 18, y + 1);
-    std::cout << "monster->GetHP()" << " / " << "monster->GetMaxHP()";
-
-    UIHelper_->Draw(x, y + 2, "총알");
+    UIHelper_->Draw(x, y + 2, "HP");
     UIHelper_->Draw(x + 5, y + 2, "[");
     UIHelper_->Draw(x + 16, y + 2, "]");
+    UIHelper_->DrawBar(x+6, y+2, 10, monster->GetHP(), monster->GetMaxHP(), 12);
     UIHelper_->gotoxy(x + 18, y + 2);
-    std::cout << 10 << " / " << 30;
+    std::cout << monster->GetHP() << " / " << monster->GetMaxHP();
 
-    UIHelper_->Draw(x, y + 3, "공격력 : ");
-    UIHelper_->gotoxy(x + 9, y + 3);
-    std::cout << "monster->GetAttack()";
+    //UIHelper_->Draw(x, y + 2, "총알");
+    //UIHelper_->Draw(x + 5, y + 2, "[");
+    //UIHelper_->Draw(x + 16, y + 2, "]");
+    //UIHelper_->DrawBar(x+6, y+2, 10, 10, 30, 8);
+    //UIHelper_->gotoxy(x + 18, y + 2);
+    //std::cout << 10 << " / " << 30;
 
-    UIHelper_->Draw(x, y + 4, "속도 : ");
-    UIHelper_->gotoxy(x + 7, y + 4);
-    std::cout << "monster->GetSpeed()";
+    UIHelper_->Draw(x, y + 4, "공격력 : ");
+    UIHelper_->gotoxy(x + 9, y + 4);
+    std::cout << monster->GetAttack();
 
-    UIHelper_->DrawBar(x + 6, y + 1, 10, 200, 200, 12);
-    UIHelper_->DrawBar(x + 6, y + 2, 10, 10, 30, 8);
-
-    //UIHelper_->DrawBar(x+6, y+1, monster->GetHP(), monster->GetMaxHP(), 12);
-    //UIHelper_->DrawBar(x+6, y+2, 10, 30, 8);
+    //UIHelper_->Draw(x, y + 4, "속도 : ");
+    //UIHelper_->gotoxy(x + 7, y + 4);
+    //std::cout << monster->GetSpeed();
 
     UIHelper_->gotoxy(0, 45);
 
@@ -236,19 +232,23 @@ void UIManager::PrintKillCount(AchievementSystem* achieve)
 
 void UIManager::PrintBattleStart(Player* p, Monster* m)
 {
-    std::string printmsg = p->GetName() + "이(가) 목표물" + m->GetName() +"을(를) 발견했다.";
+    std::string printmsg = p->GetName() + "이(가) 목표물 " + m->GetName() +"을(를) 발견했다.";
     UIHelper_->BoxUI(26, 12, 133, 29, 15);
     UIHelper_->gotoxy(30, 14);
     UIHelper_->PrintLine(printmsg, 15, 40);
     Sleep(1000);
     system("cls");
 
+    PrintPlayerStatus(p);
+    PrintMonsterStatus(m);
+
+    UIHelper_->Draw(37, 26, "<작전 현황표>");
     UIHelper_->BoxUI(0, 0, 159, 42, 15);
     UIHelper_->BoxUI(0, 0, 35, 42, 15);
     UIHelper_->BoxUI(124, 0, 159, 42, 15);
-    UIHelper_->BoxUI(35, 25, 124, 42, 15);
+    UIHelper_->BoxUI(0, 25, 159, 42, 15);
 
-    UIHelper_->PrintFile(40, 10, "asset/ManWithGun.txt", 15);
+    UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 15);
 
     if (m->GetLevel() <= 3)
     {
@@ -340,6 +340,16 @@ void UIManager::PrintUseItem(Item* item)
     }
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
     UIHelper_->textcolor(15);
+    Sleep(150);
+}
+
+void UIManager::PrintVictory()
+{
+    Sleep(150);
+    UIHelper_->ConsoleClear(90, 1, 123, 24);
+    std::string log = "--------------[암살성공]--------------";
+    UIHelper_->PushLog(log, 15);
+    UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
     Sleep(150);
 }
 

@@ -39,6 +39,17 @@ void UIHelper::SetConsoleSetting()
     SetConsoleCursorInfo(consoleHandle, &ConsoleCursor);
 }
 
+void UIHelper::ConsoleClear(int x, int y, int mx, int my)
+{
+    for (int i = x; i <= mx; i++)
+    {
+        for (int j = y; j <= my; j++)
+        {
+            Draw(i, j, " ");
+        }
+    }
+}
+
 void UIHelper::textcolor(int color_num)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color_num);
@@ -164,7 +175,7 @@ void UIHelper::Printlog(int x, int y, std::deque<ColoredText>& log)
 {
     int defaultX = x;
     int defaultY = y;
-    if (log.size() == 15)
+    if (log.size() == 16)
     {
         y = defaultY;
         log.erase(log.begin());
