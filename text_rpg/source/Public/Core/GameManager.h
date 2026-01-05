@@ -5,6 +5,7 @@ class Player;
 class UIManager;
 class BattleSystem;
 class ShopSystem;
+class Item;
 
 class GameManager 
 {
@@ -37,6 +38,7 @@ public:
 private:
     static GameManager* instance;   // 유일한 게임매니저를 가리킬 정적 포인터
     Player* Player_;    // 플레이어
+    Item* Item_;
     UIManager* UI_; // UI
     BattleSystem* Battle_;  // 배틀시스템
     ShopSystem* Shop_;  // 상점시스템

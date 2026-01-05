@@ -36,6 +36,8 @@ public:
     // 몬스터 레벨
     int GetLevel();
 
+    int Attack();
+
 private:
     std::string MonsterName_;
     int MonsterLevel_;

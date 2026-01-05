@@ -4,27 +4,33 @@ class Player;
 class UIManager;
 class Monster;
 enum class GameMode;
+class Item;
 
 class BattleSystem
 {
 public:
+    // 생성자
+    BattleSystem(Player* p, Item* item, UIManager* ui);
+
     //전투를 시작한다
-    GameMode StartBattle(Player* p, UIManager* ui);
+    GameMode StartBattle();
 
     // 일반 몬스터를 생성한다.
-    void SpawnMonster(Player* p);
+    void SpawnMonster();
 
     // 보스 몬스터를 생성한다.
-    void SpawnBoss(Player* p);
+    void SpawnBoss();
 
-    // 한 턴의 전투를 처리한다.
-    bool ResolveTurn(Player* p, UIManager* ui);
+    // 한 턴의 전투를 처리를 처리하고 몬스터나 플레이어의 사망 여부 반환
+    bool ResolveTurn();
+
+    void UseItem();
 
     // 경험치와 골드르 지급한다.
-    void ApplyRewards(Player* p, UIManager* ui);
+    void ApplyRewards();
 
     // DROP_CHANCE의 확률로아이템 드랍을 시도한다.
-    void TryDropItem(Player* p, UIManager* ui);
+    void TryDropItem();
 
     // ACTION_CHANCE의 확률로 플레이어 공격인지 아이템 사용인지 결정
     bool DecideTurnAction(double probability);
@@ -36,8 +42,10 @@ public:
     int GetRandomGold(int min, int max);
 
 private:
-    Monster* monster_;
     Player* player_;
+    Monster* monster_;
+    Item* items_;
+    UIManager* uiManager_;
     static constexpr double ACTION_CHANCE = 0.5;
     static constexpr double DROP_CHANCE = 0.30;
     static constexpr int EXP_REWARD = 50;

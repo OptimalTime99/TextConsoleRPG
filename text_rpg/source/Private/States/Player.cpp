@@ -1,4 +1,5 @@
 ﻿#include "States/Player.h"
+#include <string>
 
 
 Player::Player(const std::string name) : Name_(name)
@@ -9,7 +10,6 @@ Player::Player(const std::string name) : Name_(name)
     this->Exp_ = 0;
     this->MaxHP_ = 200;
     this->Gold_ = 0;
-
 }
 
 Player::~Player() {}
