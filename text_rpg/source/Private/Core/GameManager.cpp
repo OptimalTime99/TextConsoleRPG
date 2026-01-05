@@ -51,12 +51,13 @@ void GameManager::StartGame()
             switch (Mode_)
             {
             case GameMode::BATTLE_MODE:
-                StartBattle();
+                Mode_ = StartBattle();
                 break;
             case GameMode::APPLY_RWARDS:
                 // 상점 방문 선택 기능 필요
                 if (Player_->GetLevel() == 10)
                 {
+
                     Mode_ = GameMode::GAMEENDING_MODE;
                 }
                 else
