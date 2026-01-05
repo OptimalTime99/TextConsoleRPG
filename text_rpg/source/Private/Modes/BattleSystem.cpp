@@ -34,7 +34,7 @@ GameMode BattleSystem::StartBattle()
     while (true)
     {
         // 턴을 진행하고 몬스터나 플레이어가 사망하면
-        // if문에서 반목문 탈출
+        // if문에서 반목문 탈출 -> 전투 종료
         if (bIsSomeoneDead = ResolveTurn())
         {
             break;
