@@ -7,7 +7,7 @@
 
 GameManager::GameManager()
 {
-    //Player_ = new Player();
+    Player_ = nullptr;
     UI_ = new UIManager();
     Battle_ = new BattleSystem();
     Shop_ = new ShopSystem();
@@ -36,7 +36,7 @@ void GameManager::StartGame()
 {
     if (UI_->PrintTitle())
     {
-        //Player_->SetName(UI_->PrintCreateCharacter());
+        Player_ = new Player(UI_->PrintCreateCharacter());
 
 
         Mode_ = GameMode::BATTLE_MODE;

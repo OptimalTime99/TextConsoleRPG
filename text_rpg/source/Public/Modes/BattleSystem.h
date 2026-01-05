@@ -37,6 +37,7 @@ public:
 
 private:
     Monster* monster_;
+    Player* player_;
     static constexpr double ACTION_CHANCE = 0.5;
     static constexpr double DROP_CHANCE = 0.30;
     static constexpr int EXP_REWARD = 50;
