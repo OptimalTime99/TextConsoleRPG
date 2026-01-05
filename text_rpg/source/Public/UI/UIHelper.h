@@ -43,6 +43,8 @@ public:
     // 유저 선택 함수. xy는 위치 n은 선택지 개수. 선택지 번호를 반환.
     int UserSelection(int x, int y, int n);
 
+    int CountSelection(int x, int y, const int max);
+
     // 로그 입력
     void PushLog(const std::string& log, int color_num);
 

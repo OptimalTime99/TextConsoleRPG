@@ -75,8 +75,12 @@ public:
     // 상점 출력
     int PrintShop();
 
-    // 상점 카탈로그 출력 및 선택
-    int PrintShopCatalog();
+    // 상점 구매 출력 및 선택
+    int PrintShopBuyChoice();
+
+    int PrintShopSellChoice(Inventory* inven);
+
+    int Itemcount();
 
 private:
     UIHelper* UIHelper_;
