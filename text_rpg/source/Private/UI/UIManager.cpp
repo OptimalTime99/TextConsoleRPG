@@ -326,7 +326,7 @@ void UIManager::PrintPlayerTakeDamage(Player* p, int finaldamage)
     Sleep(150);
 }
 
-void UIManager::PrintUseItem(Item* item)
+void UIManager::PrintUseItem(const Item* item)
 {
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 10);
     Sleep(200);
@@ -381,6 +381,19 @@ void UIManager::PrintFixedRewards(int exp_reward, int levelup_count, int gain_go
     }
     log = "골드 획득 : " + std::to_string(gain_golds) + "                            ";
     UIHelper_->PushLog(log, 14);
+    UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+    Sleep(150);
+
+    UIHelper_->textcolor(15);
+}
+
+void UIManager::PrintItemRewards(ItemType itemtype)
+{
+    std::string log = "-------------[아이템획득!]-------------";
+    UIHelper_->PushLog(log, 15);
+    UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+    log = Item::ItemTypeToString(itemtype) + " 아이템을 획득했습니다.";
+    UIHelper_->PushLog(log, 10);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
     Sleep(150);
 

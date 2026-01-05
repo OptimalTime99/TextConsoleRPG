@@ -58,7 +58,7 @@ public:
     void PrintPlayerTakeDamage(Player* p, int finaldamage);
 
     // 아이템 사용 시 출력로그
-    void PrintUseItem(Item* item);
+    void PrintUseItem(const Item* item);
 
     // 승리 시 출력
     void PrintVictory();
@@ -67,7 +67,7 @@ public:
     void PrintFixedRewards(int exp_reward, int levelup_count, int gain_golds);
 
     // 아이템 보상 획득 출력
-    void PrintItemRewards();
+    void PrintItemRewards(ItemType itemtype);
 
     // 상점 입장여부 선택 UI
     bool ShopEnterChoice();
