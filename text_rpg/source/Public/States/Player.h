@@ -30,8 +30,7 @@ public:
     // 골드 획득
     void GainGold(int amount);
 
-    // 레벨업, 스탯증가, 체력회복
-    int TryLevelUp();
+    
 
     
     int Attack();
