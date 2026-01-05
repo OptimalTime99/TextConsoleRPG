@@ -160,4 +160,3 @@ void Player::SetMaxHP(int newMaxHP)
 {
     MaxHP_ = newMaxHP;
 }
-

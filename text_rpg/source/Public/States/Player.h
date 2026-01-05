@@ -4,7 +4,7 @@
 #include <conio.h>
 #include "States/Item.h"
 #include "States/Inventory.h"
-#include <random>
+
 
 class Player 
 {
@@ -30,8 +30,6 @@ public:
     // 골드 획득
     void GainGold(int amount);
 
-    // 레벨업, 스탯증가, 체력회복
-    int TryLevelUp();
 
     // 공격력 반환
     int Attack();
@@ -64,7 +62,6 @@ public:
     // 최대경험치 반환
     int GetMaxExp();
 
-    void SetMaxExp(const int value);
     
     
     
