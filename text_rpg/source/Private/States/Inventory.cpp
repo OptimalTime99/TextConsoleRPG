@@ -30,3 +30,8 @@ int Inventory::GetItemCount(ItemType name) const
 {
     return inventory_.at(name);
 }
+
+const std::map<ItemType, int>& Inventory::GetInventory() const
+{
+    return inventory_;
+}

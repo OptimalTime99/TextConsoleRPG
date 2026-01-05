@@ -15,6 +15,9 @@ public:
     // 아이템 수량 조회 함수
     int GetItemCount(ItemType name) const;
 
+    // 인벤토리 반환 함수
+    const std::map<ItemType, int>& GetInventory() const;
+
 private:
     // 아이템 이름과 수량을 저장하는 맵
     std::map<ItemType, int> inventory_;
