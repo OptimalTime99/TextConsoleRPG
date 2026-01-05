@@ -149,7 +149,7 @@ void UIManager::PrintPlayerStatus(Player* player)
     UIHelper_->Draw(x + 16, y + 4, "]");
     UIHelper_->DrawBar(x + 6, y + 4, 10, player->GetHP(), player->GetMaxHP(), 12);
     UIHelper_->gotoxy(x + 18, y + 4);
-    std::cout << player->GetHP() << " / " << player->GetMaxHP();
+    std::cout << player->GetHP() << " / " << player->GetMaxHP() << "  ";
 
     //UIHelper_->Draw(x, y+2, "총알");
     //UIHelper_->Draw(x+5, y+2, "[");
@@ -163,7 +163,7 @@ void UIManager::PrintPlayerStatus(Player* player)
     UIHelper_->Draw(x + 16, y + 5, "]");
     UIHelper_->DrawBar(x + 6, y + 5, 10, player->GetExp(), player->GetMaxExp(), 2);
     UIHelper_->gotoxy(x + 18, y + 5);
-    std::cout << player->GetExp() << " / " << player->GetMaxExp();
+    std::cout << player->GetExp() << " / " << player->GetMaxExp() << "  ";
 
     UIHelper_->Draw(x, y + 6, "공격력 : ");
     UIHelper_->gotoxy(x + 9, y + 6);
