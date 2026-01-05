@@ -18,8 +18,8 @@ void SebastianHorn::GenerateStatus(int Level)
     static std::random_device rd;
     static std::mt19937 gen(rd());
 
-    static std::uniform_int_distribution<int> DistHP(Level * MIN_HP, Level * MAX_HP);
-    static std::uniform_int_distribution<int> DistATK(Level * MIN_ATK, Level * MAX_ATK);
+    std::uniform_int_distribution<int> DistHP(Level * MIN_HP, Level * MAX_HP);
+    std::uniform_int_distribution<int> DistATK(Level * MIN_ATK, Level * MAX_ATK);
 
 
     this->HP_ = DistHP(gen);
