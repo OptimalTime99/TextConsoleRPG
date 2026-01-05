@@ -68,8 +68,15 @@ public:
     // 아이템 보상 획득 출력
     void PrintItemRewards();
 
-    // 상점 UI
-    void PrintShop();
+    // 상점 입장여부 선택 UI
+    bool ShopEnterChoice();
+
+    // 상점 출력
+    int PrintShop();
+
+    // 상점 카탈로그 출력 및 선택
+    int PrintShopCatalog();
+
 private:
     UIHelper* UIHelper_;
 };

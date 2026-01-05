@@ -278,6 +278,7 @@ void UIManager::PrintMonsterTakeDamage(Monster* m)
         std::string log = m->GetName() + "이(가) 데미지를 입었습니다     ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+        PrintMonsterStatus(m);
         UIHelper_->textcolor(15);
         Sleep(150);
     }
@@ -289,6 +290,7 @@ void UIManager::PrintMonsterTakeDamage(Monster* m)
         std::string log = m->GetName() + "이(가) 데미지를 입었습니다     ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+        PrintMonsterStatus(m);
         UIHelper_->textcolor(15);
         Sleep(150);
     }
@@ -300,6 +302,7 @@ void UIManager::PrintMonsterTakeDamage(Monster* m)
         std::string log = m->GetName() + "이(가) 데미지를 입었습니다     ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+        PrintMonsterStatus(m);
         UIHelper_->textcolor(15);
         Sleep(150);
     }
@@ -317,6 +320,7 @@ void UIManager::PrintPlayerTakeDamage(Player* p)
     std::string log = p->GetName() + "이(가) 데미지를 입었습니다      ";
     UIHelper_->PushLog(log, 8);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+    PrintPlayerStatus(p);
     UIHelper_->textcolor(15);
     Sleep(150);
 }
@@ -381,10 +385,27 @@ void UIManager::PrintFixedRewards(int exp_reward, int levelup_count, int gain_go
     UIHelper_->textcolor(15);
 }
 
-
+bool UIManager::ShopEnterChoice()
+{
+    int choice = UIHelper_->UserSelection(1, 1, 2);
+    switch (choice)
+    {
+    case 1:
+        return true;
+    case 2:
+        return false;
+    }
+}
 
 // 상점 UI
-void UIManager::PrintShop()
+int UIManager::PrintShop()
 {
     UIHelper_->Draw(20, 20, "상점UI 추가예정");
+    return 1;
+}
+
+int UIManager::PrintShopCatalog()
+{
+    UIHelper_->Draw(20, 20, "상점 구매 카탈로그");
+    return 0;
 }
