@@ -24,10 +24,10 @@ public:
     // 체력이 0 이하인지 판단하여 사망 여부를 판정한다.
     bool IsDead() const;
 
-    // 경험치 획득
+    // 획득한 경험치
     void GainExp(int amount);
 
-    // 골드 획득
+    // 획득한 골드
     void GainGold(int amount);
 
 
@@ -66,12 +66,13 @@ public:
     
     
 private:
-    std::string Name_;           // get 다 하나씩 추가해두기.
+    std::string Name_;           
     int Level_;
     int Exp_;
     int Gold_;
     int HP_;
     int MaxHP_;
     int Attack_;
+    // 최대 경험치
     static constexpr int MAX_EXP = 100;     
 };
