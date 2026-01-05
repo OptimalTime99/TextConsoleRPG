@@ -27,6 +27,9 @@ public:
     // 모든 아이템 원형 데이터를 가져오는 함수
     static const std::map<ItemType, Item>& GetAllItems();
 
+    // 아이템 타입에 따른 문자열 변환 함수
+    static std::string ItemTypeToString(ItemType type);
+
     // Setter
     void SetName(ItemType name);
     void SetPrice(int price);

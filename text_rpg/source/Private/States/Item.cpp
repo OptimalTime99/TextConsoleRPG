@@ -53,6 +53,19 @@ const std::map<ItemType, Item>& Item::GetAllItems()
     return itemRegistry_;
 }
 
+std::string Item::ItemTypeToString(ItemType type)
+{
+    switch (type)
+    {
+    case ItemType::LowHealthPotion:
+        return "하급 체력 포션";
+    case ItemType::LowAttackPotion:
+        return "하급 공격력 포션";
+    default:
+        return "알 수 없는 아이템";
+    }
+}
+
 void Item::SetName(ItemType name)
 {
     name_ = name;
