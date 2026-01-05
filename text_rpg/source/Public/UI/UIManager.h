@@ -48,6 +48,8 @@ public:
     // 킬 카운트 출력
     void PrintKillCount(AchievementSystem* achieve);
 
+    void PrintInventory(Inventory* inven);
+
     // 전투대상 조우시 출력
     void PrintBattleStart(Player* p, Monster* m);
 
