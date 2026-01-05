@@ -2,14 +2,7 @@
 
 enum class ItemType
 {
-    HealPotion,
-    AtkPotion
+    LowHealthPotion,
+    LowAttackPotion
 };
 
-struct ItemDefinition
-{
-    const char* Name_;
-    ItemType Type_;
-    int Value_;
-    int Price_;
-};

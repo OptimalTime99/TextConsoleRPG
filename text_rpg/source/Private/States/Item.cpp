@@ -1,45 +1,86 @@
 ﻿#include "States/Item.h"
-#include <cassert>
+#include "Types/StatusType.h"
+#include "Types/ItemType.h"
 
+std::map<ItemType, Item> Item::itemRegistry_;
+Item::Item(ItemType name, int price) : name_(name), price_(price) {}
 
-Item::Item(const ItemDefinition* def) : def_(def)
+void Item::AddEffect(StatusType status, int value)
 {
-    assert(def_ && "ItemDefinition is null.");
+    effect_[status] = value;
 }
 
-int Item::GetSellPrice(double sellRate) const
+void Item::Initialize()
 {
-    assert(def_);
+    // 하급 체력 포션 정의
+    Item HP_Potion(ItemType::LowHealthPotion, 10);
+    HP_Potion.AddEffect(StatusType::HP, 50);
+    itemRegistry_[ItemType::LowHealthPotion] = HP_Potion;
 
-    if (sellRate <= 0)
+    // 하급 공격력 포션 정의
+    Item ATK_Potion(ItemType::LowAttackPotion, 15);
+    HP_Potion.AddEffect(StatusType::ATK, 10);
+    itemRegistry_[ItemType::LowAttackPotion] = ATK_Potion;
+}
+
+const Item* Item::GetData(ItemType name)
+{
+    if (itemRegistry_.find(name) != itemRegistry_.end())
     {
-        return def_->Price_;
+        return &itemRegistry_[name];
     }
 
-    return def_->Price_ * sellRate;
+    return nullptr; // 없는 아이템일 경우
 }
 
-const char* Item::GetName() const
+ItemType Item::GetName() const
 {
-    assert(def_);
-    return def_->Name_;
-}
-
-
-ItemType Item::GetType() const
-{
-    assert(def_);
-    return def_->Type_;
-}
-
-int Item::GetValue() const
-{
-    assert(def_);
-    return def_->Value_;
+    return name_;
 }
 
 int Item::GetPrice() const
 {
-    assert(def_);
-    return def_->Price_;
+    return price_;
+}
+
+std::map<StatusType, int> Item::GetEffect() const
+{
+    return effect_;
+}
+
+const std::map<ItemType, Item>& Item::GetAllItems()
+{
+    return itemRegistry_;
+}
+
+std::string Item::ItemTypeToString(ItemType type)
+{
+    switch (type)
+    {
+    case ItemType::LowHealthPotion:
+        return "하급 체력 포션";
+    case ItemType::LowAttackPotion:
+        return "하급 공격력 포션";
+    default:
+        return "알 수 없는 아이템";
+    }
+}
+
+void Item::SetName(ItemType name)
+{
+    name_ = name;
+}
+
+void Item::SetPrice(int price)
+{
+    if(price < 0) price_ = 0;
+        
+    price_ = price;
+}
+
+void Item::SetEffect(const std::map<StatusType, int>& effect)
+{
+    if (effect.empty()) return;
+
+    effect_ = effect;
 }

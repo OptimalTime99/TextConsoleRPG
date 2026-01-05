@@ -1,90 +1,32 @@
-﻿// Inventory.cpp
+﻿#include <string>
 #include "States/Inventory.h"
 
-#include "Types/ItemFactory.h"
-#include "States/Item.h"
 
-#include <algorithm>
-#include <cstring> // std::strcmp
-
-Inventory::Inventory(int capacity)
-    : capacity_(capacity)
+void Inventory::AddItem(ItemType name, int count)
 {
-    if (capacity_ <= 0) capacity_ = 1;
-    items_.reserve(static_cast<size_t>(capacity_));
+    // 인벤토리에 아이템이 없는 경우 초기화
+    if(inventory_.find(name) == inventory_.end())
+    {
+        inventory_[name] = 0;
+    }
+
+    inventory_[name] += count;
 }
 
-bool Inventory::AddByName(const char* itemName)
+bool Inventory::RemoveItem(ItemType name, int count)
 {
-    if (!itemName) return false;
-    if (IsFull())  return false;
+    // 현재 수량이 부족한 경우 제거 실패
+    if(inventory_[name] < count)
+    {
+        return false;
+    }
 
-    auto item = ItemFactory::CreateByName(itemName);
-    if (!item) return false;
-
-    items_.push_back(std::move(item));
+    inventory_[name] -= count;
     return true;
 }
 
-bool Inventory::Add(std::unique_ptr<Item> item)
+
+int Inventory::GetItemCount(ItemType name) const
 {
-    if (!item)   return false;
-    if (IsFull()) return false;
-
-    items_.push_back(std::move(item));
-    return true;
-}
-
-std::unique_ptr<Item> Inventory::TakeItemByName(const char* itemName)
-{
-    if (!itemName) return nullptr;
-
-    for (size_t i = 0; i < items_.size(); ++i)
-    {
-        // Item 이름 비교(문자열 내용 비교)
-        if (items_[i] && std::strcmp(items_[i]->GetName(), itemName) == 0)
-        {
-            // 소유권 꺼내기
-            std::unique_ptr<Item> out = std::move(items_[i]);
-
-            // 벡터에서 제거(순서 유지)
-            items_.erase(items_.begin() + static_cast<long long>(i));
-            return out;
-        }
-    }
-
-    return nullptr;
-}
-
-const Item* Inventory::FindItemByName(const char* itemName) const
-{
-    if (!itemName) return nullptr;
-
-    for (const auto& it : items_)
-    {
-        if (it && std::strcmp(it->GetName(), itemName) == 0)
-            return it.get();
-    }
-    return nullptr;
-}
-
-
-int Inventory::GetCapacity() const
-{ 
-    return capacity_;
-}
-
-int Inventory::GetSize() const
-{
-    return static_cast<int>(items_.size());
-}
-
-bool Inventory::IsFull() const
-{
-    return GetSize() >= capacity_;
-}
-
-bool Inventory::IsEmpty() const
-{
-    return items_.empty();
+    return inventory_.at(name);
 }
