@@ -30,3 +30,7 @@ int LevelSystem::LevelUp(Player* p)
     return count;
 }
 
+int LevelSystem::GetMaxLevel()
+{
+    return MAX_LEVEL;
+}
