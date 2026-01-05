@@ -4,51 +4,9 @@
 #include <iostream>
 #include <random>
 
-Monster::Monster(std::string MonsterName,int Level,bool bisBoss) 
-    : MonsterName_(MonsterName), MonsterLevel_(Level), bisBoss_(bisBoss)
+Monster::Monster(std::string Monstername_, int Level) 
+    : MonsterName_(MonsterName_),MonsterLevel_(Level),HP_(0),MaxHP_(0),Attack_(0)
 {
-    if (bisBoss)
-    {
-        GenerateBoss(MonsterLevel_);
-    }
-    else
-    {
-        GenerateNomal(MonsterLevel_);
-    }
-}
-
-void Monster::GenerateNomal(int Level_)
-{
-    bisBoss_ = false;
-    MonsterLevel_ = Level_;
-    if (MonsterLevel_ == 0)
-    {
-        return;
-    }
-    
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-
-    std::uniform_int_distribution<int> DistHP(Level_ * MIN_HP, Level_ * MAX_HP);
-    std::uniform_int_distribution<int> DistATK(Level_ * MIN_ATK, Level_ * MAX_ATK);
-
-    this->HP_ = DistHP(gen);
-    this->Attack_ = DistATK(gen);
-}
-
-void Monster::GenerateBoss(int Level_)
-{
-    bisBoss_ = true;
-    MonsterLevel_ = Level_ + 5;
-
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-
-    std::uniform_int_distribution<int> DistHP(Level_ * BOSS_MIN_HP, Level_ * BOSS_MAX_HP);
-    std::uniform_int_distribution<int> DistATK(Level_ * MIN_BOSS_ATK, Level_ * MAX_BOSS_ATK);
-
-    this->HP_ = DistHP(gen);
-    this->Attack_ = DistATK(gen);
 
 }
 
@@ -69,10 +27,6 @@ int Monster::TakeDamage(int dmg)
     return dmg;
 }
 
-int Monster::Attack()
-{
-    return Attack_;
-}
 
 bool Monster::isDead() const
 {
@@ -102,4 +56,9 @@ std::string Monster::GetName()
 int Monster::GetLevel()
 {
     return MonsterLevel_;
+}
+
+int Monster::Attack()
+{
+    return Attack_;
 }
