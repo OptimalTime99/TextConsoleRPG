@@ -164,14 +164,14 @@ void BattleSystem::TryDropItem()
         {
             // 인벤토리에 추가후 UI출력 명령
             whichItem = Item::GetData(ItemType::LowHealthPotion);
-            Inventory_->AddItem(whichItem->GetName(), 1);
+            Inventory_->AddItem(ItemType::LowHealthPotion, 1);
             // uiManager_->PrintItemRewards(whichItem->GetName());
         }
         else
         {
             // 인벤토리에 추가후 UI출력 명령
             whichItem = Item::GetData(ItemType::LowAttackPotion);
-            Inventory_->AddItem(whichItem->GetName(), 1);
+            Inventory_->AddItem(ItemType::LowAttackPotion, 1);
             // uiManager_->PrintItemRewards(whichItem->GetName());
         }
 
