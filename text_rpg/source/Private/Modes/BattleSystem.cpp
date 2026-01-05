@@ -58,6 +58,8 @@ GameMode BattleSystem::StartBattle()
         uiManager_->PrintGameOver();
         return GameMode::GAMEOVER_MODE;
     }
+
+    return GameMode::BATTLE_MODE;
 }
 
 void BattleSystem::SpawnMonster()
@@ -135,7 +137,7 @@ void BattleSystem::UseItem()
     {
         whichItem = Item::GetData(ItemType::LowAttackPotion);
         int value = whichItem->GetEffect()[StatusType::ATK];
-        playerBuff_ = value; // 임시
+        playerBuff_ += value; // 임시
         uiManager_->PrintUseItem(whichItem);
     }
 }
@@ -164,15 +166,15 @@ void BattleSystem::TryDropItem()
         {
             // 인벤토리에 추가후 UI출력 명령
             whichItem = Item::GetData(ItemType::LowHealthPotion);
-            Inventory_->AddItem(ItemType::LowHealthPotion, 1);
-            // uiManager_->PrintItemRewards(whichItem->GetName());
+            Inventory_->AddItem(whichItem->GetName(), 1);
+            uiManager_->PrintItemRewards(whichItem->GetName());
         }
         else
         {
             // 인벤토리에 추가후 UI출력 명령
             whichItem = Item::GetData(ItemType::LowAttackPotion);
-            Inventory_->AddItem(ItemType::LowAttackPotion, 1);
-            // uiManager_->PrintItemRewards(whichItem->GetName());
+            Inventory_->AddItem(whichItem->GetName(), 1);
+            uiManager_->PrintItemRewards(whichItem->GetName());
         }
 
     }
