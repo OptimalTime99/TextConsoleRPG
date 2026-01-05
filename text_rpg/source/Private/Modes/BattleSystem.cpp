@@ -2,6 +2,7 @@
 #include "States/Monster.h"
 #include "States/Player.h"
 #include "Types/GameMode.h"
+#include "UI/UIManager.h"
 #include <random>
 
 
@@ -10,7 +11,7 @@ GameMode BattleSystem::StartBattle(Player* p, UIManager* ui)
     bool bIsSomeoneDead = false;
     SpawnMonster(p);
 
-    // ui->PrintBattleStart(p, monster);
+    ui->PrintBattleStart(p, monster_);
 
     while (true)
     {
@@ -25,25 +26,25 @@ GameMode BattleSystem::StartBattle(Player* p, UIManager* ui)
     // 몬스터 사망 시 보상 분배
     if (monster_->isDead())
     {
-        // ui->플레이어 승리 그리기();
+        ui->PrintVictory();
         ApplyRewards(p, ui);
     }
     // 플레이어 사망시 게임 종료
     else if (p->IsDead())
     {
-        // ui->PrintGameOver();
+        ui->PrintGameOver();
         return GameMode::GAMEOVER_MODE;
     }
 }
 
 void BattleSystem::SpawnMonster(Player* p)
 {
-    //monster_ = new Monster("test", p->GetLevel(), false);
+    monster_ = new Monster("test", p->GetLevel(), false);
 }
 
 void BattleSystem::SpawnBoss(Player* p)
 {
-    //monster_ = new Monster("Boss_test", p->GetLevel(), true);
+    monster_ = new Monster("Boss_test", p->GetLevel(), true);
 }
 
 // 플레이어 행동 결정 <- BattleSystem이
@@ -60,9 +61,9 @@ bool BattleSystem::ResolveTurn(Player* p, UIManager* ui)
     // 플레이어 선공격
     if (DecideTurnAction(ACTION_CHANCE))
     {
-        //int damage = p->Attack();
-        //monster_->TakeDamage(damage);
-        // ui->데미지 받기그리기(monster_);
+        int damage = p->Attack();
+        monster_->TakeDamage(damage);
+        ui->PrintMonsterTakeDamage(monster_);
 
         // 몬스터 사망시 함수 종료
         if (monster_->isDead())
@@ -74,7 +75,7 @@ bool BattleSystem::ResolveTurn(Player* p, UIManager* ui)
     else
     { // 아이템 사용 파트, 버프 처리 체력 증가 처리 등
         // ItemInfo witchItem = p->UseItem();
-        // ui->아이템 사용 그리기(ItemInfo);
+        // ui->PrintUseItem(item); // item 매개변수 확인 필요
     }
     
     // 몬스터 사망시 아래는 수행하지 않음
@@ -82,7 +83,7 @@ bool BattleSystem::ResolveTurn(Player* p, UIManager* ui)
 
     //int damage = monster_->Attack();
     //p->TakeDamage(damage);
-    // ui->플레이어 데미지 받기 출력(p);
+    ui->PrintPlayerTakeDamage(p);
     if (p->IsDead())
     {
         return true;
@@ -94,15 +95,14 @@ bool BattleSystem::ResolveTurn(Player* p, UIManager* ui)
 void BattleSystem::ApplyRewards(Player* p, UIManager* ui)
 {
     p->GainExp(EXP_REWARD);
-    // ui->PrintEXP(EXP_REWARD);
-    //if (bool bIsLevelUp = p->TryLevelUp())
-    //{
-    //    // ui->PrintLevelIP();
-    //}
+    /*if (bool bIsLevelUp = p->TryLevelUp())
+    {
+        
+    }*/
     int golds = GetRandomGold(GOLD_MIN, GOLD_MAX);
-
     p->GainGold(golds);
-    // ui->PrintGainGold(golds);
+
+    // ui->PrintFixedRewards(EXP_REWARD, level, golds); // 레벨 매개변수 수정 필요
 
 
     TryDropItem(p, ui);
@@ -113,7 +113,7 @@ void BattleSystem::TryDropItem(Player* p, UIManager* ui)
     if (GetRandomBoolean(DROP_CHANCE))
     {
         // 아이템 리스트에서 아이템 받고
-        // ui->아이템획득 로그();
+        //ui->PrintItemRewards();
         // 플레이어 인벤토리에 추가
     }
 }
