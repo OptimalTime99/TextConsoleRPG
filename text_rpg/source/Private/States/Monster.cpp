@@ -5,7 +5,7 @@
 #include <random>
 
 Monster::Monster(std::string Monstername_, int Level) 
-    : MonsterName_(MonsterName_),MonsterLevel_(Level),HP_(0),MaxHP_(0),Attack_(0)
+    : Name_(Monstername_),MonsterLevel_(Level),HP_(0),MaxHP_(0),Attack_(0)
 {
 
 }
@@ -50,7 +50,7 @@ int Monster::GetAttack()
 
 std::string Monster::GetName()
 {
-    return MonsterName_;
+    return Name_;
 }
 
 int Monster::GetLevel()

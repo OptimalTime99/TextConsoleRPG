@@ -40,7 +40,7 @@ public:
     int Attack();
 
 protected:
-    std::string MonsterName_;
+    std::string Name_;
     int MonsterLevel_;
     int HP_;
     int MaxHP_;

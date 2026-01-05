@@ -28,7 +28,8 @@ bool Inventory::RemoveItem(ItemType name, int count)
 
 int Inventory::GetItemCount(ItemType name) const
 {
-    return inventory_.at(name);
+    auto it = inventory_.find(name);
+    return (it != inventory_.end()) ? it->second : 0;
 }
 
 const std::map<ItemType, int>& Inventory::GetInventory() const

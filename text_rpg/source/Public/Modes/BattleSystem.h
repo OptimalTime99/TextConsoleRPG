@@ -1,16 +1,20 @@
 ﻿#pragma once
 
+class LevelSystem;
 class Player;
 class UIManager;
 class Monster;
 enum class GameMode;
 class Item;
+class Inventory;
 
 class BattleSystem
 {
 public:
     // 생성자
-    BattleSystem(Player* p, Item* item, UIManager* ui);
+    BattleSystem(Player* p, Item* item, UIManager* ui, Inventory* inv);
+
+    ~BattleSystem();
 
     //전투를 시작한다
     GameMode StartBattle();
@@ -42,11 +46,16 @@ public:
     int GetRandomGold(int min, int max);
 
 private:
+    LevelSystem* level_;
     Player* player_;
     Monster* monster_;
     Item* items_;
+    Inventory* Inventory_;
     UIManager* uiManager_;
+
+    int playerBuff_;
     static constexpr double ACTION_CHANCE = 0.5;
+    static constexpr double WHICH_ITEM = 0.5;
     static constexpr double DROP_CHANCE = 0.30;
     static constexpr int EXP_REWARD = 50;
     static constexpr int GOLD_MIN = 10;
