@@ -16,7 +16,7 @@ public:
     void GenerateBoss(int Level);
     
     // 데미지를 받는 로직
-    void TakeDamage(int dmg);
+    int TakeDamage(int dmg);
 
     // 사망 여부
     bool isDead()const;

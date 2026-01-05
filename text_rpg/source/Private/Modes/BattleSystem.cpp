@@ -34,7 +34,7 @@ GameMode BattleSystem::StartBattle()
     {
         uiManager_->PrintVictory();
         ApplyRewards();
-        return GameMode::APLLY_RWARDS;
+        return GameMode::APPLY_RWARDS;
 
     }
     // 플레이어 사망시 게임 종료
@@ -71,7 +71,7 @@ bool BattleSystem::ResolveTurn()
     {
         int damage = player_->Attack();
         int finalDamage = monster_->TakeDamage(damage);
-        uiManager_->PrintMonsterTakeDamage(monster_); // ui에게 finalDamage 넘겨주기
+        uiManager_->PrintMonsterTakeDamage(monster_, finalDamage); // ui에게 finalDamage 넘겨주기
 
         // 몬스터 사망시 함수 종료
         if (monster_->isDead())
@@ -90,7 +90,7 @@ bool BattleSystem::ResolveTurn()
 
     int damage = monster_->Attack();
     int finalDamage = player_->TakeDamage(damage);
-    uiManager_->PrintPlayerTakeDamage(player_); // ui에게 finalDamage 넘겨주기
+    uiManager_->PrintPlayerTakeDamage(player_, finalDamage); // ui에게 finalDamage 넘겨주기
     if (player_->IsDead())
     {
         return true;

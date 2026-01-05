@@ -52,7 +52,7 @@ void Monster::GenerateBoss(int Level_)
 
 }
 
-void Monster::TakeDamage(int dmg)
+int Monster::TakeDamage(int dmg)
 {
     if (dmg < 0)
     {
@@ -66,6 +66,12 @@ void Monster::TakeDamage(int dmg)
         HP_ = 0;
     }
 
+    return dmg;
+}
+
+int Monster::Attack()
+{
+    return Attack_;
 }
 
 bool Monster::isDead() const
