@@ -13,5 +13,4 @@ private:
     static constexpr int MAX_LEVEL = 10;
     static constexpr int HP_PER_LEVEL = 20;
     static constexpr int ATTACK_PER_LEVEL = 5;
-    static constexpr int ONE = 1;
 };
