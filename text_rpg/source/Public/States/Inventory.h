@@ -1,41 +1,21 @@
-﻿// Inventory.h
-#pragma once
-
-#include <memory>
-#include <vector>
-
-class Item;
+﻿#pragma once
+#include <map>
+#include <string>
+#include "Types/ItemType.h"
 
 class Inventory
 {
 public:
-    explicit Inventory(int capacity = 20);
+    // 아이템 추가 함수
+    void AddItem(ItemType name, int count);
 
-    // 인벤토리 최대 공간을 반환하는 함수
-    int GetCapacity() const;
+    // 아이템 제거 함수
+    bool RemoveItem(ItemType name, int count);
 
-    // 인벤토리 현재 공간을 반환하는 함수
-    int GetSize() const;
-
-    // 인벤토리가 꽉 찼는지 여부를 반환하는 함수
-    bool IsFull() const;
-
-    // 인벤토리가 비었는지 여부를 반환하는 함수
-    bool IsEmpty() const;
-
-    // Factory 기반 추가: ItemDefs에 존재하는 이름만 추가 가능
-    bool AddByName(const char* itemName);
-
-    // 소유권을 외부에서 넘겨받아 추가(테스트/드랍 등)
-    bool Add(std::unique_ptr<Item> item);
-
-    // ★ 핵심: 이름으로 아이템을 "꺼내면서" 제거 (없으면 nullptr)
-    std::unique_ptr<Item> TakeItemByName(const char* itemName);
-
-    // (선택) UI/검사용: 제거 없이 조회 (없으면 nullptr)
-    const Item* FindItemByName(const char* itemName) const;
+    // 아이템 수량 조회 함수
+    int GetItemCount(ItemType name) const;
 
 private:
-    int capacity_ = 20;
-    std::vector<std::unique_ptr<Item>> items_;
+    // 아이템 이름과 수량을 저장하는 맵
+    std::map<ItemType, int> inventory_;
 };

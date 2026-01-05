@@ -1,0 +1,106 @@
+Character
+-Level = 1
+-Name
+-HP = 200
+-currentHP
+-ATK = 30
+-EXP = 0
+-speed
+
++이름 설정()
++생성자(레벨, 체력, 공격력, 경험치)
++공격(몬스터)
++데미지받기(other)
++setLevel()
++setHP()
++setATK()
+
+
+Item
+- name
+- price
+
+Potion : public Item
+
+
+HPPotion : public Potion
+-HPUp
+
+AttackPotion : public Potion
+-AttackUP
+
+Weapon : public Weapon
+
+ItemInfo
+-name
+-Quantity
+-Item
+
+
+Inventory
+-vector<ItemInfo> Items
+-Gold
+
++AddItem()
++UseItem()
+
+
+
+Monster (최소 9 + 보스) - Monster(추상화클래스) - 다양한 몬스터들.
+-Name
+-HP (캐릭터의 레벨 * 20) ~ (캐릭터의 레벨 * 30)
+-ATK (캐릭터의 레벨 * 5) ~ (캐릭터의 레벨 * 10)
+-speed
+
++공격(플레이어)
++데미지받기(other)
+setHP
+setATK
+생성자(name, HP, ATK)
+
+BattleSystem(전투시스템)
+-player
+-monsters
+-UISystem
+
++bool 배틀시작()
++몬스터생성()
++행동결정(player)
++행동결정(monster)
+
+
+
+
+GameManager
+-UISystem
+-BattleSystem
+-ShopSystem
+-Inventory
+
++배틀시작()
++상점방문()
++배틀종료()
+
+
+UISystem(게임로그출력)
+-player
+
++PrintPlayerState()
++PrintTitle(isWin)
++PrintTurnState()
++PrintUseItem()
++PrintBossMoive()
+
+
+LevelSystem
+-MAX_LEVEL
+-player
+
++AddEXP()
++LevelUp()
+
+ShopSystem(상점시스템)
+-ItemStock: map<Item, stock>
+
+AchivementSystem
+-MonsterKillCount: map<name, count>

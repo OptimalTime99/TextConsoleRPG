@@ -66,7 +66,8 @@ public:
     
     
 private:
-    std::string Name_;           
+    Item* item;
+    std::string Name_;           // get 다 하나씩 추가해두기.
     int Level_;
     int Exp_;
     int Gold_;

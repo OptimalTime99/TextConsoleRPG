@@ -1,27 +1,42 @@
 ﻿#pragma once
-#include <vector>
+#include <deque>
 #include <cmath>
+#include "States/Player.h"
 #include "States/Item.h"
+#include "States/Inventory.h"
+#include "Types/ItemType.h"
 
-class Player;
 class UIManager;
+enum class GameMode;
 
 class ShopSystem
 {
 public:
-    //입장
-    void Enter(Player* p, UIManager* ui);
+    ShopSystem()
+    {
+
+    }
+    ~ShopSystem()
+    {
+
+    }
+
+    // 상점 게임모드
+    GameMode Shop(Player* p, UIManager* ui);
+
+    //입장 선택
+    GameMode EnterChoice(Player* p, UIManager* ui);
 
     // 구매
-    void Buy(Player* p, int catalogindex);
+    void Buy(Inventory* inven, int catalogindex, UIManager* ui);
 
     // 판매
-    void Sell(Player* p, int invenIndex);
+    void Sell(Inventory* inven, int invenIndex, UIManager* ui);
 
     // 카탈로그를 얻어온다
-    void GetCatalog();
+    /*std::deque<Item> GetCatalog();*/
 
 private:
-    // std::vector<Item> Catalog_;
+    std::deque<Item> Catalog_;
     static constexpr double SELL_RATE = 0.6;
 };

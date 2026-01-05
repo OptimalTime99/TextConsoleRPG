@@ -1,37 +1,52 @@
 ﻿#pragma once
-
-#include "Types/ItemType.h"   // ItemType, ItemDefinition
-#include <memory>
-
-class ItemFactory; // forward declaration
+#include <string>
+#include <map>
+#include "Types/StatusType.h"
+#include "Types/ItemType.h"
 
 class Item
 {
 public:
-    // Item은 값 객체처럼 쓰되 "복사"는 막고(정의 포인터 공유는 괜찮지만 의도 명확히)
-    Item(const Item&) = delete;
-    Item& operator=(const Item&) = delete;
+    Item() = default;
+    Item(ItemType name, int price);
 
-    // 이동은 허용(Inventory가 unique_ptr로 들고 다니기 좋음)
-    Item(Item&&) noexcept = default;
-    Item& operator=(Item&&) noexcept = default;
+    // 아이템 효과 추가 함수
+    void AddEffect(StatusType status, int value);
+
+    // 게임 시작 시 한 번만 호출해서 데이터를 채워넣는 함수
+    static void Initialize();
+
+    // 이름으로 아이템 원형 데이터를 가져오는 함수
+    static const Item* GetData(ItemType name);
 
     // Getter
-    const char* GetName() const;
-    ItemType GetType() const;
-    int GetValue() const;
+    ItemType GetName() const;
     int GetPrice() const;
+    std::map<StatusType, int> GetEffect() const;
 
-    // 판매 가격을 반환하는 함수
-    int GetSellPrice(double sellRate) const;
+    // 모든 아이템 원형 데이터를 가져오는 함수
+    static const std::map<ItemType, Item>& GetAllItems();
+
+    // 아이템 타입에 따른 문자열 변환 함수
+    static std::string ItemTypeToString(ItemType type);
+
+    // Setter
+    void SetName(ItemType name);
+    void SetPrice(int price);
+    void SetEffect(const std::map<StatusType, int>& effect);
 
 private:
-    // ★ 핵심: 외부 생성 금지, Factory만 생성 가능
-    explicit Item(const ItemDefinition* def);
 
-    // Factory에게만 생성 권한 부여
-    friend class ItemFactory;
-    
-private:
-    const ItemDefinition* def_ = nullptr; // ItemDefs 테이블 원소를 가리키는 포인터(전역 수명)
+
+    // 아이템 명
+    ItemType name_;
+
+    // 아이템 가격
+    int price_;
+
+    // 아이템 효과를 저장하는 맵
+    std::map<StatusType, int> effect_;
+
+    // 아이템 원형 데이터를 저장하는 정적 맵
+    static std::map<ItemType, Item> itemRegistry_;
 };
