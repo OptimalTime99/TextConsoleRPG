@@ -19,7 +19,7 @@ void Item::Initialize()
 
     // 하급 공격력 포션 정의
     Item ATK_Potion(ItemType::LowAttackPotion, 15);
-    HP_Potion.AddEffect(StatusType::ATK, 10);
+    ATK_Potion.AddEffect(StatusType::ATK, 10);
     itemRegistry_[ItemType::LowAttackPotion] = ATK_Potion;
 }
 
