@@ -1,16 +1,15 @@
-﻿#include "States/NormalMonster.h"
+﻿#include "States/SebastianHorn.h"
 #include <string>
 #include <iostream>
 
-
-NormalMonster::NormalMonster(std::string Monstername_, int Level)
+SebastianHorn::SebastianHorn(std::string Monstername_, int Level)
     : Monster(Monstername_, Level)
 {
-    //Monstername_ = "NormalMonster";
+    Monstername_ = "Sebastian Horn";
     GenerateStatus(Level);
 }
 
-void NormalMonster::GenerateStatus(int Level)
+void SebastianHorn::GenerateStatus(int Level)
 {
     if (MonsterLevel_ == 0)
     {
@@ -27,6 +26,3 @@ void NormalMonster::GenerateStatus(int Level)
     this->MaxHP_ = this->HP_;
     this->Attack_ = DistATK(gen);
 }
-
-
-
