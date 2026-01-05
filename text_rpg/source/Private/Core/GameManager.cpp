@@ -8,6 +8,7 @@
 GameManager::GameManager()
 {
     Player_ = nullptr;
+    Item_ = nullptr;
     UI_ = new UIManager();
     Battle_ = nullptr;
     Shop_ = new ShopSystem();
@@ -17,6 +18,7 @@ GameManager::GameManager()
 GameManager::~GameManager()
 {
     delete Player_;
+    delete Item_;
     delete UI_;
     delete Battle_;
     delete Shop_;
@@ -38,7 +40,7 @@ void GameManager::StartGame()
     {
         // UI가 항상 정상적인 이름을 받아오기 때문에 이름 입력과 동시에 플레이어 객체 생성.
         Player_ = new Player(UI_->PrintCreateCharacter());
-        Battle_ = new BattleSystem(Player_);
+        Battle_ = new BattleSystem(Player_, Item_, UI_);
 
         Mode_ = GameMode::BATTLE_MODE;
         while (Mode_ == GameMode::BATTLE_MODE)
@@ -60,7 +62,7 @@ void GameManager::StartGame()
 
 GameMode GameManager::StartBattle()
 {
-    return Battle_->StartBattle(Player_, UI_);
+    return Battle_->StartBattle();
 }
 
 void GameManager::VisitShop()
