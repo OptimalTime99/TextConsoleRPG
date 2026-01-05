@@ -32,7 +32,7 @@ int LevelSystem::LevelUp(Player* p)
             count++;
         }
         else
-        {
+        {   // 경험치가 최대 경험치보다 적을때
             break;
         }
     }
