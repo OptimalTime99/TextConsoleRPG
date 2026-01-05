@@ -102,7 +102,7 @@ bool BattleSystem::ResolveTurn()
         if (!UseItem()) // 아이템 사용을 실패 하면
         {
             // 아이템 사용 못했으므로 안내하는 로그 출력
-            // uiManager_->PrintAttackInsteadUseItem();
+            uiManager_->PrintAttackInsteadUseItem();
 
             int damage = player_->Attack();
             int finalDamage = monster_->TakeDamage(damage);
@@ -141,12 +141,13 @@ bool BattleSystem::UseItem()
     const Item* whichItem = nullptr;
     
     // 현재 체력이 최대 체력의 50%이하이고 체력 포션이 있다면 체력 포션 사용
-    if ((double)player_->GetHP() / player_->GetMaxHP() < 0.5 && Inventory_->GetItemCount(ItemType::LowHealthPotion) > 0)
+    if (((double)player_->GetHP() / player_->GetMaxHP()) < 0.5 && Inventory_->GetItemCount(ItemType::LowHealthPotion) > 0)
     { 
         // 아이템 사용하면 트루 반환
         whichItem = Item::GetData(ItemType::LowHealthPotion);
         int value = whichItem->GetEffect()[StatusType::HP];
         player_->SetHP(player_->GetHP() + value);
+        Inventory_->RemoveItem(ItemType::LowHealthPotion, 1);
         uiManager_->PrintUseItem(whichItem);
         return true;
     }
@@ -155,6 +156,7 @@ bool BattleSystem::UseItem()
         whichItem = Item::GetData(ItemType::LowAttackPotion);
         int value = whichItem->GetEffect()[StatusType::ATK];
         playerBuff_ += value; // 임시
+        Inventory_->RemoveItem(ItemType::LowAttackPotion, 1);
         uiManager_->PrintUseItem(whichItem);
     }
     else
