@@ -38,15 +38,16 @@ bool Player::IsDead() const
     }
 }
 
-bool Player::TakeDamage(int dmg)
+int Player::TakeDamage(int dmg)
 {
     if (dmg < 0)
         dmg = 0;
     HP_ -= dmg;
-    if (IsDead())
-    {
-        return true;
-    }
+
+    if (HP_ < 0)
+        HP_ = 0;
+
+    return dmg;
 }
 
 //int Player::TryLevelUp()  //레벨업시 true 
