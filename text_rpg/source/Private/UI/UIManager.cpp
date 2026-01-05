@@ -88,7 +88,7 @@ std::string UIManager::PrintCreateCharacter()
     while (true)
     {
         UIHelper_->gotoxy(x + 9, y + 6);
-        UIHelper_->PrintLine("요원 이름 입력", 15, 60);
+        UIHelper_->PrintLine("요원 이름 입력", 15, 30);
         UIHelper_->gotoxy(x + 9, y + 8);
         std::string Inputname = "";
         getline(std::cin, Inputname);
@@ -237,13 +237,6 @@ void UIManager::PrintKillCount(AchievementSystem* achieve)
 
 void UIManager::PrintBattleStart(Player* p, Monster* m)
 {
-    std::string printmsg = p->GetName() + "이(가) 목표물 " + m->GetName() +"을(를) 발견했다.";
-    UIHelper_->BoxUI(26, 12, 133, 29, 15);
-    UIHelper_->gotoxy(30, 14);
-    UIHelper_->PrintLine(printmsg, 15, 40);
-    Sleep(1000);
-    system("cls");
-
     PrintPlayerStatus(p);
     PrintMonsterStatus(m);
 
@@ -252,6 +245,13 @@ void UIManager::PrintBattleStart(Player* p, Monster* m)
     UIHelper_->BoxUI(0, 0, 35, 42, 15);
     UIHelper_->BoxUI(124, 0, 159, 42, 15);
     UIHelper_->BoxUI(0, 25, 159, 42, 15);
+
+    std::string TargetLog = "--------------[목표발견]--------------";
+    TargetLog = p->GetName() + "이(가) 목표물 " + m->GetName() + "을(를) 발견했다.";
+    UIHelper_->PushLog(TargetLog, 4);
+    UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+    UIHelper_->textcolor(15);
+    Sleep(1000);
 
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 15);
 
