@@ -16,7 +16,7 @@ int LevelSystem::LevelUp(Player* p)
     // 최대경험치보다 크거나 같을 시
     while (Level < MAX_LEVEL)
     {   // 레벨이 최대레벨보다 작을 때
-        if (Exp >= MaxExp)
+        if (p->GetExp() >= MaxExp)
         {   
             Level++;
             p->SetLevel(Level);
