@@ -2,11 +2,13 @@
 #include <string>
 #include <map>
 #include "Types/StatusType.h"
+#include "Types/ItemType.h"
 
 class Item
 {
 public:
-    Item(std::string name, int price);
+    Item() = default;
+    Item(ItemType name, int price);
 
     // 아이템 효과 추가 함수
     void AddEffect(StatusType status, int value);
@@ -15,21 +17,23 @@ public:
     static void Initialize();
 
     // 이름으로 아이템 원형 데이터를 가져오는 함수
-    static const Item* GetData(std::string name);
+    static const Item* GetData(ItemType name);
 
     // Getter
-    std::string GetName() const;
+    ItemType GetName() const;
     int GetPrice() const;
     std::map<StatusType, int> GetEffect() const;
 
     // Setter
-    void SetName(const std::string& name);
+    void SetName(ItemType name);
     void SetPrice(int price);
     void SetEffect(const std::map<StatusType, int>& effect);
 
 private:
+
+
     // 아이템 명
-    std::string name_;
+    ItemType name_;
 
     // 아이템 가격
     int price_;
@@ -38,5 +42,5 @@ private:
     std::map<StatusType, int> effect_;
 
     // 아이템 원형 데이터를 저장하는 정적 맵
-    static std::map<std::string, Item> itemRegistry_;
+    static std::map<ItemType, Item> itemRegistry_;
 };

@@ -1,20 +1,21 @@
 ﻿#pragma once
 #include <map>
 #include <string>
+#include "Types/ItemType.h"
 
 class Inventory
 {
 public:
     // 아이템 추가 함수
-    void AddItem(std::string name, int count);
+    void AddItem(ItemType name, int count);
 
     // 아이템 제거 함수
-    bool RemoveItem(std::string name, int count);
+    bool RemoveItem(ItemType name, int count);
 
     // 아이템 수량 조회 함수
-    int GetItemCount(std::string name) const;
+    int GetItemCount(ItemType name) const;
 
 private:
     // 아이템 이름과 수량을 저장하는 맵
-    std::map<std::string, int> inventory_; 
+    std::map<ItemType, int> inventory_;
 };

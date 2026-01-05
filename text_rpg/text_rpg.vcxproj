@@ -44,6 +44,7 @@
     <ClInclude Include="source\Public\States\Monster.h" />
     <ClInclude Include="source\Public\States\Player.h" />
     <ClInclude Include="source\Public\Types\GameMode.h" />
+    <ClInclude Include="source\Public\Types\ItemType.h" />
     <ClInclude Include="source\Public\UI\UIHelper.h" />
     <ClInclude Include="source\Public\UI\UIManager.h" />
   </ItemGroup>
