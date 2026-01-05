@@ -23,7 +23,7 @@ int LevelSystem::LevelUp(Player* p)
             // 레벨업시 체력 증가
             p->SetMaxHP(MaxHP + HP_PER_LEVEL);
             // 현재 체력을 최대만큼 회복
-            p->SetHP(MaxHP);
+            p->SetHP(p->GetMaxHP());
             // 레벨업시 공격력 증가    
             p->SetAttack(Attack + ATTACK_PER_LEVEL);
             // 레벨업 후 남은 경험치
