@@ -64,13 +64,49 @@ GameMode BattleSystem::StartBattle()
 
 void BattleSystem::SpawnMonster()
 {
-    monster_ = new NormalMonster("test", player_->GetLevel());
+    switch (player_->GetLevel())
+    {
+        case 1:
+            monster_ = new NormalMonster("test", player_->GetLevel());
+            break;
+
+        case 2:
+
+            break;
+
+        case 3:
+
+            break;
+
+        case 4:
+
+            break;
+
+        case 5:
+
+            break;
+
+        case 6:
+
+            break;
+
+        case 7:
+
+            break;
+
+        case 8:
+
+            break;
+
+        case 9:
+
+            break;
+
+        case 10:
+            monster_ = new BossMonster("Boss_test", player_->GetLevel());
+    }
 }
 
-void BattleSystem::SpawnBoss()
-{
-    monster_ = new BossMonster("Boss_test", player_->GetLevel());
-}
 
 // 플레이어 행동 결정 <- BattleSystem이
 // 아이템 사용 or 공격
