@@ -7,7 +7,7 @@
 BossMonster::BossMonster(std::string Monstername_, int Level)
     : Monster(Monstername_, Level)
 {
-    MonsterName_ = "BossMonster";
+    //Name_ = "BossMonster";
     GenerateStatus(Level);
 }
 

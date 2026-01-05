@@ -7,7 +7,7 @@
 NormalMonster::NormalMonster(std::string Monstername_, int Level)
     : Monster(Monstername_, Level)
 {
-    Monstername_ = "NormalMonster";
+    // Monstername_ = "NormalMonster";
     GenerateStatus(Level);
 }
 
