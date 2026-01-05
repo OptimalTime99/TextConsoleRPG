@@ -24,6 +24,9 @@ public:
     int GetPrice() const;
     std::map<StatusType, int> GetEffect() const;
 
+    // 모든 아이템 원형 데이터를 가져오는 함수
+    static const std::map<ItemType, Item>& GetAllItems();
+
     // Setter
     void SetName(ItemType name);
     void SetPrice(int price);

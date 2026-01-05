@@ -48,6 +48,11 @@ std::map<StatusType, int> Item::GetEffect() const
     return effect_;
 }
 
+const std::map<ItemType, Item>& Item::GetAllItems()
+{
+    return itemRegistry_;
+}
+
 void Item::SetName(ItemType name)
 {
     name_ = name;
