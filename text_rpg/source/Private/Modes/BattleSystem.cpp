@@ -11,8 +11,8 @@
 #include <random>
 
 
-BattleSystem::BattleSystem(Player* p, Item* item, UIManager* ui, Inventory* inv) 
-    : player_(p), items_(item), uiManager_(ui), Inventory_(inv)
+BattleSystem::BattleSystem(Player* p, UIManager* ui, Inventory* inv) 
+    : player_(p), uiManager_(ui), Inventory_(inv)
 {
     monster_ = nullptr;
     level_ = new LevelSystem();
@@ -158,12 +158,15 @@ bool BattleSystem::UseItem()
         playerBuff_ += value; // 임시
         Inventory_->RemoveItem(ItemType::LowAttackPotion, 1);
         uiManager_->PrintUseItem(whichItem);
+        return true;
     }
     else
     {
         // 아이템 재고가 둘 다 없으면 사용을 못했으므로 거짓반환
         return false;
     }
+
+    return false;
 }
 
 void BattleSystem::ApplyRewards()

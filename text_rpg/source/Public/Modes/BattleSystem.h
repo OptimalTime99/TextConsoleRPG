@@ -12,7 +12,7 @@ class BattleSystem
 {
 public:
     // 생성자
-    BattleSystem(Player* p, Item* item, UIManager* ui, Inventory* inv);
+    BattleSystem(Player* p, UIManager* ui, Inventory* inv);
 
     ~BattleSystem();
 
@@ -21,9 +21,6 @@ public:
 
     // 일반 몬스터를 생성한다.
     void SpawnMonster();
-
-    // 보스 몬스터를 생성한다.
-    void SpawnBoss();
 
     // 한 턴의 전투를 처리를 처리하고 몬스터나 플레이어의 사망 여부 반환
     bool ResolveTurn();
@@ -46,12 +43,11 @@ public:
     int GetRandomGold(int min, int max);
 
 private:
-    LevelSystem* level_;
-    Player* player_;
-    Monster* monster_;
-    Item* items_;
-    Inventory* Inventory_;
-    UIManager* uiManager_;
+    LevelSystem* level_; // battle시스템이 메모리 관리
+    Player* player_; // gamemanager가 메모리 관리
+    Monster* monster_; // battle시스템이 메모리 관리
+    Inventory* Inventory_; // gamemanager가 메모리 관리
+    UIManager* uiManager_; // gamemanager가 메모리 관리
 
     int playerBuff_;
     static constexpr double ACTION_CHANCE = 0.5;
