@@ -6,16 +6,10 @@ class Monster
 {
 public:
     
-    Monster(std::string Monstername_, int level) 
-    {
-
-    }
+    Monster(std::string Monstername_, int level);
    
     // 가상 소멸자
-    virtual ~Monster() 
-    {
-    
-    }
+    virtual ~Monster() {}
   
     // 몬스터의 스텟 생성
     virtual void GenerateStatus(int Level_) = 0;

@@ -3,6 +3,8 @@
 #include "States/Player.h"
 #include "Types/GameMode.h"
 #include "UI/UIManager.h"
+#include "States/NormalMonster.h"
+#include "States/BossMonster.h"
 #include <random>
 
 
@@ -47,12 +49,12 @@ GameMode BattleSystem::StartBattle()
 
 void BattleSystem::SpawnMonster()
 {
-    monster_ = new Monster("test", player_->GetLevel(), false);
+    monster_ = new NormalMonster("test", player_->GetLevel());
 }
 
 void BattleSystem::SpawnBoss()
 {
-    monster_ = new Monster("Boss_test", player_->GetLevel(), true);
+    monster_ = new BossMonster("Boss_test", player_->GetLevel());
 }
 
 // 플레이어 행동 결정 <- BattleSystem이
