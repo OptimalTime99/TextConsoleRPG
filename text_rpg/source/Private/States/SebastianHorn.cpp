@@ -1,5 +1,5 @@
 ﻿#include "States/SebastianHorn.h"
-#include <random>
+#include "Utils/RandomUtil.h"
 
 SebastianHorn::SebastianHorn(int Level)
     : Monster(Level)
@@ -14,14 +14,12 @@ void SebastianHorn::GenerateStatus(int Level)
     {
         return;
     }
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
 
-    std::uniform_int_distribution<int> DistHP(Level * MIN_HP, Level * MAX_HP);
-    std::uniform_int_distribution<int> DistATK(Level * MIN_ATK, Level * MAX_ATK);
+    int DistHP = RandomUtil::GetRandomInt(Level * MIN_HP, Level * MAX_HP);
+    int DistATK = RandomUtil::GetRandomInt(Level * MIN_ATK, Level * MAX_ATK);
 
 
-    this->HP_ = DistHP(gen);
+    this->HP_ = DistHP;
     this->MaxHP_ = this->HP_;
-    this->Attack_ = DistATK(gen);
+    this->Attack_ = DistATK;
 }

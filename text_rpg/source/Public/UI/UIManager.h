@@ -35,6 +35,8 @@ public:
     // 엔딩화면을 출력.
     void PrintEndingEvent();
 
+    void SetInventory(Inventory* inven);
+
 public:
     // 캐릭터 생성 UI
     std::string PrintCreateCharacter();

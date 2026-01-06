@@ -35,7 +35,6 @@
     <ClCompile Include="source\Private\States\KasparKaiser.cpp" />
     <ClCompile Include="source\Private\States\KevinKruger.cpp" />
     <ClCompile Include="source\Private\States\MoritzMundt.cpp" />
-    <ClCompile Include="source\Private\States\NormalMonster.cpp" />
     <ClCompile Include="source\Private\States\Inventory.cpp" />
     <ClCompile Include="source\Private\States\Item.cpp" />
     <ClCompile Include="source\Private\States\Monster.cpp" />
@@ -44,6 +43,7 @@
     <ClCompile Include="source\Private\States\StefanSommer.cpp" />
     <ClCompile Include="source\Private\UI\UIHelper.cpp" />
     <ClCompile Include="source\Private\UI\UIManager.cpp" />
+    <ClCompile Include="source\Private\Utils\RandomUtil.cpp" />
     <ClCompile Include="source\Public\States\StefanSommer.h" />
     <ClCompile Include="source\Public\Types\StatusType.h" />
   </ItemGroup>
@@ -66,7 +66,6 @@
     <ClInclude Include="source\Public\States\KevinKruger.h" />
     <ClInclude Include="source\Public\States\Monster.h" />
     <ClInclude Include="source\Public\States\MoritzMundt.h" />
-    <ClInclude Include="source\Public\States\NormalMonster.h" />
     <ClInclude Include="source\Public\States\Player.h" />
     <ClInclude Include="source\Public\States\SebastianHorn.h" />
     <ClInclude Include="source\Public\Types\ColoredText.h" />
@@ -76,6 +75,7 @@
     <ClInclude Include="source\Public\Types\ItemType.h" />
     <ClInclude Include="source\Public\UI\UIHelper.h" />
     <ClInclude Include="source\Public\UI\UIManager.h" />
+    <ClInclude Include="source\Public\Utils\RandomUtil.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -51,6 +51,8 @@ public:
     // 로그 출력
     void Printlog(int x, int y, std::deque<ColoredText>& log);
 
+    void Clearlog();
+
 private:
     const int WIDTH_ = 1600;
     const int HEIGHT_ = 900;

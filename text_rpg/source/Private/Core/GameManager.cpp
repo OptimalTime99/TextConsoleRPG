@@ -9,8 +9,8 @@ GameManager::GameManager()
 {
     Player_ = nullptr;
     Battle_ = nullptr;
-    Inventory_ = new Inventory();
-    Achieve_ = new AchievementSystem();
+    Inventory_ = nullptr;;
+    Achieve_ = nullptr;
     UI_ = new UIManager(Inventory_);
     Shop_ = new ShopSystem();
     Mode_ = GameMode::BATTLE_MODE;
@@ -18,12 +18,8 @@ GameManager::GameManager()
 
 GameManager::~GameManager()
 {
-    delete Player_;
-    delete Inventory_;
-    delete Battle_;
     delete UI_;
     delete Shop_;
-    delete Achieve_;
 }
 
 // 인스턴스 반환용 함수
@@ -42,7 +38,11 @@ bool GameManager::StartGame()
     {
         // UI가 항상 정상적인 이름을 받아오기 때문에 이름 입력과 동시에 플레이어 객체 생성.
         Player_ = new Player(UI_->PrintCreateCharacter());
+        Inventory_ = new Inventory();
+        UI_->SetInventory(Inventory_);
+        Achieve_ = new AchievementSystem();
         Battle_ = new BattleSystem(Player_, UI_, Inventory_, Achieve_);
+
 
         bool bCanGameRunning = true;
 
@@ -81,6 +81,12 @@ bool GameManager::StartGame()
                     delete Battle_;
                     delete Player_;
                     delete Inventory_;
+                    delete Achieve_;
+
+                    Battle_ = nullptr;
+                    Player_ = nullptr;
+                    Inventory_ = nullptr;
+                    Achieve_ = nullptr;
 
                     Mode_ = GameMode::BATTLE_MODE;
                     return true;

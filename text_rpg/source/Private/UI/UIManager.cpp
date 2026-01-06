@@ -32,6 +32,7 @@ bool UIManager::PrintGameOver()
     int x = 34;
     int y = 12;
     system("cls");
+    UIHelper_->Clearlog();
     UIHelper_->PrintFile(x, y, "asset/GameOver.txt", 4);
     UIHelper_->Draw(x+42, y+11, "RESTART");
     UIHelper_->Draw(x+42, y+13, "E X I T");
@@ -49,7 +50,14 @@ bool UIManager::PrintGameOver()
 
 void UIManager::PrintEndingEvent()
 {
-    std::cout << "엔딩 추가 예정" << std::endl;
+    int x = 34;
+    int y = 12;
+    UIHelper_->PrintFile(x, y, "asset/EndingEvent.txt", 10);
+}
+
+void UIManager::SetInventory(Inventory* inven)
+{
+    Inventory_ = inven;
 }
 
 std::string UIManager::PrintCreateCharacter()
@@ -92,11 +100,22 @@ std::string UIManager::PrintCreateCharacter()
         UIHelper_->gotoxy(x + 9, y + 6);
         UIHelper_->PrintLine("요원 이름 입력", 15, 30);
         UIHelper_->gotoxy(x + 9, y + 8);
-        std::string Inputname = "";
+        std::string Inputname;
         getline(std::cin, Inputname);
+
+        std::string bantext = " ";
+        std::string replacement = "";
+
+        size_t pos = 0;
+        while ((pos = Inputname.find(bantext, pos)) != std::string::npos)
+        {
+            Inputname.replace(pos, bantext.length(), replacement);
+            pos += replacement.length();
+        }
 
         if (Inputname.empty())
         {
+            Inputname.clear();
             UIHelper_->gotoxy(x + 2, y + 10);
             UIHelper_->PrintLine("올바른 이름을 다시 입력해주세요", 3, 15);
             Sleep(700);
@@ -106,7 +125,7 @@ std::string UIManager::PrintCreateCharacter()
         }
         if (Inputname.length() > 10)
         {
-            Inputname = Inputname.substr(0, 10);
+            Inputname.clear();
             UIHelper_->gotoxy(x + 2, y + 8);
             UIHelper_->PrintLine("                                   ", 3, 3);
             UIHelper_->gotoxy(x + 7, y + 10);
@@ -279,7 +298,7 @@ void UIManager::PrintMonsterTakeDamage(Monster* m, int finaldamage)
         UIHelper_->PrintFile(90, 4, "asset/Target1.txt", 4);
         Sleep(PrintSpeed);
         UIHelper_->PrintFile(90, 4, "asset/Target1.txt", 15);
-        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) +  " 데미지를 입었습니다                           ";
+        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) +  " 데미지를 입었습니다                                ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
         PrintMonsterStatus(m);
@@ -291,7 +310,7 @@ void UIManager::PrintMonsterTakeDamage(Monster* m, int finaldamage)
         UIHelper_->PrintFile(90, 4, "asset/Target2.txt", 4);
         Sleep(PrintSpeed);
         UIHelper_->PrintFile(90, 4, "asset/Target2.txt", 15);
-        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                            ";
+        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                                 ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
         PrintMonsterStatus(m);
@@ -303,7 +322,7 @@ void UIManager::PrintMonsterTakeDamage(Monster* m, int finaldamage)
         UIHelper_->PrintFile(90, 4, "asset/Target3.txt", 4);
         Sleep(PrintSpeed);
         UIHelper_->PrintFile(90, 4, "asset/Target3.txt", 15);
-        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                            ";
+        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                                 ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
         PrintMonsterStatus(m);
@@ -322,7 +341,7 @@ void UIManager::PrintPlayerTakeDamage(Player* p, int finaldamage)
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 4);
     Sleep(PrintSpeed);
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 15);
-    std::string log = p->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                               ";
+    std::string log = p->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                                     ";
     UIHelper_->PushLog(log, 8);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
     PrintPlayerStatus(p);
