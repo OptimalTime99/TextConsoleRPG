@@ -14,7 +14,6 @@
 #include "States/KevinKruger.h"
 #include "States/Monster.h"
 #include "States/MoritzMundt.h"
-#include "States/NormalMonster.h"
 #include "States/Player.h"
 #include "States/SebastianHorn.h"
 #include "States/StefanSommer.h"
