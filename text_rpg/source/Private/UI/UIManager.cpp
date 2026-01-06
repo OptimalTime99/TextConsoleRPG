@@ -96,11 +96,22 @@ std::string UIManager::PrintCreateCharacter()
         UIHelper_->gotoxy(x + 9, y + 6);
         UIHelper_->PrintLine("요원 이름 입력", 15, 30);
         UIHelper_->gotoxy(x + 9, y + 8);
-        std::string Inputname = "";
+        std::string Inputname;
         getline(std::cin, Inputname);
+
+        std::string bantext = " ";
+        std::string replacement = "";
+
+        size_t pos = 0;
+        while ((pos = Inputname.find(bantext, pos)) != std::string::npos)
+        {
+            Inputname.replace(pos, bantext.length(), replacement);
+            pos += replacement.length();
+        }
 
         if (Inputname.empty())
         {
+            Inputname.clear();
             UIHelper_->gotoxy(x + 2, y + 10);
             UIHelper_->PrintLine("올바른 이름을 다시 입력해주세요", 3, 15);
             Sleep(700);
@@ -110,7 +121,7 @@ std::string UIManager::PrintCreateCharacter()
         }
         if (Inputname.length() > 10)
         {
-            Inputname = Inputname.substr(0, 10);
+            Inputname.clear();
             UIHelper_->gotoxy(x + 2, y + 8);
             UIHelper_->PrintLine("                                   ", 3, 3);
             UIHelper_->gotoxy(x + 7, y + 10);
