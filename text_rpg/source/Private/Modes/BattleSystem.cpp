@@ -67,6 +67,7 @@ GameMode BattleSystem::StartBattle()
         uiManager_->PrintVictory(monster_->GetName(), Achieve_);
         
         ApplyRewards();
+        uiManager_->PrintPlayerStatus(player_);
 
         delete monster_;
         return GameMode::APPLY_RWARDS;
@@ -75,7 +76,6 @@ GameMode BattleSystem::StartBattle()
     // 플레이어 사망시 게임 종료
     else if (player_->IsDead())
     {
-        uiManager_->PrintGameOver();
         return GameMode::GAMEOVER_MODE;
     }
 
