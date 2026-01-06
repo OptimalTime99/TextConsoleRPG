@@ -82,6 +82,10 @@ bool GameManager::StartGame()
                     // 보스전을 승리 했다면 엔딩 출력
                     Mode_ = GameMode::GAMEENDING_MODE;
                 }
+                else
+                {
+                    Mode_ = GameMode::GAMEOVER_MODE;
+                }
                 break;
 
             case GameMode::SHOP_MODE:
