@@ -44,6 +44,7 @@
     <ClCompile Include="source\Private\States\StefanSommer.cpp" />
     <ClCompile Include="source\Private\UI\UIHelper.cpp" />
     <ClCompile Include="source\Private\UI\UIManager.cpp" />
+    <ClCompile Include="source\Private\Utils\RandomUtil.cpp" />
     <ClCompile Include="source\Public\States\StefanSommer.h" />
     <ClCompile Include="source\Public\Types\StatusType.h" />
   </ItemGroup>
@@ -76,6 +77,7 @@
     <ClInclude Include="source\Public\Types\ItemType.h" />
     <ClInclude Include="source\Public\UI\UIHelper.h" />
     <ClInclude Include="source\Public\UI\UIManager.h" />
+    <ClInclude Include="source\Public\Utils\RandomUtil.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
