@@ -50,7 +50,9 @@ bool UIManager::PrintGameOver()
 
 void UIManager::PrintEndingEvent()
 {
-    std::cout << "엔딩 추가 예정" << std::endl;
+    int x = 34;
+    int y = 12;
+    UIHelper_->PrintFile(x, y, "asset/EndingEvent.txt", 10);
 }
 
 void UIManager::SetInventory(Inventory* inven)
