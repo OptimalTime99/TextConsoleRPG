@@ -6,7 +6,7 @@ class Monster
 {
 public:
     
-    Monster(std::string Monstername_, int level);
+    Monster(int level);
    
     // 가상 소멸자
     virtual ~Monster() {}
