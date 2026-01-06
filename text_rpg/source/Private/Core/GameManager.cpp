@@ -62,14 +62,14 @@ bool GameManager::StartGame()
                 }
                 else
                 {
-                    Mode_ = GameMode::BATTLE_MODE;
+                    Mode_ = Shop_->EnterChoice(Player_, UI_);
                 }
                 break;
 
             case GameMode::SHOP_MODE:
                 // 상점 생성
                 // 상점 호출 UI
-                Shop_->Shop(Player_, UI_);
+                Mode_ = Shop_->Shop(Inventory_, Player_, UI_);
 
                 break;
 

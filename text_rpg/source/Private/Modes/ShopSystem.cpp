@@ -43,7 +43,7 @@ void ShopSystem::Buy(Inventory* inven, Player* p, UIManager* ui)
     int Choice_x = 128;
     int Choice_y = 29;
     int userchoice = ui->PrintShopBuyChoice(Shop_x, Shop_y, Catalog_);
-    int totalprice = ui->CountPrice(Choice_x, Choice_y, 99, userchoice, Catalog_, true, SELL_RATE);
+    int totalprice = ui->CountPurchasePrice(Choice_x, Choice_y, 99, userchoice, Catalog_);
     int itemcount = totalprice / Catalog_[userchoice-1].GetPrice();
     std::string purchaselog;
 
@@ -87,27 +87,17 @@ void ShopSystem::Sell(Inventory* inven, Player* p, UIManager* ui)
     int Choice_x = 128;
     int Choice_y = 29;
 
-    int userchoice = ui->PrintShopSellChoice(Shop_x, Shop_y, inven);
-    int totalprice = ui->CountPrice(Choice_x, Choice_y, inven->GetItemCount(Catalog_[userchoice-1].GetName()), userchoice, Catalog_, false, SELL_RATE);
-    int itemcount = totalprice / Catalog_[userchoice - 1].GetPrice();
+    ItemType userchoice = ui->PrintShopSellChoice(Shop_x, Shop_y, inven);
+    int totalprice = ui->CountSellPrice(Choice_x, Choice_y, inven->GetItemCount(userchoice), userchoice, Catalog_, SELL_RATE);
+    int itemcount = totalprice / Item::GetData(userchoice)->GetPrice();
     std::string purchaselog;
 
-    switch (userchoice)
-    {
-    case 1:
-        p->SetGold(p->GetGold() + totalprice);
-        /*inven->RemoveItem(0, itemcount);*/
-        purchaselog = Item::ItemTypeToString(Catalog_[userchoice - 1].GetName()) + " " + std::to_string(itemcount) + " 구매완료              ";
-        ui->PrintShoplog(purchaselog);
-        break;
-    case 2:
-        p->SetGold(p->GetGold() + totalprice);
-        /*inven->RemoveItem(0, itemcount);*/
-        purchaselog = Item::ItemTypeToString(Catalog_[userchoice - 1].GetName()) + " " + std::to_string(itemcount) + " 구매완료              ";
-        ui->PrintShoplog(purchaselog);
-        break;
-    }
+    p->SetGold(p->GetGold() + totalprice);
+    inven->RemoveItem(userchoice, itemcount);
+    purchaselog = Item::ItemTypeToString(userchoice) + " " + std::to_string(itemcount) + " 판매 완료               ";
+    ui->PrintShoplog(purchaselog);
 }
+
 
 //std::deque<Item> ShopSystem::GetCatalog()
 //{

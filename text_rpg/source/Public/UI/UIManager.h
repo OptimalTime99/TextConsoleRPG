@@ -85,10 +85,12 @@ public:
     int PrintShopBuyChoice(int x, int y, const std::deque<Item>& catalog);
 
     // 상점 판매 출력 및 선택
-    int PrintShopSellChoice(int x, int y, Inventory* inven);
+    ItemType PrintShopSellChoice(int x, int y, Inventory* inven);
 
     // 구매 혹은 판매액 총 가격 측정
-    int CountPrice(int x, int y, const int max, int userchoice, const std::deque<Item>& catalog, bool isPurchase, double SellRate);
+    int CountPurchasePrice(int x, int y, const int max, int userchoice, const std::deque<Item>& catalog);
+
+    int CountSellPrice(int x, int y, const int max, ItemType userchoice, const std::deque<Item>& catalog, double SellRate);
 
     // 상점 로그를 띄우는 함수
     void PrintShoplog(const std::string& shoplog);
