@@ -52,6 +52,7 @@ void UIManager::PrintEndingEvent()
 {
     int x = 34;
     int y = 12;
+    system("cls");
     UIHelper_->PrintFile(x, y, "asset/EndingEvent.txt", 10);
 }
 
