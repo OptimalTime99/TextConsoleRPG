@@ -492,7 +492,7 @@ int UIManager::PrintShop(Player* p)
     int x = 135;
     int y = 31;
 
-    system("cls");
+    UIHelper_->ConsoleClear(36, 1, 159, 41);
 
     UIHelper_->PrintUIBox();
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
