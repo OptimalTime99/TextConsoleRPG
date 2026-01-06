@@ -43,8 +43,8 @@ void ShopSystem::Buy(Inventory* inven, Player* p, UIManager* ui)
     int Choice_x = 128;
     int Choice_y = 29;
     int userchoice = ui->PrintShopBuyChoice(Shop_x, Shop_y, Catalog_);
-    int totalprice = ui->CountPurchasePrice(Choice_x, Choice_y, 99, userchoice, Catalog_);
-    int itemcount = totalprice / Catalog_[userchoice-1].GetPrice();
+    int itemcount = ui->CountPurchasePrice(Choice_x, Choice_y, 99, userchoice, Catalog_);
+    int totalprice = itemcount * Catalog_[userchoice-1].GetPrice();
     std::string purchaselog;
 
     switch (userchoice)
@@ -88,13 +88,13 @@ void ShopSystem::Sell(Inventory* inven, Player* p, UIManager* ui)
     int Choice_y = 29;
 
     ItemType userchoice = ui->PrintShopSellChoice(Shop_x, Shop_y, inven);
-    int totalprice = ui->CountSellPrice(Choice_x, Choice_y, inven->GetItemCount(userchoice), userchoice, Catalog_, SELL_RATE);
-    int itemcount = totalprice / Item::GetData(userchoice)->GetPrice();
+    int itemcount = ui->CountSellPrice(Choice_x, Choice_y, inven->GetItemCount(userchoice), userchoice, Catalog_, SELL_RATE);
+    int totalprice = itemcount * (Item::GetData(userchoice)->GetPrice()) * SELL_RATE;
     std::string purchaselog;
 
     p->SetGold(p->GetGold() + totalprice);
     inven->RemoveItem(userchoice, itemcount);
-    purchaselog = Item::ItemTypeToString(userchoice) + " " + std::to_string(itemcount) + " 판매 완료               ";
+    purchaselog = Item::ItemTypeToString(userchoice) + " " + std::to_string(itemcount) + " 판매완료               ";
     ui->PrintShoplog(purchaselog);
 }
 

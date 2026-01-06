@@ -499,7 +499,7 @@ int UIManager::PrintShopBuyChoice(int x, int y, const std::deque<Item>& catalog)
         }
         y = y + 2;
     }
-    return UIHelper_->UserSelection(x-2, y-2, catalog.size());
+    return UIHelper_->UserSelection(x-2, y-4, catalog.size());
 }
 
 ItemType UIManager::PrintShopSellChoice(int x, int y, Inventory* inven)
@@ -564,7 +564,7 @@ int UIManager::CountPurchasePrice(int x, int y, const int max, int userchoice, c
         {
             UIHelper_->ConsoleClear(125, 26, 158, 41);
             Sleep(200);
-            return Price;
+            return choice;
         }
         Sleep(100);
     }
@@ -606,7 +606,7 @@ int UIManager::CountSellPrice(int x, int y, const int max, ItemType userchoice, 
         {
             UIHelper_->ConsoleClear(125, 26, 158, 41);
             Sleep(200);
-            return Price;
+            return choice;
         }
         Sleep(100);
     }
