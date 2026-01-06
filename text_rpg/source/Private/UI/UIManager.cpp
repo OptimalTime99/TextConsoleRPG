@@ -478,7 +478,7 @@ int UIManager::PrintShop(Player* p)
 
     UIHelper_->Draw(x + 2, y, "구매");
     UIHelper_->Draw(x + 2, y + 2, "판매");
-    UIHelper_->Draw(x + 2, y + 4, "다음 전투");
+    UIHelper_->Draw(x + 2, y + 4, "나가기");
     int choice = UIHelper_->UserSelection(126, 27, 3);
 
     UIHelper_->ConsoleClear(126, 27, 158, 41);

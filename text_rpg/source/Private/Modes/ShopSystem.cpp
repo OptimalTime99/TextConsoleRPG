@@ -3,7 +3,7 @@
 
 enum class Itemtype;
 
-GameMode ShopSystem::Shop(Inventory* inven, Player* p, UIManager* ui)
+void ShopSystem::Shop(Inventory* inven, Player* p, UIManager* ui)
 {
     while (true)
     {
@@ -13,27 +13,21 @@ GameMode ShopSystem::Shop(Inventory* inven, Player* p, UIManager* ui)
         case 1:
             Buy(inven, p, ui);
             ui->PrintPlayerStatus(p);
-            continue;
+            break;
         case 2:
             Sell(inven, p, ui);
-            continue;
-        case 3:
-            return GameMode::BATTLE_MODE;
+            ui->PrintPlayerStatus(p);
             break;
+        case 3:
+            return;
         }
     }
 }
 
-GameMode ShopSystem::EnterChoice(Player* p, UIManager* ui)
+bool ShopSystem::EnterChoice(Player* p, UIManager* ui)
 {
     bool choice = ui->ShopEnterChoice();
-    switch (choice)
-    {
-    case true:
-        return GameMode::SHOP_MODE;
-    case false:
-        return GameMode::BATTLE_MODE;
-    }
+    return choice;
 }
 
 void ShopSystem::Buy(Inventory* inven, Player* p, UIManager* ui)
