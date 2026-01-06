@@ -177,6 +177,10 @@ void UIManager::PrintPlayerStatus(Player* player)
     UIHelper_->gotoxy(x + 7, y + 8);
     std::cout << player->GetGold();
 
+    UIHelper_->Draw(x, y + 10, "[Inventory]");
+
+    UIHelper_->Draw(x, y + 25, "[킬 카운트]");
+
     UIHelper_->gotoxy(0, 45);
 }
 
@@ -219,12 +223,11 @@ void UIManager::PrintMonsterStatus(Monster* monster)
 void UIManager::PrintKillCount(AchievementSystem* achieve)
 {
     int x = 2;
-    int y = 12;
+    int y = 27;
     UIHelper_->textcolor(15);
 
     std::map<std::string, int> KillCount =achieve->GetAllKillCount();
 
-    UIHelper_->Draw(x, y, "[킬 카운트]");
     int dy = 0;
     for (std::map<std::string, int>::iterator itr = KillCount.begin(); itr != KillCount.end(); itr++)
     {
@@ -240,7 +243,6 @@ void UIManager::PrintInventory(Inventory* inven)
 {
     int x = 2;
     int y = 2;
-    UIHelper_->Draw(x, y + 10, "[Inventory]");
     for (size_t i = y + 10; i < inven->GetInventory().size(); i++)
     {
         for (const auto& item : inven->GetInventory())
