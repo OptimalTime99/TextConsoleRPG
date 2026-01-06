@@ -1,6 +1,5 @@
 ﻿#include "States/BenediktKiss.h"
-#include <string>
-#include <iostream>
+#include <random>
 
 BenediktKiss::BenediktKiss(int Level)
     : Monster(Level)

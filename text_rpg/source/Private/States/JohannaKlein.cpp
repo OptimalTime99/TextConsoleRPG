@@ -1,6 +1,5 @@
 ﻿#include "States/JohannaKlein.h"
-#include <string>
-#include <iostream>
+#include <random>
 
 JohannaKlein::JohannaKlein(int Level)
     : Monster(Level)

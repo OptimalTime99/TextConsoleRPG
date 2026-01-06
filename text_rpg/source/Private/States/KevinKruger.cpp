@@ -1,6 +1,5 @@
 ﻿#include "States/KevinKruger.h"
-#include <string>
-#include <iostream>
+#include <random>
 
 KevinKruger::KevinKruger(int Level)
     : Monster(Level)

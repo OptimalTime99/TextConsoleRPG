@@ -1,8 +1,6 @@
 ﻿#include "States/Monster.h"
-#include "States/player.h"
 #include <string>
-#include <iostream>
-#include <random>
+
 
 Monster::Monster( int Level) 
     : Name_(Name_),MonsterLevel_(Level),HP_(0),MaxHP_(0),Attack_(0)
