@@ -9,7 +9,7 @@
 class MoritzMundt : public Monster
 {
 public:
-    MoritzMundt(std::string Monstername_, int Level);
+    MoritzMundt(int Level);
 
     void GenerateStatus(int Level)override;
 

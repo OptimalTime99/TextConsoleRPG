@@ -13,10 +13,10 @@ int LevelSystem::LevelUp(Player* p)
     int MaxExp = p->GetMaxExp();
     // 현재 공격력
     int Attack = p->Attack();
-    // 최대경험치보다 크거나 같을 시
-    while (Level < MAX_LEVEL)
+    // 경험치가 최대경험치보다 크거나 같을 시
+    while (p->GetExp() >= MaxExp) 
     {   // 레벨이 최대레벨보다 작을 때
-        if (p->GetExp() >= MaxExp)
+        if (Level < MAX_LEVEL)
         {   
             Level++;
             p->SetLevel(Level);

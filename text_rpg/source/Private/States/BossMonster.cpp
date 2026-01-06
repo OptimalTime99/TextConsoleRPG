@@ -4,10 +4,10 @@
 
 
 
-BossMonster::BossMonster(std::string Monstername_, int Level)
-    : Monster(Monstername_, Level)
+BossMonster::BossMonster(int Level)
+    : Monster(Level)
 {
-    //Name_ = "BossMonster";
+    Name_ = "BossMonster";
     GenerateStatus(Level);
 }
 

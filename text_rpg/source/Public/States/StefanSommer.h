@@ -9,7 +9,7 @@
 class StefanSommer : public Monster
 {
 public:
-    StefanSommer(std::string Monstername_, int Level);
+    StefanSommer(int Level);
 
     void GenerateStatus(int Level)override;
 
