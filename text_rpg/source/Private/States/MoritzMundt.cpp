@@ -1,6 +1,5 @@
 ﻿#include "States/MoritzMundt.h"
-#include <string>
-#include <iostream>
+#include <random>
 
 MoritzMundt::MoritzMundt(int Level)
     : Monster(Level)

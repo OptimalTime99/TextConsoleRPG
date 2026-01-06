@@ -1,6 +1,5 @@
 ﻿#include "States/HugoJauch.h"
-#include <string>
-#include <iostream>
+#include <random>
 
 HugoJauch::HugoJauch(int Level)
     : Monster(Level)

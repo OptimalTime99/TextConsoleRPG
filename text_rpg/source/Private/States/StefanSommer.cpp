@@ -1,6 +1,5 @@
 ﻿#include "States/StefanSommer.h"
-#include <string>
-#include <iostream>
+#include <random>
 
 StefanSommer::StefanSommer(int Level)
     : Monster(Level)

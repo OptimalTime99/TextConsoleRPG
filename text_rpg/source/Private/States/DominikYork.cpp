@@ -1,6 +1,5 @@
 ﻿#include "States/DominikYork.h"
-#include <string>
-#include <iostream>
+#include <random>
 
 DominikYork::DominikYork(int Level)
     : Monster(Level)

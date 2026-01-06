@@ -1,6 +1,5 @@
 ﻿#include "States/KasparKaiser.h"
-#include <string>
-#include <iostream>
+#include <random>
 
 KasparKaiser::KasparKaiser(int Level)
     : Monster(Level)

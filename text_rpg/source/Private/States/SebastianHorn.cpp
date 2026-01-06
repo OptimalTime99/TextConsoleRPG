@@ -1,6 +1,5 @@
 ﻿#include "States/SebastianHorn.h"
-#include <string>
-#include <iostream>
+#include <random>
 
 SebastianHorn::SebastianHorn(int Level)
     : Monster(Level)

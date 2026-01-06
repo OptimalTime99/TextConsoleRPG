@@ -1,6 +1,5 @@
 ﻿#include "States/EliasBeck.h"
-#include <string>
-#include <iostream>
+#include <random>
 
 EliasBeck::EliasBeck(int Level)
     : Monster(Level)
