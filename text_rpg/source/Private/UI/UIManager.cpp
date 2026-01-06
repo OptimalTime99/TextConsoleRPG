@@ -85,21 +85,21 @@ std::string UIManager::PrintCreateCharacter()
     system("cls");
     Sleep(1000);
 
-    //UIHelper_->gotoxy(x - 30, y - 8);
-    //UIHelper_->PrintLine("2549년", 11, 25);
-    //UIHelper_->gotoxy(x - 30, y - 6);
-    //UIHelper_->PrintLine("문명의 발전은 인류를 더 먼 곳까지 데리고 갔지만", 11, 25);
-    //UIHelper_->gotoxy(x - 30, y - 4);
-    //UIHelper_->PrintLine("나아간 거리만큼 거대해진 욕심으로", 11, 25);
-    //UIHelper_->gotoxy(x - 30, y - 2);
-    //UIHelper_->PrintLine("끊임없이 전쟁이 이어졌다.", 11, 25);
-    //Sleep(1000);
+    UIHelper_->gotoxy(x - 30, y - 8);
+    UIHelper_->PrintLine("2549년", 11, 25);
+    UIHelper_->gotoxy(x - 30, y - 6);
+    UIHelper_->PrintLine("문명의 발전은 인류를 더 먼 곳까지 데리고 갔지만", 11, 25);
+    UIHelper_->gotoxy(x - 30, y - 4);
+    UIHelper_->PrintLine("나아간 거리만큼 거대해진 욕심으로", 11, 25);
+    UIHelper_->gotoxy(x - 30, y - 2);
+    UIHelper_->PrintLine("끊임없이 전쟁이 이어졌다.", 11, 25);
+    Sleep(1000);
 
-    //UIHelper_->gotoxy(x - 30, y + 2);
-    //UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 25);
-    //UIHelper_->gotoxy(x - 30, y + 4);
-    //UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 25);
-    //Sleep(1000);
+    UIHelper_->gotoxy(x - 30, y + 2);
+    UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 25);
+    UIHelper_->gotoxy(x - 30, y + 4);
+    UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 25);
+    Sleep(1000);
 
     system("cls");
 
