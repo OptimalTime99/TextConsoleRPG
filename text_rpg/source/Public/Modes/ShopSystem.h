@@ -26,10 +26,10 @@ public:
     }
 
     // 상점 게임모드
-    GameMode Shop(Inventory* inven, Player* p, UIManager* ui);
+    void Shop(Inventory* inven, Player* p, UIManager* ui);
 
     //입장 선택
-    GameMode EnterChoice(Player* p, UIManager* ui);
+    bool EnterChoice(Player* p, UIManager* ui);
 
     // 구매
     void Buy(Inventory* inven, Player* p, UIManager* ui);
