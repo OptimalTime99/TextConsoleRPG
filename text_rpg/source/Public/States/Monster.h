@@ -52,8 +52,4 @@ protected:
     static constexpr int MAX_HP = 30;
     static constexpr int MIN_ATK = 5;
     static constexpr int MAX_ATK = 10;
-    static constexpr int MIN_BOSS_HP = 30;
-    static constexpr int MAX_BOSS_HP = 45;
-    static constexpr int MIN_BOSS_ATK = 8;
-    static constexpr int MAX_BOSS_ATK = 15;
 };

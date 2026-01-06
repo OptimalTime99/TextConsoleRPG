@@ -4,7 +4,7 @@
 BossMonster::BossMonster(int Level)
     : Monster(Level)
 {
-    Name_ = "BossMonster";
+    Name_ = "Alles fur Einen";
     GenerateStatus(Level);
 }
 
