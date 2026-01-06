@@ -12,7 +12,7 @@
 class UIManager
 {
 public:
-    UIManager()
+    UIManager(Inventory* inven) : Inventory_(inven)
     {
         UIHelper_ = new UIHelper;
         UIHelper_->SetConsoleSetting();
@@ -51,7 +51,7 @@ public:
     void PrintInventory(Inventory* inven);
 
     // 전투대상 조우시 출력
-    void PrintBattleStart(Player* p, Monster* m);
+    void PrintBattleStart(Player* p, Monster* m, AchievementSystem* achieve);
 
     // 몬스터가 데미지를 받을 때 출력
     void PrintMonsterTakeDamage(Monster* m, int finaldamage);
@@ -65,7 +65,7 @@ public:
     void PrintAttackInsteadUseItem();
 
     // 승리 시 출력
-    void PrintVictory();
+    void PrintVictory(const std::string& monstername, AchievementSystem* achieve);
 
     // 일반 보상 획득 출력
     void PrintFixedRewards(int exp_reward, int levelup_count, int gain_golds);
@@ -93,4 +93,5 @@ public:
 
 private:
     UIHelper* UIHelper_;
+    Inventory* Inventory_;
 };

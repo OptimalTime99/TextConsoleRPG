@@ -3,10 +3,10 @@
 #include <iostream>
 #include <random>
 
-NormalMonster::NormalMonster(std::string Monstername_, int Level)
-    : Monster(Monstername_, Level)
+NormalMonster::NormalMonster(int Level)
+    : Monster(Level)
 {
-    //Monstername_ = "NormalMonster";
+    Name_ = "NormalMonster";
     GenerateStatus(Level);
 }
 

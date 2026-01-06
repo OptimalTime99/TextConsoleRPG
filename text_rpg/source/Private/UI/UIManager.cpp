@@ -68,21 +68,21 @@ std::string UIManager::PrintCreateCharacter()
     system("cls");
     Sleep(1000);
 
-    //UIHelper_->gotoxy(x - 30, y - 8);
-    //UIHelper_->PrintLine("2549년", 11, 25);
-    //UIHelper_->gotoxy(x - 30, y - 6);
-    //UIHelper_->PrintLine("문명의 발전은 인류를 더 먼 곳까지 데리고 갔지만", 11, 25);
-    //UIHelper_->gotoxy(x - 30, y - 4);
-    //UIHelper_->PrintLine("나아간 거리만큼 거대해진 욕심으로", 11, 25);
-    //UIHelper_->gotoxy(x - 30, y - 2);
-    //UIHelper_->PrintLine("끊임없이 전쟁이 이어졌다.", 11, 25);
-    //Sleep(1000);
+    UIHelper_->gotoxy(x - 30, y - 8);
+    UIHelper_->PrintLine("2549년", 11, 25);
+    UIHelper_->gotoxy(x - 30, y - 6);
+    UIHelper_->PrintLine("문명의 발전은 인류를 더 먼 곳까지 데리고 갔지만", 11, 25);
+    UIHelper_->gotoxy(x - 30, y - 4);
+    UIHelper_->PrintLine("나아간 거리만큼 거대해진 욕심으로", 11, 25);
+    UIHelper_->gotoxy(x - 30, y - 2);
+    UIHelper_->PrintLine("끊임없이 전쟁이 이어졌다.", 11, 25);
+    Sleep(1000);
 
-    //UIHelper_->gotoxy(x - 30, y + 2);
-    //UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 25);
-    //UIHelper_->gotoxy(x - 30, y + 4);
-    //UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 25);
-    //Sleep(1000);
+    UIHelper_->gotoxy(x - 30, y + 2);
+    UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 25);
+    UIHelper_->gotoxy(x - 30, y + 4);
+    UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 25);
+    Sleep(1000);
 
     system("cls");
 
@@ -153,13 +153,6 @@ void UIManager::PrintPlayerStatus(Player* player)
     UIHelper_->gotoxy(x + 18, y + 4);
     std::cout << player->GetHP() << " / " << player->GetMaxHP() << "  ";
 
-    //UIHelper_->Draw(x, y+2, "총알");
-    //UIHelper_->Draw(x+5, y+2, "[");
-    //UIHelper_->Draw(x+16, y+2, "]");
-    //UIHelper_->gotoxy(x+18, y+2);
-    //std::cout << 10 << " / " << 30;
-    /*UIHelper_->DrawBar(x+6, y+2, 10, 10, 30, 8);*/
-
     UIHelper_->Draw(x, y + 5, "Exp");
     UIHelper_->Draw(x + 5, y + 5, "[");
     UIHelper_->Draw(x + 16, y + 5, "]");
@@ -171,13 +164,11 @@ void UIManager::PrintPlayerStatus(Player* player)
     UIHelper_->gotoxy(x + 9, y + 6);
     std::cout << player->Attack() << "  ";
 
-    //UIHelper_->Draw(x, y + 7, "속도 : ");
-    //UIHelper_->gotoxy(x + 7, y + 7);
-    //std::cout << "player->GetSpeed()" << "  ";
-
     UIHelper_->Draw(x, y + 8, "Gold : ");
     UIHelper_->gotoxy(x + 7, y + 8);
     std::cout << player->GetGold() << "  ";
+
+    UIHelper_->Draw(x, y + 25, "[킬 카운트]");
 
     UIHelper_->gotoxy(0, 45);
 }
@@ -189,7 +180,7 @@ void UIManager::PrintMonsterStatus(Monster* monster)
     UIHelper_->textcolor(15);
     UIHelper_->Draw(x, y, "타겟 :");
     UIHelper_->gotoxy(x + 7, y);
-    std::cout << monster->GetName();
+    std::cout << monster->GetName() << "     ";
 
     UIHelper_->Draw(x, y + 2, "HP");
     UIHelper_->Draw(x + 5, y + 2, "[");
@@ -198,21 +189,9 @@ void UIManager::PrintMonsterStatus(Monster* monster)
     UIHelper_->gotoxy(x + 18, y + 2);
     std::cout << monster->GetHP() << " / " << monster->GetMaxHP() << "   ";
 
-    //UIHelper_->Draw(x, y + 2, "총알");
-    //UIHelper_->Draw(x + 5, y + 2, "[");
-    //UIHelper_->Draw(x + 16, y + 2, "]");
-    //UIHelper_->DrawBar(x+6, y+2, 10, 10, 30, 8);
-    //UIHelper_->gotoxy(x + 18, y + 2);
-    //std::cout << 10 << " / " << 30;
-
     UIHelper_->Draw(x, y + 4, "공격력 : ");
     UIHelper_->gotoxy(x + 9, y + 4);
     std::cout << monster->GetAttack() << "  ";
-
-    //UIHelper_->Draw(x, y + 5, "속도 : ");
-    //UIHelper_->gotoxy(x + 7, y + 5);
-    //std::cout << monster->GetSpeed() << "  ";
-
 
     UIHelper_->gotoxy(0, 45);
 
@@ -221,17 +200,16 @@ void UIManager::PrintMonsterStatus(Monster* monster)
 void UIManager::PrintKillCount(AchievementSystem* achieve)
 {
     int x = 2;
-    int y = 12;
+    int y = 29;
+    int dy = 0;
     UIHelper_->textcolor(15);
 
     std::map<std::string, int> KillCount =achieve->GetAllKillCount();
 
-    UIHelper_->Draw(x, y, "[킬 카운트]");
-    int dy = 0;
     for (std::map<std::string, int>::iterator itr = KillCount.begin(); itr != KillCount.end(); itr++)
     {
         UIHelper_->gotoxy(x, y + dy);
-        std::cout << itr->first << " " << itr->second;
+        std::cout << itr->first << " : " << itr->second << "          ";
         dy++;
     }
 
@@ -242,8 +220,7 @@ void UIManager::PrintInventory(Inventory* inven)
 {
     int x = 2;
     int y = 2;
-    UIHelper_->Draw(x, y + 10, "[Inventory]");
-    for (int i = y + 10; i < inven->GetInventory().size(); i++)
+    for (size_t i = y + 10; i < inven->GetInventory().size(); i++)
     {
         for (const auto& item : inven->GetInventory())
         {
@@ -253,17 +230,20 @@ void UIManager::PrintInventory(Inventory* inven)
     }
 }
 
-void UIManager::PrintBattleStart(Player* p, Monster* m)
+void UIManager::PrintBattleStart(Player* p, Monster* m, AchievementSystem* achieve)
 {
     PrintPlayerStatus(p);
     PrintMonsterStatus(m);
+    PrintKillCount(achieve);
 
     UIHelper_->PrintUIBox();
     UIHelper_->Draw(37, 26, "<작전 현황표>");
 
     UIHelper_->ConsoleClear(36, 1, 123, 24);
     UIHelper_->PrintFile(39, 10, "asset/FindTarget.txt", 12);
-    std::string TargetLog = "--------------[목표발견]--------------";
+    std::string TargetLog = "--------------[목표발견]--------------                                       ";
+    UIHelper_->PushLog(TargetLog, 15);
+    UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
     TargetLog = p->GetName() + "이(가) 목표물 " + m->GetName() + "을(를) 발견했다.                              ";
     UIHelper_->PushLog(TargetLog, 4);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
@@ -293,41 +273,42 @@ void UIManager::PrintBattleStart(Player* p, Monster* m)
 
 void UIManager::PrintMonsterTakeDamage(Monster* m, int finaldamage)
 {
+    int PrintSpeed = 300;
     if (m->GetLevel() <= 3)
     {
         UIHelper_->PrintFile(90, 4, "asset/Target1.txt", 4);
-        Sleep(200);
+        Sleep(PrintSpeed);
         UIHelper_->PrintFile(90, 4, "asset/Target1.txt", 15);
-        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) +  " 데미지를 입었습니다                       ";
+        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) +  " 데미지를 입었습니다                           ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
         PrintMonsterStatus(m);
         UIHelper_->textcolor(15);
-        Sleep(150);
+        Sleep(PrintSpeed);
     }
     else if (m->GetLevel() <= 6)
     {
         UIHelper_->PrintFile(90, 4, "asset/Target2.txt", 4);
-        Sleep(200);
+        Sleep(PrintSpeed);
         UIHelper_->PrintFile(90, 4, "asset/Target2.txt", 15);
-        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                        ";
+        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                            ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
         PrintMonsterStatus(m);
         UIHelper_->textcolor(15);
-        Sleep(150);
+        Sleep(PrintSpeed);
     }
     else if (m->GetLevel() <= 9)
     {
         UIHelper_->PrintFile(90, 4, "asset/Target3.txt", 4);
-        Sleep(200);
+        Sleep(PrintSpeed);
         UIHelper_->PrintFile(90, 4, "asset/Target3.txt", 15);
-        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                        ";
+        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                            ";
         UIHelper_->PushLog(log, 4);
         UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
         PrintMonsterStatus(m);
         UIHelper_->textcolor(15);
-        Sleep(150);
+        Sleep(PrintSpeed);
     }
     else
     {
@@ -337,68 +318,79 @@ void UIManager::PrintMonsterTakeDamage(Monster* m, int finaldamage)
 
 void UIManager::PrintPlayerTakeDamage(Player* p, int finaldamage)
 {
+    int PrintSpeed = 300;
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 4);
-    Sleep(200);
+    Sleep(PrintSpeed);
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 15);
-    std::string log = p->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                           ";
+    std::string log = p->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                               ";
     UIHelper_->PushLog(log, 8);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
     PrintPlayerStatus(p);
     UIHelper_->textcolor(15);
-    Sleep(150);
+    Sleep(PrintSpeed);
 }
 
 void UIManager::PrintUseItem(const Item* item)
 {
+    int PrintSpeed = 300;
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 10);
-    Sleep(200);
+    Sleep(PrintSpeed);
     UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 15);
     std::string log;
     std::map<StatusType, int> Effect = item->GetEffect();
     switch (item->GetName())
     {
     case ItemType::LowHealthPotion:
-        log = item->ItemTypeToString((item->GetName())) + "을 사용하여 체력을 " + std::to_string(Effect[StatusType::HP]) + "회복했습니다.   ";
+        log = item->ItemTypeToString((item->GetName())) + "을 사용하여 체력을 " + std::to_string(Effect[StatusType::HP]) + "회복했습니다. 현재 재고 : " + std::to_string(Inventory_->GetItemCount(item->GetName())) + "    ";
         UIHelper_->PushLog(log, 2);
         break;
     case ItemType::LowAttackPotion:
-        log = item->ItemTypeToString((item->GetName())) + "을 사용하여 공격력이 " + std::to_string(Effect[StatusType::ATK]) + "상승했습니다. ";
+        log = item->ItemTypeToString((item->GetName())) + "을 사용하여 공격력이 " + std::to_string(Effect[StatusType::ATK]) + "상승했습니다. 현재 재고 : " + std::to_string(Inventory_->GetItemCount(item->GetName())) + "    ";
         UIHelper_->PushLog(log, 5);
         break;
     }
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
     UIHelper_->textcolor(15);
-    Sleep(150);
+    Sleep(PrintSpeed);
 }
 
 void UIManager::PrintAttackInsteadUseItem()
 {
-    std::string log = "아이템이 없어서 사용할 수 없으므로 공격합니다.                                    ";
+    int PrintSpeed = 300;
+    std::string log = "아이템이 없어서 사용할 수 없는 대신 공격합니다.                                    ";
     UIHelper_->PushLog(log, 15);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
-    Sleep(150);
+    Sleep(PrintSpeed);
 }
 
-void UIManager::PrintVictory()
+void UIManager::PrintVictory(const std::string& monstername, AchievementSystem* achieve)
 {
-    Sleep(150);
+    int PrintSpeed = 300;
+    Sleep(PrintSpeed);
     UIHelper_->ConsoleClear(90, 1, 123, 24);
     std::string log = "--------------[암살성공]--------------                                       ";
     UIHelper_->PushLog(log, 15);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
-    Sleep(150);
+    log = monstername + " 암살에 성공했습니다.                                           ";
+    UIHelper_->PushLog(log, 5);
+    UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+
+    PrintKillCount(achieve);
+
+    Sleep(PrintSpeed);
 }
 
 void UIManager::PrintFixedRewards(int exp_reward, int levelup_count, int gain_golds)
 {
+    int PrintSpeed = 500;
     std::string log = "--------------[승리보상]--------------                                       ";
     UIHelper_->PushLog(log, 15);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
-    Sleep(150);
+    Sleep(PrintSpeed);
     log = "경험치 획득 : " + std::to_string(exp_reward) + "                                             ";
     UIHelper_->PushLog(log, 10);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
-    Sleep(150);
+    Sleep(PrintSpeed);
     if (levelup_count != 0)
     {
         for (int i = 0; i < levelup_count; i++)
@@ -406,26 +398,27 @@ void UIManager::PrintFixedRewards(int exp_reward, int levelup_count, int gain_go
             log = "레벨업!                                                                             ";
             UIHelper_->PushLog(log, 11);
             UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
-            Sleep(150);
+            Sleep(PrintSpeed);
         }
     }
     log = "골드 획득 : " + std::to_string(gain_golds) + "                                              ";
     UIHelper_->PushLog(log, 14);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
-    Sleep(150);
+    Sleep(PrintSpeed + 500);
 
     UIHelper_->textcolor(15);
 }
 
 void UIManager::PrintItemRewards(ItemType itemtype)
 {
+    int PrintSpeed = 500;
     std::string log = "-------------[아이템획득!]-------------                                            ";
     UIHelper_->PushLog(log, 15);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
-    log = Item::ItemTypeToString(itemtype) + " 아이템을 획득했습니다.                                      ";
+    log = Item::ItemTypeToString(itemtype) + " 아이템을 획득했습니다. 현재 재고 : " + std::to_string(Inventory_->GetItemCount(itemtype)) + "                       ";
     UIHelper_->PushLog(log, 10);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
-    Sleep(150);
+    Sleep(PrintSpeed + 500);
 
     UIHelper_->textcolor(15);
 }

@@ -1,11 +1,10 @@
 ﻿#include "States/StefanSommer.h"
-#include <string>
-#include <iostream>
+#include <random>
 
-StefanSommer::StefanSommer(std::string Monstername_, int Level)
-    : Monster(Monstername_, Level)
+StefanSommer::StefanSommer(int Level)
+    : Monster(Level)
 {
-    Monstername_ = "Stefan Sommer";
+    Name_ = "Stefan Sommer";
     GenerateStatus(Level);
 }
 
