@@ -56,14 +56,31 @@ bool GameManager::StartGame()
 
             case GameMode::APPLY_RWARDS:
                 // 상점 방문 선택 기능 필요
+                // 상점 방문 선택 UI 출력
+                if (/*상점 방문 UI 출력후 선택에 따라 반환*/false)
+                {
+                    // 상점 방문
+                    Mode_ = GameMode::SHOP_MODE;
+                    break;
+                }
+
                 if (Player_->GetLevel() == 10)
                 {
-                    // 도전기능을 구현할 거면 보스전으로
-                    Mode_ = GameMode::GAMEENDING_MODE;
+                    Mode_ = GameMode::BOSS_BATTLE;
                 }
                 else
                 {
                     Mode_ = GameMode::BATTLE_MODE;
+                }
+                break;
+
+            case GameMode::BOSS_BATTLE:
+                // 보스 연출 출력 부분
+                // 보스 연출 출력하고 보스배틀 시작
+                if (Battle_->StartBattle(true) == GameMode::APPLY_RWARDS)
+                {
+                    // 보스전을 승리 했다면 엔딩 출력
+                    Mode_ = GameMode::GAMEENDING_MODE;
                 }
                 break;
 
@@ -72,6 +89,15 @@ bool GameManager::StartGame()
                 // 상점 호출 UI
                 Shop_->Shop(Player_, UI_);
 
+                if (Player_->GetLevel() == 10)
+                {
+                    // 도전기능을 구현할 거면 보스전으로
+                    Mode_ = GameMode::BOSS_BATTLE;
+                }
+                else
+                {
+                    Mode_ = GameMode::BATTLE_MODE;
+                }
                 break;
 
             case GameMode::GAMEOVER_MODE:
