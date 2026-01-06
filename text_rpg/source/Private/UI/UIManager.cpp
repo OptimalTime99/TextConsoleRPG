@@ -288,7 +288,13 @@ void UIManager::PrintBattleStart(Player* p, Monster* m, AchievementSystem* achie
     }
     else
     {
-
+        UIHelper_->PrintFile(39, 2, "asset/BossIllustration.txt", 12);
+        Sleep(1000);
+        UIHelper_->PrintFile(43, 6, "asset/FindBoss.txt", 14);
+        Sleep(2000);
+        UIHelper_->ConsoleClear(39, 2, 122, 24);
+        UIHelper_->PrintFile(40, 9, "asset/ManWithGun.txt", 15);
+        UIHelper_->PrintFile(85, 1, "asset/Boss.txt", 15);
     }
 }
 
@@ -333,7 +339,15 @@ void UIManager::PrintMonsterTakeDamage(Monster* m, int finaldamage)
     }
     else
     {
-
+        UIHelper_->PrintFile(85, 1, "asset/Boss.txt", 4);
+        Sleep(PrintSpeed);
+        UIHelper_->PrintFile(85, 1, "asset/Boss.txt", 15);
+        std::string log = m->GetName() + "이(가) " + std::to_string(finaldamage) + " 데미지를 입었습니다                                 ";
+        UIHelper_->PushLog(log, 4);
+        UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+        PrintMonsterStatus(m);
+        UIHelper_->textcolor(15);
+        Sleep(PrintSpeed);
     }
 }
 
@@ -388,7 +402,7 @@ void UIManager::PrintVictory(const std::string& monstername, AchievementSystem* 
 {
     int PrintSpeed = 300;
     Sleep(PrintSpeed);
-    UIHelper_->ConsoleClear(90, 1, 123, 24);
+    UIHelper_->ConsoleClear(85, 1, 123, 24);
     std::string log = "--------------[암살성공]--------------                                       ";
     UIHelper_->PushLog(log, 15);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
