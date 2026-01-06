@@ -6,7 +6,7 @@
 NormalMonster::NormalMonster(int Level)
     : Monster(Level)
 {
-    //Monstername_ = "NormalMonster";
+    Name_ = "NormalMonster";
     GenerateStatus(Level);
 }
 
