@@ -122,6 +122,16 @@ bool GameManager::StartGame()
 
             case GameMode::GAMEENDING_MODE:
                 UI_->PrintEndingEvent();
+                delete Battle_;
+                delete Player_;
+                delete Inventory_;
+                delete Achieve_;
+
+                Battle_ = nullptr;
+                Player_ = nullptr;
+                Inventory_ = nullptr;
+                Achieve_ = nullptr;
+
                 bCanGameRunning = false;
                 break;
 
