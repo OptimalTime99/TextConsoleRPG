@@ -234,6 +234,11 @@ void UIHelper::Printlog(int x, int y, std::deque<ColoredText>& log)
     }
 }
 
+void UIHelper::Clearlog()
+{
+    Log_.clear();
+}
+
 void UIHelper::PrintLine(const std::string& msg, int color_num, int speed)
 {
     textcolor(color_num);
