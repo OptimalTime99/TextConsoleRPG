@@ -35,7 +35,6 @@
     <ClCompile Include="source\Private\States\KasparKaiser.cpp" />
     <ClCompile Include="source\Private\States\KevinKruger.cpp" />
     <ClCompile Include="source\Private\States\MoritzMundt.cpp" />
-    <ClCompile Include="source\Private\States\NormalMonster.cpp" />
     <ClCompile Include="source\Private\States\Inventory.cpp" />
     <ClCompile Include="source\Private\States\Item.cpp" />
     <ClCompile Include="source\Private\States\Monster.cpp" />
@@ -66,7 +65,6 @@
     <ClInclude Include="source\Public\States\KevinKruger.h" />
     <ClInclude Include="source\Public\States\Monster.h" />
     <ClInclude Include="source\Public\States\MoritzMundt.h" />
-    <ClInclude Include="source\Public\States\NormalMonster.h" />
     <ClInclude Include="source\Public\States\Player.h" />
     <ClInclude Include="source\Public\States\SebastianHorn.h" />
     <ClInclude Include="source\Public\Types\ColoredText.h" />
