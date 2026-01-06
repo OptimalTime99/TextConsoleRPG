@@ -2,10 +2,10 @@
 #include <string>
 #include <iostream>
 
-KasparKaiser::KasparKaiser(std::string Monstername_, int Level)
-    : Monster(Monstername_, Level)
+KasparKaiser::KasparKaiser(int Level)
+    : Monster(Level)
 {
-    Monstername_ = "Kaspar Kaiser";
+    Name_ = "Kaspar Kaiser";
     GenerateStatus(Level);
 }
 
