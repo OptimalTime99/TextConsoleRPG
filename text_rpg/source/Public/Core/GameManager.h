@@ -28,15 +28,6 @@ public:
     // 게임시작
     bool StartGame();
 
-    // 배틀시작
-    GameMode StartBattle();
-
-    // 상점방문
-    void VisitShop();
-
-    // 배틀 종료
-    void BattleDone();
-
 private:
     static GameManager* instance;   // 유일한 게임매니저를 가리킬 정적 포인터
     Player* Player_;    // 플레이어

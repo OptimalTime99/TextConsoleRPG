@@ -51,14 +51,22 @@ bool GameManager::StartGame()
             switch (Mode_)
             {
             case GameMode::BATTLE_MODE: // 전투 시작
-                Mode_ = StartBattle();
+                Mode_ = Battle_->StartBattle(false);
                 break;
 
             case GameMode::APPLY_RWARDS:
                 // 상점 방문 선택 기능 필요
+                // 상점 방문 선택 UI 출력
+                if (Shop_->EnterChoice(Player_, UI_))
+                {
+                    // 상점 방문
+                    Mode_ = GameMode::SHOP_MODE;
+                    break;
+                }
+
                 if (Player_->GetLevel() == 10)
                 {
-                    Mode_ = GameMode::GAMEENDING_MODE;
+                    Mode_ = GameMode::BOSS_BATTLE;
                 }
                 else
                 {
@@ -66,11 +74,34 @@ bool GameManager::StartGame()
                 }
                 break;
 
+            case GameMode::BOSS_BATTLE:
+                // 보스 연출 출력 부분
+                // 보스 연출 출력하고 보스배틀 시작
+                if (Battle_->StartBattle(true) == GameMode::APPLY_RWARDS)
+                {
+                    // 보스전을 승리 했다면 엔딩 출력
+                    Mode_ = GameMode::GAMEENDING_MODE;
+                }
+                else
+                {
+                    Mode_ = GameMode::GAMEOVER_MODE;
+                }
+                break;
+
             case GameMode::SHOP_MODE:
                 // 상점 생성
                 // 상점 호출 UI
-                Shop_->Shop(Player_, UI_);
+                Shop_->Shop(Inventory_, Player_, UI_);
 
+                if (Player_->GetLevel() == 10)
+                {
+                    // 도전기능을 구현할 거면 보스전으로
+                    Mode_ = GameMode::BOSS_BATTLE;
+                }
+                else
+                {
+                    Mode_ = GameMode::BATTLE_MODE;
+                }
                 break;
 
             case GameMode::GAMEOVER_MODE:
@@ -95,6 +126,16 @@ bool GameManager::StartGame()
 
             case GameMode::GAMEENDING_MODE:
                 UI_->PrintEndingEvent();
+                delete Battle_;
+                delete Player_;
+                delete Inventory_;
+                delete Achieve_;
+
+                Battle_ = nullptr;
+                Player_ = nullptr;
+                Inventory_ = nullptr;
+                Achieve_ = nullptr;
+
                 bCanGameRunning = false;
                 break;
 
@@ -109,19 +150,4 @@ bool GameManager::StartGame()
     }
 
     return false;
-}
-
-GameMode GameManager::StartBattle()
-{
-    return Battle_->StartBattle();
-}
-
-void GameManager::VisitShop()
-{
-
-}
-
-void GameManager::BattleDone()
-{
-
 }

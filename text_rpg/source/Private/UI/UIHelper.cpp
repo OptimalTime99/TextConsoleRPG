@@ -83,6 +83,14 @@ void UIHelper::BoxUI(int x, int y, int sx, int sy, int color_num)
     textcolor(15);
 }
 
+void UIHelper::PrintUIBox()
+{
+    BoxUI(0, 0, 159, 42, 15);
+    BoxUI(0, 0, 35, 42, 15);
+    BoxUI(124, 0, 159, 42, 15);
+    BoxUI(0, 25, 159, 42, 15);
+}
+
 void UIHelper::Draw(int x, int y, const std::string spr)
 {
     gotoxy(x, y);
@@ -158,49 +166,11 @@ int UIHelper::UserSelection(int x, int y, int n)
         }
         if (GetAsyncKeyState(VK_RETURN) & 0x8000)
         {
-            system("cls");
             Sleep(200);
             return choice;
         }
         Sleep(100);
     }
-}
-
-int UIHelper::CountSelection(int x, int y, const int max)
-{
-    int choiceX = x;
-    int choiceY = y;
-    int choice = 0;
-
-    while (true)
-    {
-        gotoxy(choiceX, choiceY);
-        std::cout << choice;
-        if (GetAsyncKeyState(VK_UP) & 0x8000)
-        {
-            if (choice < max)
-            {
-                choice++;
-            }
-            Sleep(50);
-        }
-        if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-        {
-            if (choice > 0)
-            {
-                choice--;
-            }
-            Sleep(50);
-        }
-        if (GetAsyncKeyState(VK_RETURN) & 0x8000)
-        {
-            ConsoleClear(125, 26, 158, 41);
-            Sleep(200);
-            return choice;
-        }
-        Sleep(100);
-    }
-    return 0;
 }
 
 void UIHelper::PushLog(const std::string& log, int color_num)

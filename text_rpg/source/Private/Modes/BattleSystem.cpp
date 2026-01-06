@@ -27,11 +27,9 @@
 
 
 BattleSystem::BattleSystem(Player* p, UIManager* ui, Inventory* inv, AchievementSystem* achv) 
-    : player_(p), uiManager_(ui), Inventory_(inv), Achieve_(achv)
+    : player_(p), monster_(nullptr), uiManager_(ui), Inventory_(inv), Achieve_(achv), playerBuff_(0)
 {
-    monster_ = nullptr;
     level_ = new LevelSystem();
-    playerBuff_ = 0;
 }
 
 BattleSystem::~BattleSystem()
@@ -39,10 +37,10 @@ BattleSystem::~BattleSystem()
     delete level_;
 }
 
-GameMode BattleSystem::StartBattle()
+GameMode BattleSystem::StartBattle(bool isBoss)
 {
     bool bIsSomeoneDead = false;
-    SpawnMonster(false);
+    SpawnMonster(isBoss);
 
     uiManager_->PrintBattleStart(player_, monster_, Achieve_);
 
