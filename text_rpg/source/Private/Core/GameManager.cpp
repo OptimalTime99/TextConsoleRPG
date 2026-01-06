@@ -51,13 +51,14 @@ bool GameManager::StartGame()
             switch (Mode_)
             {
             case GameMode::BATTLE_MODE: // 전투 시작
-                Mode_ = StartBattle();
+                Mode_ = Battle_->StartBattle(false);
                 break;
 
             case GameMode::APPLY_RWARDS:
                 // 상점 방문 선택 기능 필요
                 if (Player_->GetLevel() == 10)
                 {
+                    // 도전기능을 구현할 거면 보스전으로
                     Mode_ = GameMode::GAMEENDING_MODE;
                 }
                 else
@@ -109,11 +110,6 @@ bool GameManager::StartGame()
     }
 
     return false;
-}
-
-GameMode GameManager::StartBattle()
-{
-    return Battle_->StartBattle();
 }
 
 void GameManager::VisitShop()
