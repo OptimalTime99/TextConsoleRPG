@@ -76,11 +76,11 @@ std::string UIManager::PrintCreateCharacter()
     //UIHelper_->PrintLine("끊임없이 전쟁이 이어졌다.", 11, 25);
     //Sleep(1000);
 
-    UIHelper_->gotoxy(x - 30, y + 2);
-    UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 25);
-    UIHelper_->gotoxy(x - 30, y + 4);
-    UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 25);
-    Sleep(1000);
+    //UIHelper_->gotoxy(x - 30, y + 2);
+    //UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 25);
+    //UIHelper_->gotoxy(x - 30, y + 4);
+    //UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 25);
+    //Sleep(1000);
 
     system("cls");
 
@@ -224,15 +224,15 @@ void UIManager::PrintKillCount(AchievementSystem* achieve)
 {
     int x = 2;
     int y = 27;
+    int dy = 0;
     UIHelper_->textcolor(15);
 
     std::map<std::string, int> KillCount =achieve->GetAllKillCount();
 
-    int dy = 0;
     for (std::map<std::string, int>::iterator itr = KillCount.begin(); itr != KillCount.end(); itr++)
     {
         UIHelper_->gotoxy(x, y + dy);
-        std::cout << itr->first << " " << itr->second;
+        std::cout << itr->first << " : " << itr->second;
         dy++;
     }
 
@@ -253,10 +253,11 @@ void UIManager::PrintInventory(Inventory* inven)
     }
 }
 
-void UIManager::PrintBattleStart(Player* p, Monster* m)
+void UIManager::PrintBattleStart(Player* p, Monster* m, AchievementSystem* achieve)
 {
     PrintPlayerStatus(p);
     PrintMonsterStatus(m);
+    PrintKillCount(achieve);
 
     UIHelper_->Draw(37, 26, "<작전 현황표>");
     UIHelper_->BoxUI(0, 0, 159, 42, 15);
@@ -383,13 +384,19 @@ void UIManager::PrintAttackInsteadUseItem()
     Sleep(150);
 }
 
-void UIManager::PrintVictory()
+void UIManager::PrintVictory(const std::string& monstername, AchievementSystem* achieve)
 {
     Sleep(150);
     UIHelper_->ConsoleClear(90, 1, 123, 24);
     std::string log = "--------------[암살성공]--------------                                       ";
     UIHelper_->PushLog(log, 15);
     UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+    log = monstername + " 암살에 성공했습니다.                                           ";
+    UIHelper_->PushLog(log, 5);
+    UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+
+    PrintKillCount(achieve);
+
     Sleep(150);
 }
 
