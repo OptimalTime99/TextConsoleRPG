@@ -67,6 +67,8 @@ std::string UIManager::PrintCreateCharacter()
     int x = 60;
     int y = 18;
 
+    system("cls");
+
     UIHelper_->gotoxy(x, y);
     UIHelper_->textcolor(3);
     std::cout << "스토리를 시작하려면 ENTER를 누르세요." << std::endl;
@@ -76,21 +78,21 @@ std::string UIManager::PrintCreateCharacter()
     system("cls");
     Sleep(1000);
 
-    UIHelper_->gotoxy(x - 30, y - 8);
-    UIHelper_->PrintLine("2549년", 11, 25);
-    UIHelper_->gotoxy(x - 30, y - 6);
-    UIHelper_->PrintLine("문명의 발전은 인류를 더 먼 곳까지 데리고 갔지만", 11, 25);
-    UIHelper_->gotoxy(x - 30, y - 4);
-    UIHelper_->PrintLine("나아간 거리만큼 거대해진 욕심으로", 11, 25);
-    UIHelper_->gotoxy(x - 30, y - 2);
-    UIHelper_->PrintLine("끊임없이 전쟁이 이어졌다.", 11, 25);
-    Sleep(1000);
+    //UIHelper_->gotoxy(x - 30, y - 8);
+    //UIHelper_->PrintLine("2549년", 11, 25);
+    //UIHelper_->gotoxy(x - 30, y - 6);
+    //UIHelper_->PrintLine("문명의 발전은 인류를 더 먼 곳까지 데리고 갔지만", 11, 25);
+    //UIHelper_->gotoxy(x - 30, y - 4);
+    //UIHelper_->PrintLine("나아간 거리만큼 거대해진 욕심으로", 11, 25);
+    //UIHelper_->gotoxy(x - 30, y - 2);
+    //UIHelper_->PrintLine("끊임없이 전쟁이 이어졌다.", 11, 25);
+    //Sleep(1000);
 
-    UIHelper_->gotoxy(x - 30, y + 2);
-    UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 25);
-    UIHelper_->gotoxy(x - 30, y + 4);
-    UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 25);
-    Sleep(1000);
+    //UIHelper_->gotoxy(x - 30, y + 2);
+    //UIHelper_->PrintLine("전쟁이 길어지면서 많은 자원과 인력을 소모하는 전장보다", 11, 25);
+    //UIHelper_->gotoxy(x - 30, y + 4);
+    //UIHelper_->PrintLine("상대의 주요 인물을 암살하는 임무가 전쟁의 승패를 좌우하게 된다.", 11, 25);
+    //Sleep(1000);
 
     system("cls");
 
@@ -181,11 +183,11 @@ void UIManager::PrintPlayerStatus(Player* player)
 
     UIHelper_->Draw(x, y + 6, "공격력 : ");
     UIHelper_->gotoxy(x + 9, y + 6);
-    std::cout << player->Attack();
+    std::cout << player->Attack() << "  ";
 
     UIHelper_->Draw(x, y + 8, "Gold : ");
     UIHelper_->gotoxy(x + 7, y + 8);
-    std::cout << player->GetGold();
+    std::cout << player->GetGold() << "  ";
 
     UIHelper_->Draw(x, y + 25, "[킬 카운트]");
 
@@ -210,7 +212,7 @@ void UIManager::PrintMonsterStatus(Monster* monster)
 
     UIHelper_->Draw(x, y + 4, "공격력 : ");
     UIHelper_->gotoxy(x + 9, y + 4);
-    std::cout << monster->GetAttack();
+    std::cout << monster->GetAttack() << "  ";
 
     UIHelper_->gotoxy(0, 45);
 
@@ -255,12 +257,8 @@ void UIManager::PrintBattleStart(Player* p, Monster* m, AchievementSystem* achie
     PrintMonsterStatus(m);
     PrintKillCount(achieve);
 
+    UIHelper_->PrintUIBox();
     UIHelper_->Draw(37, 26, "<작전 현황표>");
-    UIHelper_->BoxUI(0, 0, 159, 42, 15);
-    UIHelper_->BoxUI(0, 0, 35, 42, 15);
-    UIHelper_->BoxUI(124, 0, 159, 42, 15);
-    UIHelper_->BoxUI(0, 25, 159, 42, 15);
-
 
     UIHelper_->ConsoleClear(36, 1, 123, 24);
     UIHelper_->PrintFile(39, 10, "asset/FindTarget.txt", 12);
@@ -444,4 +442,178 @@ void UIManager::PrintItemRewards(ItemType itemtype)
     Sleep(PrintSpeed + 500);
 
     UIHelper_->textcolor(15);
+}
+
+bool UIManager::ShopEnterChoice()
+{
+    int x = 126;
+    int y = 27;
+    UIHelper_->Draw(x + 2, y, "상점입장");
+    UIHelper_->Draw(x + 2, y + 2, "다음전투");
+    int choice = UIHelper_->UserSelection(126, 27, 2);
+    UIHelper_->ConsoleClear(126, 27, 158, 41);
+    switch (choice)
+    {
+    case 1:
+        return true;
+    case 2:
+        return false;
+    }
+}
+
+// 상점 UI
+int UIManager::PrintShop(Player* p)
+{
+    int x = 126;
+    int y = 27;
+
+    system("cls");
+
+    UIHelper_->PrintUIBox();
+    std::string log = "---------------[상점로비]----------------                                            ";
+    UIHelper_->PushLog(log, 15);
+    UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
+    PrintPlayerStatus(p);
+    
+
+    UIHelper_->Draw(x + 2, y, "구매");
+    UIHelper_->Draw(x + 2, y + 2, "판매");
+    UIHelper_->Draw(x + 2, y + 4, "다음 전투");
+    int choice = UIHelper_->UserSelection(126, 27, 3);
+
+    UIHelper_->ConsoleClear(126, 27, 158, 41);
+
+    return choice;
+}
+
+int UIManager::PrintShopBuyChoice(int x, int y, const std::deque<Item>& catalog)
+{
+    UIHelper_->PrintUIBox();
+
+    for (const auto& item : catalog)
+    {
+        UIHelper_->gotoxy(x, y);
+        for (const auto& effect : item.GetEffect())
+        {
+            std::cout << Item::ItemTypeToString(item.GetName()) << " : " << "HP"/*Item::ItemTypeToString(effect.first)*/ << " : " << item.GetPrice() << " Gold          ";
+        }
+        y = y + 2;
+    }
+    return UIHelper_->UserSelection(x-2, y-4, catalog.size());
+}
+
+ItemType UIManager::PrintShopSellChoice(int x, int y, Inventory* inven)
+{
+    UIHelper_->PrintUIBox();
+
+    for (const auto& item : inven->GetInventory())
+    {
+        UIHelper_->gotoxy(x, y);
+        std::cout << Item::ItemTypeToString(item.first) << " : " << item.second << " 개 보유                                    ";
+
+        y = y + 2;
+    }
+    int userchoice = UIHelper_->UserSelection(x - 2, y - 2, inven->GetInventory().size());
+    auto item = inven->GetInventory().begin();
+    std::advance(item, userchoice-1);
+
+    if (item != inven->GetInventory().end())
+    {
+        return item->first;
+    }
+
+    return ItemType();
+}
+
+
+int UIManager::CountPurchasePrice(int x, int y, const int max, int userchoice, const std::deque<Item>& catalog)
+{
+    int choiceX = x;
+    int choiceY = y;
+    int choice = 0;
+    int Price = 0;
+
+    UIHelper_->ConsoleClear(126, 27, 158, 41);
+
+    while (true)
+    {
+        UIHelper_->gotoxy(choiceX, choiceY);
+        std::cout << "갯수 : " << choice << "    ";
+        UIHelper_->gotoxy(choiceX, choiceY + 2);
+        std::cout << "가격 : " << Price << "    ";
+
+        if (GetAsyncKeyState(VK_UP) & 0x8000)
+        {
+            if (choice < max)
+            {
+                Price += catalog[userchoice - 1].GetPrice();
+                choice++;
+            }
+            Sleep(50);
+        }
+        if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+        {
+            if (choice > 0)
+            {
+                Price -= catalog[userchoice - 1].GetPrice();
+                choice--;
+            }
+            Sleep(50);
+        }
+        if (GetAsyncKeyState(VK_RETURN) & 0x8000)
+        {
+            UIHelper_->ConsoleClear(125, 26, 158, 41);
+            Sleep(200);
+            return choice;
+        }
+        Sleep(100);
+    }
+}
+
+int UIManager::CountSellPrice(int x, int y, const int max, ItemType userchoice, const std::deque<Item>& catalog, double SellRate)
+{
+    int choiceX = x;
+    int choiceY = y;
+    int choice = 0;
+    int Price = 0;
+
+    while (true)
+    {
+        UIHelper_->gotoxy(choiceX, choiceY);
+        std::cout << "갯수 : " << choice << "    ";
+        UIHelper_->gotoxy(choiceX, choiceY + 2);
+        std::cout << "가격 : " << Price << "    ";
+
+        if (GetAsyncKeyState(VK_UP) & 0x8000)
+        {
+            if (choice < max)
+            {
+                Price += (Item::GetData(userchoice)->GetPrice()) * SellRate;
+                choice++;
+            }
+            Sleep(50);
+        }
+        if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+        {
+            if (choice > 0)
+            {
+                Price -= (Item::GetData(userchoice)->GetPrice()) * SellRate;
+                choice--;
+            }
+            Sleep(50);
+        }
+        if (GetAsyncKeyState(VK_RETURN) & 0x8000)
+        {
+            UIHelper_->ConsoleClear(125, 26, 158, 41);
+            Sleep(200);
+            return choice;
+        }
+        Sleep(100);
+    }
+}
+
+void UIManager::PrintShoplog(const std::string& shoplog)
+{
+    UIHelper_->PushLog(shoplog, 14);
+    UIHelper_->Printlog(37, 27, UIHelper_->GetLog());
 }

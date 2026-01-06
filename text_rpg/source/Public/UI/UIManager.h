@@ -75,6 +75,26 @@ public:
     // 아이템 보상 획득 출력
     void PrintItemRewards(ItemType itemtype);
 
+    // 상점 입장여부 선택 UI
+    bool ShopEnterChoice();
+
+    // 상점 출력
+    int PrintShop(Player* p);
+
+    // 상점 구매 출력 및 선택
+    int PrintShopBuyChoice(int x, int y, const std::deque<Item>& catalog);
+
+    // 상점 판매 출력 및 선택
+    ItemType PrintShopSellChoice(int x, int y, Inventory* inven);
+
+    // 구매 혹은 판매액 총 가격 측정
+    int CountPurchasePrice(int x, int y, const int max, int userchoice, const std::deque<Item>& catalog);
+
+    int CountSellPrice(int x, int y, const int max, ItemType userchoice, const std::deque<Item>& catalog, double SellRate);
+
+    // 상점 로그를 띄우는 함수
+    void PrintShoplog(const std::string& shoplog);
+
 private:
     UIHelper* UIHelper_;
     Inventory* Inventory_;
