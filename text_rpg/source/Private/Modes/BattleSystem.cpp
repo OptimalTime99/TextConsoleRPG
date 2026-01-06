@@ -21,10 +21,10 @@
 
 
 #include "UI/UIManager.h"
+#include "Utils/RandomUtil.h"
 
 
 
-#include <random>
 
 
 BattleSystem::BattleSystem(Player* p, UIManager* ui, Inventory* inv, AchievementSystem* achv) 
@@ -67,6 +67,7 @@ GameMode BattleSystem::StartBattle()
         uiManager_->PrintVictory(monster_->GetName(), Achieve_);
         
         ApplyRewards();
+
         delete monster_;
         return GameMode::APPLY_RWARDS;
 
@@ -85,7 +86,7 @@ void BattleSystem::SpawnMonster(bool isBoss)
 {
     if (!isBoss)
     {
-        switch (GetRandomNumber())
+        switch (RandomUtil::GetRandomInt(1, 10))
         {
         case 1:
             monster_ = new BenediktKiss(player_->GetLevel());
@@ -237,7 +238,7 @@ void BattleSystem::ApplyRewards()
 {
     player_->GainExp(EXP_REWARD);
     int levelCount = level_->LevelUp(player_);
-    int golds = GetRandomGold(GOLD_MIN, GOLD_MAX);
+    int golds = RandomUtil::GetRandomInt(GOLD_MIN, GOLD_MAX);
     player_->GainGold(golds);
 
     uiManager_->PrintFixedRewards(EXP_REWARD, levelCount, golds); // 레벨 매개변수 수정 필요
@@ -248,12 +249,12 @@ void BattleSystem::ApplyRewards()
 
 void BattleSystem::TryDropItem()
 {
-    if (GetRandomBoolean(DROP_CHANCE))
+    if (RandomUtil::GetRandomBoolean(DROP_CHANCE))
     {
         const Item* whichItem = nullptr;
 
         // 50% 확률로 체력포션과 공격력 증가 포션을 선택
-        if (GetRandomBoolean(WHICH_ITEM))
+        if (RandomUtil::GetRandomBoolean(WHICH_ITEM))
         {
             // 인벤토리에 추가후 UI출력 명령
             whichItem = Item::GetData(ItemType::LowHealthPotion);
@@ -275,35 +276,5 @@ void BattleSystem::TryDropItem()
 // 유틸리티 클래스화 생각
 bool BattleSystem::DecideTurnAction(double probability)
 {
-    return GetRandomBoolean(ACTION_CHANCE);
-}
-
-bool BattleSystem::GetRandomBoolean(double probability)
-{
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-
-    std::bernoulli_distribution dis(probability);
-
-    return dis(gen);
-}
-
-int BattleSystem::GetRandomGold(int min, int max)
-{
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-
-    std::uniform_int_distribution<int> dis(min, max);
-
-    return dis(gen);
-}
-
-int BattleSystem::GetRandomNumber()
-{
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-
-    std::uniform_int_distribution<int> dis(1, 10);
-
-    return dis(gen);
+    return RandomUtil::GetRandomBoolean(ACTION_CHANCE);
 }
