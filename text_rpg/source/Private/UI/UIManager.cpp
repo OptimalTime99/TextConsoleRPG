@@ -54,6 +54,7 @@ void UIManager::PrintEndingEvent()
     int y = 12;
     system("cls");
     UIHelper_->PrintFile(x, y, "asset/EndingEvent.txt", 10);
+    UIHelper_->gotoxy(0, 45);
 }
 
 void UIManager::SetInventory(Inventory* inven)
