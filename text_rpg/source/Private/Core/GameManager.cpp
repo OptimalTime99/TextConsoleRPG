@@ -137,13 +137,3 @@ bool GameManager::StartGame()
 
     return false;
 }
-
-void GameManager::VisitShop()
-{
-
-}
-
-void GameManager::BattleDone()
-{
-
-}
