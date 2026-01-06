@@ -7,12 +7,13 @@ class Monster;
 enum class GameMode;
 class Item;
 class Inventory;
+class AchievementSystem;
 
 class BattleSystem
 {
 public:
     // 생성자
-    BattleSystem(Player* p, UIManager* ui, Inventory* inv);
+    BattleSystem(Player* p, UIManager* ui, Inventory* inv, AchievementSystem* achv);
 
     ~BattleSystem();
 
@@ -46,6 +47,7 @@ public:
 
 private:
     LevelSystem* level_; // battle시스템이 메모리 관리
+    AchievementSystem* Achieve_; // gamemanager 메모리 관리
     Player* player_; // gamemanager가 메모리 관리
     Monster* monster_; // battle시스템이 메모리 관리
     Inventory* Inventory_; // gamemanager가 메모리 관리
