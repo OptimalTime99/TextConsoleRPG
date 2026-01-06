@@ -37,14 +37,6 @@ public:
     // ACTION_CHANCE의 확률로 플레이어 공격인지 아이템 사용인지 결정
     bool DecideTurnAction(double probability);
 
-    // 확률에 따른 랜덤 부울린 값을 반환
-    bool GetRandomBoolean(double probability);
-
-    // 골드 획득량을 결정
-    int GetRandomGold(int min, int max);
-
-    int GetRandomNumber();
-
 private:
     LevelSystem* level_; // battle시스템이 메모리 관리
     AchievementSystem* Achieve_; // gamemanager 메모리 관리

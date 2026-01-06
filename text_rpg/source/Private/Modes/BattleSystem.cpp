@@ -24,7 +24,6 @@
 
 
 
-#include <random>
 
 
 BattleSystem::BattleSystem(Player* p, UIManager* ui, Inventory* inv, AchievementSystem* achv) 
@@ -275,35 +274,4 @@ void BattleSystem::TryDropItem()
 // 유틸리티 클래스화 생각
 bool BattleSystem::DecideTurnAction(double probability)
 {
-    return GetRandomBoolean(ACTION_CHANCE);
-}
-
-bool BattleSystem::GetRandomBoolean(double probability)
-{
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-
-    std::bernoulli_distribution dis(probability);
-
-    return dis(gen);
-}
-
-int BattleSystem::GetRandomGold(int min, int max)
-{
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-
-    std::uniform_int_distribution<int> dis(min, max);
-
-    return dis(gen);
-}
-
-int BattleSystem::GetRandomNumber()
-{
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-
-    std::uniform_int_distribution<int> dis(1, 10);
-
-    return dis(gen);
 }
