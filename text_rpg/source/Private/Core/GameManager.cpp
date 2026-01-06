@@ -57,7 +57,7 @@ bool GameManager::StartGame()
             case GameMode::APPLY_RWARDS:
                 // 상점 방문 선택 기능 필요
                 // 상점 방문 선택 UI 출력
-                if (/*상점 방문 UI 출력후 선택에 따라 반환*/false)
+                if (Shop_->EnterChoice(Player_, UI_))
                 {
                     // 상점 방문
                     Mode_ = GameMode::SHOP_MODE;
@@ -70,7 +70,7 @@ bool GameManager::StartGame()
                 }
                 else
                 {
-                    Mode_ = Shop_->EnterChoice(Player_, UI_);
+                    Mode_ = GameMode::BATTLE_MODE;
                 }
                 break;
 
@@ -87,7 +87,7 @@ bool GameManager::StartGame()
             case GameMode::SHOP_MODE:
                 // 상점 생성
                 // 상점 호출 UI
-                Mode_ = Shop_->Shop(Inventory_, Player_, UI_);
+                Shop_->Shop(Inventory_, Player_, UI_);
 
                 if (Player_->GetLevel() == 10)
                 {
