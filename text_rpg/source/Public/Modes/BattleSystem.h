@@ -18,7 +18,7 @@ public:
     ~BattleSystem();
 
     //전투를 시작한다
-    GameMode StartBattle();
+    GameMode StartBattle(bool isBoss);
 
     // 일반 몬스터를 생성한다.
     void SpawnMonster(bool isBoss);
