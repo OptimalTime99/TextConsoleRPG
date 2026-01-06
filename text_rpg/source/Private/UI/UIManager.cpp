@@ -24,7 +24,12 @@ bool UIManager::PrintTitle()
 
 void UIManager::PrintOff()
 {
+    system("cls");
+    UIHelper_->gotoxy(64, 18);
+    UIHelper_->textcolor(14);
     std::cout << "게임을 종료합니다." << std::endl;
+    Sleep(1000);
+    UIHelper_->gotoxy(0, 42);
 }
 
 bool UIManager::PrintGameOver()
