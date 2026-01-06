@@ -1,7 +1,5 @@
 ﻿#include "States/NormalMonster.h"
-#include <string>
-#include <iostream>
-#include <random>
+#include "Utils/RandomUtil.h"
 
 NormalMonster::NormalMonster(int Level)
     : Monster(Level)
@@ -16,16 +14,14 @@ void NormalMonster::GenerateStatus(int Level)
     {
         return;
     }
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
 
-    std::uniform_int_distribution<int> DistHP(Level * MIN_HP, Level * MAX_HP);
-    std::uniform_int_distribution<int> DistATK(Level * MIN_ATK, Level * MAX_ATK);
+    int DistHP = RandomUtil::GetRandomInt(Level * MIN_HP, Level * MAX_HP);
+    int DistATK = RandomUtil::GetRandomInt(Level * MIN_ATK, Level * MAX_ATK);
 
 
-    this->MaxHP_ = DistHP(gen);
-    this->HP_ = MaxHP_;
-    this->Attack_ = DistATK(gen);
+    this->HP_ = DistHP;
+    this->MaxHP_ = this->HP_;
+    this->Attack_ = DistATK;
 }
 
 
