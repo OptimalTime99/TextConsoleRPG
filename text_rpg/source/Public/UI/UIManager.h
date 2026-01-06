@@ -77,14 +77,19 @@ public:
     bool ShopEnterChoice();
 
     // 상점 출력
-    int PrintShop();
+    int PrintShop(Player* p);
 
     // 상점 구매 출력 및 선택
-    int PrintShopBuyChoice();
+    int PrintShopBuyChoice(int x, int y, const std::deque<Item>& catalog);
 
-    int PrintShopSellChoice(Inventory* inven);
+    // 상점 판매 출력 및 선택
+    int PrintShopSellChoice(int x, int y, Inventory* inven);
 
-    int Itemcount();
+    // 구매 혹은 판매액 총 가격 측정
+    int CountPrice(int x, int y, const int max, int userchoice, const std::deque<Item>& catalog, bool isPurchase, double SellRate);
+
+    // 상점 로그를 띄우는 함수
+    void PrintShoplog(const std::string& shoplog);
 
 private:
     UIHelper* UIHelper_;
