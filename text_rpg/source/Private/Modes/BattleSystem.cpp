@@ -27,8 +27,8 @@
 #include <random>
 
 
-BattleSystem::BattleSystem(Player* p, UIManager* ui, Inventory* inv) 
-    : player_(p), uiManager_(ui), Inventory_(inv)
+BattleSystem::BattleSystem(Player* p, UIManager* ui, Inventory* inv, AchievementSystem* achv) 
+    : player_(p), uiManager_(ui), Inventory_(inv), Achieve_(achv)
 {
     monster_ = nullptr;
     level_ = new LevelSystem();
@@ -45,7 +45,7 @@ GameMode BattleSystem::StartBattle()
     bool bIsSomeoneDead = false;
     SpawnMonster(false);
 
-    uiManager_->PrintBattleStart(player_, monster_);
+    uiManager_->PrintBattleStart(player_, monster_, Achieve_);
 
     while (true)
     {
@@ -63,8 +63,11 @@ GameMode BattleSystem::StartBattle()
     // 몬스터 사망 시 보상 분배
     if (monster_->isDead())
     {
-        uiManager_->PrintVictory();
+        Achieve_->AddKillCount(monster_->GetName());
+        uiManager_->PrintVictory(monster_->GetName(), Achieve_);
+        
         ApplyRewards();
+        delete monster_;
         return GameMode::APPLY_RWARDS;
 
     }
@@ -156,7 +159,6 @@ bool BattleSystem::ResolveTurn()
         // 몬스터 사망시 함수 종료
         if (monster_->isDead())
         {
-            delete monster_;
             return true;
         }
     }
@@ -174,7 +176,6 @@ bool BattleSystem::ResolveTurn()
             // 몬스터 사망시 함수 종료
             if (monster_->isDead())
             {
-                delete monster_;
                 return true;
             }
         }
