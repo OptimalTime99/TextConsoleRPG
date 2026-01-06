@@ -6,6 +6,7 @@ enum class GameMode
     BATTLE_MODE,
     APPLY_RWARDS,
     SHOP_MODE,
+    BOSS_BATTLE,
     GAMEENDING_MODE,
     GAMEOVER_MODE
 };
