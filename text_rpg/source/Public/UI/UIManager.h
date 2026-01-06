@@ -12,7 +12,7 @@
 class UIManager
 {
 public:
-    UIManager()
+    UIManager(Inventory* inven) : Inventory_(inven)
     {
         UIHelper_ = new UIHelper;
         UIHelper_->SetConsoleSetting();
@@ -73,19 +73,7 @@ public:
     // 아이템 보상 획득 출력
     void PrintItemRewards(ItemType itemtype);
 
-    // 상점 입장여부 선택 UI
-    bool ShopEnterChoice();
-
-    // 상점 출력
-    int PrintShop();
-
-    // 상점 구매 출력 및 선택
-    int PrintShopBuyChoice();
-
-    int PrintShopSellChoice(Inventory* inven);
-
-    int Itemcount();
-
 private:
     UIHelper* UIHelper_;
+    Inventory* Inventory_;
 };
