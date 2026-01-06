@@ -1,13 +1,29 @@
-﻿#include "Modes/BattleSystem.h"
-#include "States/Monster.h"
-#include "States/Player.h"
-#include "Types/GameMode.h"
-#include "UI/UIManager.h"
-#include "States/NormalMonster.h"
-#include "States/BossMonster.h"
+﻿#include "Types/GameMode.h"
 #include "Types/ItemType.h"
 #include "Types/StatusType.h"
+#include "Modes/BattleSystem.h"
 #include "Modes/LevelSystem.h"
+
+#include "States/BenediktKiss.h"
+#include "States/BossMonster.h"
+#include "States/DominikYork.h"
+#include "States/EliasBeck.h"
+#include "States/HugoJauch.h"
+#include "States/JohannaKlein.h"
+#include "States/KasparKaiser.h"
+#include "States/KevinKruger.h"
+#include "States/Monster.h"
+#include "States/MoritzMundt.h"
+#include "States/NormalMonster.h"
+#include "States/Player.h"
+#include "States/SebastianHorn.h"
+#include "States/StefanSommer.h"
+
+
+#include "UI/UIManager.h"
+
+
+
 #include <random>
 
 
@@ -27,7 +43,7 @@ BattleSystem::~BattleSystem()
 GameMode BattleSystem::StartBattle()
 {
     bool bIsSomeoneDead = false;
-    SpawnMonster();
+    SpawnMonster(false);
 
     uiManager_->PrintBattleStart(player_, monster_);
 
@@ -62,48 +78,59 @@ GameMode BattleSystem::StartBattle()
     return GameMode::BATTLE_MODE;
 }
 
-void BattleSystem::SpawnMonster()
+void BattleSystem::SpawnMonster(bool isBoss)
 {
-    switch (player_->GetLevel())
+    if (!isBoss)
     {
+        switch (GetRandomNumber())
+        {
         case 1:
-            monster_ = new NormalMonster("test", player_->GetLevel());
+            monster_ = new BenediktKiss(player_->GetLevel());
             break;
 
         case 2:
-
+            monster_ = new DominikYork(player_->GetLevel());
             break;
 
         case 3:
-
+            monster_ = new EliasBeck(player_->GetLevel());
             break;
 
         case 4:
-
+            monster_ = new HugoJauch(player_->GetLevel());
             break;
 
         case 5:
-
+            monster_ = new JohannaKlein(player_->GetLevel());
             break;
 
         case 6:
-
+            monster_ = new KasparKaiser(player_->GetLevel());
             break;
 
         case 7:
-
+            monster_ = new KevinKruger(player_->GetLevel());
             break;
 
         case 8:
-
+            monster_ = new MoritzMundt(player_->GetLevel());
             break;
 
         case 9:
-
+            monster_ = new SebastianHorn(player_->GetLevel());
             break;
 
         case 10:
-            monster_ = new BossMonster("Boss_test", player_->GetLevel());
+            monster_ = new StefanSommer(player_->GetLevel());
+            break;
+
+        default:
+            break;
+        }
+    }
+    else
+    {
+        monster_ = new BossMonster(player_->GetLevel());
     }
 }
 
@@ -265,7 +292,17 @@ int BattleSystem::GetRandomGold(int min, int max)
     static std::random_device rd;
     static std::mt19937 gen(rd());
 
-    static std::uniform_int_distribution<int> dis(min, max);
+    std::uniform_int_distribution<int> dis(min, max);
+
+    return dis(gen);
+}
+
+int BattleSystem::GetRandomNumber()
+{
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+
+    std::uniform_int_distribution<int> dis(1, 10);
 
     return dis(gen);
 }

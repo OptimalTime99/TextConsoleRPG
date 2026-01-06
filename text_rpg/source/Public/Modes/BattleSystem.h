@@ -20,7 +20,7 @@ public:
     GameMode StartBattle();
 
     // 일반 몬스터를 생성한다.
-    void SpawnMonster();
+    void SpawnMonster(bool isBoss);
 
     // 한 턴의 전투를 처리를 처리하고 몬스터나 플레이어의 사망 여부 반환
     bool ResolveTurn();
@@ -41,6 +41,8 @@ public:
 
     // 골드 획득량을 결정
     int GetRandomGold(int min, int max);
+
+    int GetRandomNumber();
 
 private:
     LevelSystem* level_; // battle시스템이 메모리 관리
