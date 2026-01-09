@@ -20,7 +20,7 @@
 
 ## **Team Members & Roles**
 
-| 직책 | 이름 & 연락처 | 담당 업무 (Role & Responsibilities) |
+| 직책 | 이름 & GitHub | 담당 업무 (Role & Responsibilities) |
 |:---:|:---:|:---|
 | **팀장** | [최준혁](https://github.com/OptimalTime99) | • **PM**: 전체 개발 일정 관리, 일일 스크럼 진행, Git-Flow 전략 수립 및 코드 리뷰 문화 정착<br>• **Design**: 전체 클래스 설계, 폴더 구조 설계, UML 다이어그램 작성<br>• **Dev**: `Flyweight Pattern`을 적용하여 메모리 효율을 최적화한 **Item/Inventory** 구현<br>• **QA/Etc**: 테스트 케이스 작성/관리, 발표 자료(PPT) 준비 및 진행 |
 | **부팀장** | [박원종](https://github.com/WonJongPark) | • **Core**: `Singleton`, `Facade Pattern`을 활용한 **GameManager** 구현<br>• **Content**: **BattleSystem** 로직 구현, 랜덤 난수 유틸리티 함수 제작<br>• **DevOps**: 형상 관리(Git Management) 담당 |
